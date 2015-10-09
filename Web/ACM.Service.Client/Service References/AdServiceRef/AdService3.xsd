@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ACM.Model" />
+  <xs:complexType name="Restrictions">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DepositoryType" nillable="true" type="q1:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EFcutoff" nillable="true" type="q2:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Other" nillable="true" type="q3:ArrayOfKeyValueOfintstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Restrictions" nillable="true" type="tns:Restrictions" />
+  <xs:complexType name="ArrayOfAdlocationList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdlocationList" nillable="true" type="tns:AdlocationList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdlocationList" nillable="true" type="tns:ArrayOfAdlocationList" />
+  <xs:complexType name="AdlocationList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdLocationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdLocationDesc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdlocationList" nillable="true" type="tns:AdlocationList" />
+  <xs:complexType name="ArrayOfAdInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdInfo_Result" nillable="true" type="tns:AdInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdInfo_Result" nillable="true" type="tns:ArrayOfAdInfo_Result" />
+  <xs:complexType name="AdInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATMTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AdGuid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdId" type="xs:int" />
+      <xs:element minOccurs="0" name="AdLocationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdLocationDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdProductTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AdRestrictionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AdStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DNSScrubLevel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field10" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field8" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field9" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MediaFileIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MediaFileTagMx" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaFileTagWeb" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaVendorId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RestrictionNames" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdInfo_Result" nillable="true" type="tns:AdInfo_Result" />
+  <xs:complexType name="AdInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ad" nillable="true" type="tns:AdInfo_Result" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="AdRestriction" nillable="true" type="q4:ArrayOfAdRestrictionAd" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdInfo" nillable="true" type="tns:AdInfo" />
+</xs:schema>

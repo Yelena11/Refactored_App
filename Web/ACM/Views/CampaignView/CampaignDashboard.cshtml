@@ -1,0 +1,190 @@
+﻿@{
+    ViewBag.Title = "ACM Campaign Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/jquery.jqGrid/ui.jqgrid.css"  />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+   @* <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.trirand.net/aspnetmvc/Content/themes/ui.jqgrid.css" />*@
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadGrid();
+        SetGridWidth();
+        $("#CreateNewCampaign").click(function () {
+            window.location.href = "@Url.Action("CampaignView", "CampaignView", new { CampaignId = 0 })";
+        });
+    });
+
+    function LinkFormatter(cellvalue, options, rowObject) {
+        sUrl = '@Url.Action("CampaignView", "CampaignView")' + '?CampaignId=' + cellvalue;
+        return "<a style='color: blue; text-decoration: underline;' href='" + sUrl + "'>" + cellvalue + "</a>";
+    }
+    LoadGrid = function () {
+        jQuery("#AssetTable").jqGrid({
+            url: '@Url.Action("GetCampaignDashboardData", "CampaignView")',
+            mtype: 'POST',
+            datatype: "json",
+            jsonReader: {
+                root: "rows", //array containing actual data
+                page: "page", //current page
+                total: "total", //total pages for the query
+                records: "records", //total number of records
+                repeatitems: false,
+                id: "CampaignId" //index of the column with the PK in it
+            },
+            colNames: ['Campaign ID', 'Campaign Name', 'Priority List', 'Regions', 'States'],
+            colModel: [
+            { name: 'CampaignId', index: 'CampaignId', key: true, width: 40, formatter: LinkFormatter },
+            { name: 'CampaignName', index: 'CampaignName', width: 110 },
+            { name: 'PriorityList', index: 'PriorityList', width: 50 },
+            { name: 'Regions', index: 'Regions', width: 50 },
+            { name: 'States', index: 'States', width: 50 },
+            ],
+            rowNum: 20,
+            rowList: [20, 30, 40],
+            pager: '#AssetTablePager',
+            viewrecords: true,
+            multiselect: false,
+            caption: "<div class='spanCaptionHeader'>Campaign Dashboard</div>",
+            altRows: true,
+            altclass: 'oddRow',
+
+            gridComplete: function () {
+                $(".jqgrow:odd").hover(
+                    function () { $(this).removeClass("oddRow"); },
+                    function (event) { $(this).addClass("oddRow"); }
+                );
+
+                var grid = $("#AssetTable");
+                var gridName = '#AssetTable';
+                var objHeader = $(gridName);
+
+                var ids = grid.jqGrid('getDataIDs');
+                if (ids) {
+                    var sortName = grid.jqGrid('getGridParam', 'sortname');
+                    var sortOrder = grid.jqGrid('getGridParam', 'sortorder');
+                    for (var i = 0; i < ids.length; i++) {
+                        grid.jqGrid('setCell', ids[i], sortName, '', '',
+                                    {
+                                        style: (sortOrder === 'asc' ? 'background:EEF1FB;' :
+                                                                 'background:EEF1FB;')
+                                    });
+                    }
+                }
+            },
+            loadError: function (xhr, st, err) {
+                jQuery("#ErrorLog").text("Encountered error while displaying data. Please contact technical support for assistance.");
+            },
+            height: 400,
+            hidegrid: false
+        });
+        jQuery("#AssetTable").jqGrid('setGroupHeaders', { useColSpanStyle: true, groupHeaders: [{ startColumnName: 'PriorityList', numberOfColumns: 3, titleText: 'Scheduling' }] });
+        jQuery("#AssetTable").jqGrid('navGrid', '#AssetTablePager', { search: true, edit: false, add: false, del: false });
+    }
+    SetGridWidth = function () {
+        var DataGrid = jQuery('#AssetTable');
+        DataGrid.jqGrid('setGridWidth', '970');
+    }
+</script>
+
+<style>
+
+
+
+    #AssetTable a {
+        color: #BC3604;
+        text-decoration: underline;
+    }
+
+    .spanCaptionHeader {
+        font-size: 12px;
+        font-family: Georgia;
+       
+        vertical-align:central;
+    
+    }
+
+    #AssetTable td {
+        font-size: 11px;
+        font-family: Verdana;
+        color: #000;
+       
+    }
+
+    th {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        white-space: normal !important;
+        font-size: 12px;
+        font-weight: bold !important;
+        font-family: Verdana;
+        height: 23px;
+        /*color: #990000 !important;*/
+        text-decoration: underline;
+    }
+
+    .tblDashBoard {
+        POSITION: relative;
+        MARGIN: 0px 30px;
+        WIDTH: 970px;
+
+          
+    }
+
+    .btntd {
+    }
+
+    .ui-th-column-header {
+        text-align: center;
+    }
+
+
+    .ui-jqgrid tr.jqgrow td {
+        word-wrap: break-word; /* IE 5.5+ and CSS3 */
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        overflow: hidden;
+        height: 23px;
+        font-size: 11px;
+        font-family: Verdana;
+        color: #000;
+        margin-left: 5px;
+    }
+
+    .ui-jqgrid tr.jqgrow td:first-child {
+        background-color: #EEEEEE;
+        text-align: right;
+    }
+</style>
+
+
+<table class="tblDashBoard">
+     <tr>
+        <td class="btntd" style="text-align: right; position: relative;" >
+            <input id="CreateNewCampaign" type="submit" style="width: 150px;" value="Add New Campaign" />
+          
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+           
+            <span id="ErrorLog" style="float: left; color: red;"></span>
+            <div id="grid-wrapper" style="margin-top: 2px;">
+                <table id="AssetTable"></table>
+                <div id="AssetTablePager"></div>
+            </div>
+        </td>
+    </tr>
+   
+</table>
+
+

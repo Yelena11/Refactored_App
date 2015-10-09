@@ -1,0 +1,266 @@
+﻿    @model ACM.Model.CampaignFollowUp
+
+
+
+<script type="text/javascript">
+    var cmpFollowUpData = @Html.Raw(Json.Encode(new { FollowUpSystemName = Model.FollowUpSystemName, FollowUpSystem = Model.FollowUpSystem, Business = Model.Business, FollowUpId= Model.FollowUpId, FollowUpRequirements = Model.FollowUpRequirements, CampaignId = Model.CampaignId, CreateBy = Model.CreateBy, CreatedDate = Model.CreatedDate }));
+    var followup_dropdown = @Html.Raw(Json.Encode(ViewBag.FollowUpList));   
+    
+    $(document).ready(function () {
+        //debugger;
+        var vmCampFollowUp = new CampaignFollowUpModel(cmpFollowUpData, followup_dropdown);
+        var nodeCmpFollowUp = $('#CampaignFollowUp')[0];
+        
+        ko.applyBindings(vmCampFollowUp,  nodeCmpFollowUp);
+
+       
+        $('#txtRequirements').on('keypress change', function () {
+            $(this).maxInputLength($(this), 1000);
+        });
+       
+        
+        //$.ltrim($('#FollowUpSystemName').val());
+        //$.ltrim($('#txtRequirements').val()); 
+
+        //attach keypress to input
+        $('#jqFollowUpSystem').keydown(function (event) {
+            // Allow special chars + arrows 
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9
+                || event.keyCode == 27 || event.keyCode == 13
+                || (event.keyCode == 65 && event.ctrlKey === true)
+                || (event.keyCode >= 35 && event.keyCode <= 39)) {
+                return;
+            } else {
+                // If it's not a number stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                    event.preventDefault();
+                }
+            }
+        });
+    }); // end document.ready
+
+    var CampaignFollowUpModel = function (model, followup_dropdown) {
+
+        //asign values to KO observable fields
+        var self = this;
+        self.OrigModel = ko.observable(model);
+        //debugger;
+
+        self.availableFollowUp = followup_dropdown;
+        if (model.FollowUpId > 0) {
+            self.chosenFollowUp = ko.observable(self.availableFollowUp[model.FollowUpId - 1].Value); //ko.observable(model.FollowUpId);
+            self.chosenFollowUpDesc = ko.observable(self.availableFollowUp[model.FollowUpId - 1].Text);
+        }
+        else {
+            self.chosenFollowUp = ko.observable(self.availableFollowUp[0].Value);
+            self.chosenFollowUpDesc = ko.observable(self.availableFollowUp[0].Text);
+        }
+
+        //subscribe event to show/hide controls
+        //for "Selected FollowUp" option.
+        self.isFUVisible = ko.observable(false);
+        if (self.chosenFollowUpDesc() == "SVP" || self.chosenFollowUpDesc() == "Prospector") {
+            self.isFUVisible(true);
+        }
+
+        self.chosenFollowUp.subscribe(function (selectedValue) {
+            //console.log(self.availableFollowUp[selectedValue[0]-1].Text);
+            if (self.availableFollowUp[selectedValue[0] - 1].Text == "SVP" || self.availableFollowUp[selectedValue[0] - 1].Text == "Prospector") {
+                self.isFUVisible(true);
+            }
+            else {
+                self.isFUVisible(false);
+            }
+        });
+
+        self.FollowUpSystemName = ko.observable(model.FollowUpSystemName);
+        self.FollowUpSystem = ko.observable(model.FollowUpSystem).extend({ min: 0, max: 100 });
+        self.radioBusiness = ko.observable(model.Business);
+        //console.log(self.chosenFollowUpDesc());
+        //console.log(self.chosenFollowUp());
+
+
+        self.FollowUpRequirements = ko.observable(model.FollowUpRequirements);
+        self.CampaignId = ko.observable(model.CampaignId);
+        self.CreateBy = ko.observable(model.CreateBy);
+        self.CreatedDate = ko.observable(model.CreatedDate);
+        self.ChangeLog = ko.observable();
+        self.pageErrors = ko.observable(-1);
+
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/g, "");
+        }
+
+        self.testLength = function (text, max_length) {
+            if (self.isNullCheck(text)) {
+                text = text.trim();
+                if (text.length >= max_length)
+                    return text = text.substring(0, max_length);
+                else
+                    return text;
+            }
+            else
+                return text;
+        }
+
+        self.isNullCheck = function (data) {
+            if (data != null && data !== undefined) {
+                return true;
+            }
+            else
+                return false;
+        }
+
+
+        //ajax call to server controller to store collected 
+        //information from campaign follow-up partial screen
+        self.SubmitChanges = function () {
+            var CampaignFollowUp = {};
+            var ix = self.chosenFollowUp()[0];
+            self.pageErrors(-1);
+            self.ChangeLog("");
+
+
+            //check FollowUpRequirements before saving
+            var FollowUpRequirements2Save = self.testLength(self.FollowUpRequirements(), 1000);
+            CampaignFollowUp.FollowUpRequirements = FollowUpRequirements2Save;
+            self.FollowUpRequirements(FollowUpRequirements2Save);
+
+            CampaignFollowUp.FollowUpId = ix;
+            CampaignFollowUp.FollowUpSystem = self.FollowUpSystem();
+
+            //check FollowUp System NAme before saving
+            var FollowUpSystemName2Save = self.testLength(self.FollowUpSystemName(), 500);
+            CampaignFollowUp.FollowUpSystemName = FollowUpSystemName2Save;
+            self.FollowUpSystemName(FollowUpSystemName2Save);
+
+            CampaignFollowUp.Business = self.radioBusiness();
+            CampaignFollowUp.Status = 'Active';
+            CampaignFollowUp.CreateBy = self.CreateBy();
+
+            CampaignFollowUp.CampaignId = self.CampaignId();
+            self.chosenFollowUp(ix);
+            self.chosenFollowUpDesc(self.availableFollowUp[ix - 1].Text);
+
+            //console.log(self.chosenFollowUpDesc());
+            //console.log(self.chosenFollowUp());
+            //if (self.isInt7(CampaignFollowUp.FollowUpSystem)){
+            var posting = $.post('@Url.Action("SaveCampaignFollowUp", "CampaignView")', CampaignFollowUp, function (data) {
+            //refreshData = data;
+        });
+
+        posting.done(function () {
+            ////////update orig model////////////////////////////
+            self.OrigModel().FollowUpId = CampaignFollowUp.FollowUpId;
+            self.OrigModel().FollowUpSystemName = CampaignFollowUp.FollowUpSystemName;
+            self.OrigModel().FollowUpSystem = CampaignFollowUp.FollowUpSystem;
+            self.OrigModel().radioBusiness = CampaignFollowUp.Business;
+            self.OrigModel().FollowUpRequirements = CampaignFollowUp.FollowUpRequirements;
+            ////////////////////////////////////
+            self.pageErrors(-1);
+            $("#cp-3 .add_Mode").hide();
+            $("#cp-3 .edit_Mode").show();
+            $("#btnSection_Followup").hide();
+
+            self.ChangeLog("Changes Saved!");
+        });
+
+        posting.fail(function (xhr, textStatus, errorThrown) {
+            self.pageErrors(1);
+            self.ChangeLog("Encountered error while saving data. Please contact technical support for assistance.");
+        });
+        /*}
+        else {
+            self.pageErrors(1);
+            self.ChangeLog("Please, enter numeric value for FollowUpSystem# text field."); 
+        }*/
+    };
+
+        self.CancelChanges = function () {
+            //start cancell
+            //debugger;
+
+            self.availableFollowUp = followup_dropdown;
+            if (self.OrigModel().FollowUpId > 0) {
+                self.chosenFollowUp(self.availableFollowUp[self.OrigModel().FollowUpId - 1].Value); //ko.observable(model.FollowUpId);
+                self.chosenFollowUpDesc(self.availableFollowUp[self.OrigModel().FollowUpId - 1].Text);
+            }
+            else {
+                self.chosenFollowUp(self.availableFollowUp[0].Value);
+                self.chosenFollowUpDesc(self.availableFollowUp[0].Text);
+            }
+
+            //subscribe event to show/hide controls
+            //for "Selected FollowUp" option.
+            if (self.chosenFollowUpDesc() == "SVP" || self.chosenFollowUpDesc() == "Prospector") {
+                self.isFUVisible(true);
+            }
+
+            self.FollowUpSystemName(self.OrigModel().FollowUpSystemName);
+            self.FollowUpSystem(self.OrigModel().FollowUpSystem);
+            self.radioBusiness(self.OrigModel().Business);
+            self.FollowUpRequirements(self.OrigModel().FollowUpRequirements);
+            self.pageErrors(-1);
+            //end cancell
+
+            $("#cp-3 .add_Mode").hide();
+            $("#cp-3 .edit_Mode").show();
+            $("#btnSection_Followup").hide();
+        }
+    }
+</script>
+ 
+<div id="CampaignFollowUp" class="divContent" >
+    <table style="width: 100%;" class="tblContent">
+        <tr><td colspan="2">
+                <span data-bind="style: {color: pageErrors() < 0 ? 'green' : 'red' }, text: ChangeLog" style="float: left;" >&nbsp;</span>
+        </td></tr>
+        <tr>
+            <td style="width: 50%;"> 
+                <div style="display: inline;">
+                    <span class="pg-text">Follow-Up Requirements: </span>
+                    <textarea class="pg-textbox add_Mode" data-bind="value: FollowUpRequirements" id="txtRequirements"></textarea>
+                    <span class="pg-text edit_Mode"  data-bind="text: FollowUpRequirements" >&nbsp;</span>
+               </div>
+                  <div style="height: 5px;"></div>
+               <div style="display: inline;">
+                    <span class="pg-text">Follow Up</span>
+                    <select class="mycombo add_Mode" data-bind="options: availableFollowUp, optionsValue: 'Value', optionsText: 'Text', selectedOptions: chosenFollowUp"></select> 
+                    <span class="pg-text edit_Mode"  data-bind="text: chosenFollowUpDesc" >&nbsp;</span>
+               </div>
+                  <div style="height: 5px;"></div>
+               <div style="display: inline;" data-bind="visible: isFUVisible">
+                    <span class="pg-text">Follow-Up System # </span>
+                    <input class="pg-textbox add_Mode" type="text" data-bind="value: FollowUpSystem" maxlength="7" id="jqFollowUpSystem"/>
+                    <span class="pg-text edit_Mode"  data-bind="text: FollowUpSystem" >&nbsp;</span>
+               </div>
+                  <div style="height: 5px;"></div>
+               <div style="display: inline;" data-bind="visible: isFUVisible">
+                    <span class="pg-text">Follow-Up System Name </span>
+                    <input class="pg-textbox add_Mode" type="text" data-bind="value: FollowUpSystemName"  maxlength=500 id="FollowUpSystemName"/>
+                    <span class="pg-text edit_Mode" data-bind="text: FollowUpSystemName"  >&nbsp;</span>
+               </div>
+                  <div style="height: 5px;"></div>
+               <div style="display: inline;" data-bind="visible: isFUVisible">
+                    <span class="pg-text">Business Y/N ? <br/>(ARM configuration)</span>
+                    <div style="display: inline-block;" class="pg-textbox add_Mode" >
+                        <input type="radio" value="Yes" class="pg-text-control" data-bind="checked: radioBusiness" style="width: 20px;">Yes                        
+                        <input type="radio" value="No" class="pg-text-control" data-bind="checked: radioBusiness" style="width: 20px;">No 
+                    </div>
+                   <span class="pg-text edit_Mode" data-bind="text:  radioBusiness"  >&nbsp;</span>
+                </div>        
+            </td>
+            <td style="width: 50%;"></td>
+        </tr>
+     </table>     
+    
+    <div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 100%; margin-top: 0px; ">
+        <div style="width: 100%; text-align: right;"  class="tdToggle" id="btnSection_Followup">
+            <hr />
+            <input id="SubmitButton" style="width: 70px;" type="submit" value="Save" data-bind="click: SubmitChanges"/>
+            <input id="btnCancel_Followup"  style="width: 70px;" type="submit"  value="Cancel" class="btnCancel"  data-bind="click: CancelChanges"/>
+
+        </div>
+    </div> 
+     
+</div>

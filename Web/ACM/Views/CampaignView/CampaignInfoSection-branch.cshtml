@@ -1,0 +1,180 @@
+﻿@model ACM.Model.Campaign
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 1024px; margin-top: 0px; margin-left: 20px;">
+
+    <div class="ui-widget-content " style="height: 970px; background: none !important;" id="requestor-form">
+        <table>
+            <tr>
+                <td><span class="pg-text">Campaign ID: </span></td>
+                <td>
+                    <input  class="pg-textbox" value ="@Model.CampaignId"/>
+                </td>
+                <td><span class="pg-text">Promo Button Type: </span></td>
+                <td>
+                    @Html.DropDownList("Promo Button Type",(SelectList ) ViewBag.promobuttontypelist)</td>
+            </tr>
+            <tr>
+                <td><span class="pg-text">Campaign Name: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaignName   "/>
+                </td>
+                <td>
+                    <span class="pg-text">Target Audience: </span>
+                </td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: Target Audience" value ="@Model.TargetAudience  "/>
+                </td>
+
+            </tr>
+
+
+
+
+
+            <tr>
+                <td><span class="pg-text">Campaign Details: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaignDetails "/>
+                </td>
+                <td>
+                    <span class="pg-text">Campaign Advertisement Type: </span>
+
+                </td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignAdvertisementType" value ="@Model.CampaignAdvertisementType "/>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td><span class="pg-text">Start Date: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaignStartDate.ToShortDateString()  "/>
+                </td>
+                <td>
+                    <span class="pg-text">Campaign Priority: </span>
+                </td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignPriority" value ="@Model.CampaignPriority   "/>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td><span class="pg-text">End Date: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaingEndDate.ToShortDateString()  "/>
+                </td>
+                <td>
+                    <span class="pg-text">Campaign Table Status: </span>
+                </td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignTableStatu" value ="@Model.CampaignTableStatu  "/>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Campaign Description: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaignDescription  "/>
+                </td>
+                <td>
+                    <span class="pg-text">Product Palcement: </span>
+                </td>
+                <td>@Html.DropDownList("Product Palcement",(SelectList ) ViewBag.productplacementlist)</td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Campaign Details: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: CampaignName" value ="@Model.CampaignDetails  "/>
+                </td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Campaign Type: </span></td>
+                <td>@Html.DropDownList("CampaignType",(SelectList ) ViewBag.campaigntypelist,2)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Requestor: </span></td>
+                <td>
+                    <input  class="pg-textbox" data-bind="value: RequestorId" value ="@Model.RequestorId  "/>
+                </td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+
+            <tr>
+                <td><span class="pg-text">LOB: </span></td>
+                <td>@Html.DropDownList("LOB",(SelectList ) ViewBag.loblist)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Product Manager: </span></td>
+                <td>@Html.DropDownList("Product Manager",(SelectList ) ViewBag.primarypmlist)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Secondary Product Manager: </span></td>
+                <td>@Html.DropDownList("Secondary Product Manager",(SelectList ) ViewBag.secondarypmlist)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td><span class="pg-text">Super Category: </span></td>
+                <td>@Html.DropDownList("Super Category",(SelectList ) ViewBag.supercategory)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Category: </span></td>
+                <td>@Html.DropDownList("Category",(SelectList ) ViewBag.category)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td><span class="pg-text">Sub Category: </span></td>
+                <td>@Html.DropDownList("Sub Category",(SelectList ) ViewBag.subcategory)</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+
+
+        </table>
+
+
+
+
+    </div>
+
+</div>

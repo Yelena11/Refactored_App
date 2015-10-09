@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48A5B5F5-6FFB-4CA1-AA46-B54AED9B3237}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACM.Service.Client</RootNamespace>
+    <AssemblyName>ACM.Service.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ad.cs" />
+    <Compile Include="Campaign.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AdServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CampAdServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CampaignServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\ACM.Model.Ad.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.AdDeploymentPeriod.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.AdLocation.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.AdOutStandingTask.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.Campaign.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CampaignFollowUp.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CampaignLocation.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CampaignMainFrame.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CampaignRequestor.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CampaignTargetFileProvider.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.Category.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.AdInfo.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.AdInfo_Result.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.AdlocationList.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.CampaignDetail.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.GetDataForDropDownList.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.CustomModel.Restrictions.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.Region.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.SubCategory.datasource" />
+    <None Include="Properties\DataSources\ACM.Model.User.datasource" />
+    <None Include="Service References\AdServiceRef\AdService.wsdl" />
+    <None Include="Service References\AdServiceRef\AdService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceRef\AdService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceRef\AdService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceRef\AdService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceRef\AdService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampAdServiceRef\AdService.wsdl" />
+    <None Include="Service References\CampAdServiceRef\AdService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampAdServiceRef\AdService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampAdServiceRef\AdService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampAdServiceRef\AdService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampAdServiceRef\AdService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampaignServiceRef\ACM.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampaignServiceRef\ACM1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampaignServiceRef\ACM2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampaignServiceRef\ACM3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CampaignServiceRef\CampaignService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AdServiceRef\" />
+    <WCFMetadataStorage Include="Service References\CampAdServiceRef\" />
+    <WCFMetadataStorage Include="Service References\CampaignServiceRef\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampaignServiceRef\ACM.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampaignServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampaignServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampaignServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ACM.Model\ACM.Model.csproj">
+      <Project>{1f544fd6-6668-4841-839f-d4c5cd32b0bc}</Project>
+      <Name>ACM.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Util\ACM.Util\ACM.Util.csproj">
+      <Project>{76e88abf-52ab-4fb5-be6c-1b5151ae25c0}</Project>
+      <Name>ACM.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampAdServiceRef\AdService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampAdServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampAdServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CampAdServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceRef\AdService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

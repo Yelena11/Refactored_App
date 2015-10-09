@@ -1,0 +1,628 @@
+﻿@model ACM.Model.CustomModel.AdInfo
+
+<style type="text/css">
+    
+      
+.adRestriction {
+    margin:0px;padding:0px;
+    width:70%;	
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #000000;
+
+}
+
+    .tdToggle {
+        padding-bottom:5px;
+    }
+
+.adRestriction table{
+    margin:0px;padding:0px;
+}
+    .divRestrictions {
+        margin-left:155px;
+        position:relative;
+        top:-20px;
+    }
+
+
+.adRestriction td{
+    vertical-align:top;
+    background-color:#ffffff;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:7px;
+    font-weight:normal;
+    color:#000000;
+     border-right:1px solid gray;
+     width:20%;
+}
+
+.adRestriction tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}
+
+.adRestriction tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}
+ 
+.adRestriction tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+.firstChhildTd{
+     background: #f2edea url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA0CAIAAADEwMXAAAAAA3NCSVQICAjb4U/gAAAAMklEQVQImWP49PYV0////6GYAcFm+I9d/P9/JgZkcRR12NVDzMMihlMtRJyBkHpMNwIA6ZmLp7k56KwAAAAASUVORK5CYII=) 100% 100%;
+}
+.detail-sec div {
+     margin-top:10px;
+}
+.collapseclass{
+    background:-o-linear-gradient(bottom, #ff5656 5%, blue 100%);	
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff5656), color-stop(1, #7f0000) );	
+    background:-moz-linear-gradient( center top, #ff5656 5%, #7f0000 100% );	
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="gray", endColorstr="skyblue");	
+    background: -o-linear-gradient(top,#ff5656,7f0000);
+    background-color:skyblue;
+}
+
+.rescontent td {
+        border-right:0px solid gray;
+        padding-bottom:5px !important;
+}
+    
+input[type=text]  {
+    border-color:gray;
+}
+.mycombo {
+    height:25px;
+    min-width:250px;
+}
+.bodyTd {
+    padding:0px !important;
+}
+
+.grayout {
+   	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; 
+	filter: alpha(opacity=50);				
+}
+
+
+
+</style>
+<input type="hidden" id="htnAdStatus" value="@Model.Ad.AdStatus" />
+<input type="hidden"  id="htnLocationId" value="@ViewBag.adlocationId" />
+<input type="hidden" id="htnMediaType" value="@Model.Ad.MediaType" />
+<input type="hidden" id="depositoryVal" value="@ViewBag.depositoryVal" />
+<input type="hidden" id="eFcutoffVal" value="@ViewBag.eFcutoffVal" />
+<input type="hidden" id="otherVal" value="@ViewBag.otherVal" />
+<input type="hidden" id="adidhidden" value="@Model.Ad.AdId" />
+
+ 
+<div  class="divContent" style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; margin-top: 0px; margin-left: 10px;">
+
+    <div class="detail-sec">
+        <div>
+
+            <span class="pg-text">AD ID </span>
+
+            <span id="spanAdid" class="pg-text-control"></span>
+            <input  id="adId" class="pg-textbox" type="hidden" value ="@Model.Ad.AdId"/>
+
+        </div>
+
+        <div>
+            <span class="pg-text">AD Name* </span>
+            <input  id="AdName" class="add_Mode" maxlength="100" value ="@Model.Ad.AdName"/>
+            <span id="spanAdName" class="pg-text-control edit_Mode">@Model.Ad.AdName</span>
+        </div>
+        <div>
+            <span class="pg-text">AD Location*</span>
+
+            @Html.DropDownListFor(x => x.Ad.AdLocationCode, (SelectList)ViewBag.adLocation, "Select", new { id = "adLocationCode", @class = "mycombo add_Mode" })
+
+
+            <span id="spanadLocationCode" class="pg-text-control edit_Mode"></span>
+
+        </div>
+        <div class="divMediaType">
+            <span class="pg-text">AD Type*</span>
+            <span id="spanMedia" class="pg-text-control edit_Mode">@Model.Ad.MediaType</span>
+            <select class="mycombo add_Mode" id="ddlMediaType">
+                <option value="Select">Select</option>
+            </select>
+
+        </div>
+        <div>
+            <span class="pg-text ">Product Type</span>
+            @Html.DropDownListFor(x => x.Ad.AdProductTypeId, (SelectList)ViewBag.adproductType, "Select", new { id = "adProductTypeId", @class = "mycombo add_Mode" })
+
+            <span id="spanadProductTypeId" class="pg-text-control edit_Mode"></span>
+
+        </div>
+
+        <div>
+            <span class="pg-text ">AD Status</span>
+            <span id="spanStatus" class="pg-text-control">@Model.Ad.AdStatus</span>
+
+        </div>
+
+        <div id="divProgress" style="width: 100%; text-align: center;">
+            <img class="centered" style="right: 50%; position: relative" src="~/Images/ajax-loader.gif" />
+            <br />
+            <br />
+            <br />
+            <br />
+            <span style="width: 100%;"></span>
+        </div>
+        <div>
+            <span class="pg-text">AD Restriction:</span>
+
+            <span id="spanRestrictionName" class="pg-text-control edit_Mode">@Model.Ad.RestrictionNames</span>
+            <div class="add_Mode">
+
+                <div class="divRestrictions">
+                <div id="divApplyAll">
+                    <input type="checkbox" id="chkApplyAll" value=" Apply to all ads in the campaign." />
+                    Apply to all ads in the campaign.<div></div>
+                </div>
+
+                <table id="idAdRestriction" class="adRestriction">
+                    <tr>
+                        <td class="firstChhildTd">DepositoryType</td>
+                        <td class="firstChhildTd">EFcutoff</td>
+                        <td class="firstChhildTd">Other</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="rescontent">
+                                <tr>
+                                    <td></td>
+                                </tr>
+
+                                @foreach (KeyValuePair<int, string> pair in ViewBag.restrictions.DepositoryType)
+                                //@for (int i = 0; i < ViewBag.restrictions.EFcutoff.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="bodyTd">
+                                            @if (pair.Key != null)
+                                            {
+                                                <input id="rdDepositoryType" type="radio" title="@pair.Value"  name="depository" value="@pair.Key" /> <span>&nbsp;</span> @pair.Value
+                                            }
+                                        </td>
+                                    </tr>  
+                                }
+                            </table>
+                        </td>
+                        <td>
+                            <table class="rescontent">
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                @foreach (KeyValuePair<int, string> pair in ViewBag.restrictions.EFcutoff)
+                                // @for (int i = 0; i < ViewBag.restrictions.EFcutoff.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="bodyTd">
+                                            <input  id="rdEFcutoff" type="radio" name="EFcutoff" title="@pair.Value" value="@pair.Key" /><span>&nbsp;</span>@pair.Value
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </td>
+
+                        <td>
+                            <table class="rescontent">
+                                <tr>
+                                    <td style="border: none"></td>
+
+                                </tr>
+                                @foreach (KeyValuePair<int, string> pair in ViewBag.restrictions.Other)
+                                {
+
+
+                                    <tr>
+                                        <td class="bodyTd">
+                                            <input id="rdOther" type="radio" name="Other" title="@pair.Value" value="@pair.Key" /><span>&nbsp;</span>@pair.Value
+
+                                        </td>
+                                    </tr>  
+                                     }
+                            </table>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="width: 100%; text-align: right"><a href="#" id="clearRes">Clear</a></div>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div></div>
+        </div>
+        <div class="dpDiv add_Mode">
+            <span class="pg-text ">Deployment periods: 
+</span>  <input type="checkbox" id="chkAllDeployments" value=" Apply to all future deployment periods." />
+                Apply to all future deployment periods.
+            
+
+        </div>
+    </div>
+</div>
+<br />
+<div style="width: 100%; text-align: right;"  class="tdToggle"">
+<hr />
+    <input id="SubmitButton" style="width: 70px;" type="submit" value="Save" />
+
+        <input id="btnCancel_Info" onclick="revertAdChanges();" class="btnCancel" style="width: 70px;" type="submit" value="Cancel" />
+</div>
+
+<script type="text/javascript">
+//set-up page controls on document ready event
+    $(document).ready(function () {
+        $('#ulAdsSub').show();
+
+        if ($('#ddlDeploymentPeriod').children('option').length - 1 == $('#ddlDeploymentPeriod').prop('selectedIndex'))
+            $('.dpDiv').hide();
+        $('#ddlDeploymentPeriod').change(function () {
+            $.post('@Url.Action("CheckAdStatus", "Ad")', { 'AdId': $('#adId').val(), 'deploymentPeriodId': $('#ddlDeploymentPeriod').val() }, function (data) {
+                if (data != null || data == "")
+                    $('#spanStatus').text(data);
+            });
+
+            if ($('#ddlDeploymentPeriod').children('option').length-1 == $('#ddlDeploymentPeriod').prop('selectedIndex'))
+                $('.dpDiv').hide();
+            else {
+                if ($('#htnViewMode').val() == "Add" || $('#htnViewMode').val()=="Edit") {
+                    $('.dpDiv').show();}
+            }
+        });
+
+        $('#divProgress').hide();
+        if ($('#adidhidden').val() != 0)
+            $('#spanAdid').text($('#adidhidden').val());
+
+        if ($('#htnAdStatus').val() == "Cancelled")
+            $('#imgAdEdit').hide();
+
+        if ($('#ddlMediaType option:selected').text() != 'Select') {
+            $('#spanMedia').text($('#ddlMediaType  option:selected').text());
+        }
+        if ($('#adLocationCode option:selected').text() != 'Select') {
+            $('#spanadLocationCode').text($('#adLocationCode  option:selected').text());
+        }
+
+        $('#spanAdName').text($('#AdName').val());
+
+        if ($('#adProductTypeId option:selected').text() != 'Select')
+            $('#spanadProductTypeId').text($('#adProductTypeId  option:selected').text());
+
+       // window.onbeforeunload = function () { location.reload(); };
+
+        defaultFlag();
+        showApplyAll();
+
+
+        $("#divApplyAll").hide();
+        var groups = "";
+        $('input[type=radio]').click(function () {
+            if (groups.indexOf($(this).attr("name")) == -1)
+                groups += $(this).attr("name") + " ";
+            $('input[name=' + $(this).attr("name") + ']').removeClass("activeRadio");
+
+            $(this).addClass("activeRadio");
+
+            if (groups.split(' ').length - 1 > 0)
+            { $("#divApplyAll").show("slow"); }
+
+        });
+
+        //Save ad post ad object to Ad/SaveAdInfo controller
+        $('#SubmitButton').click(function () {
+            $('#divProgress').show();
+            $('.detail-sec').addClass("grayout");
+             
+            $('#message').text(" ");
+            var errors = "";
+            $(".adRestriction").removeClass("required");
+            var count = groups.split(' ').length - 1;
+            var applyAll = 0; var applyAllDeployments = 0;
+            if ($("#chkApplyAll").prop('checked') == true) {
+                applyAll = 1;
+            }
+            if ($("#chkAllDeployments").prop('checked') == true) {
+                applyAllDeployments = 1;
+            }
+            var param = {
+                AdId: $('#adId').val(),
+                AdName: $('#AdName').trimVal(),
+                MediaType: $('#ddlMediaType option:selected').text(),
+                AdLocationCode: $("#adLocationCode").val(),
+                AdProductTypeId: $("#adProductTypeId").val(),
+                AdRestrictionId: 5,
+                Field10: applyAll,
+                Field8: $('#ddlDeploymentPeriod').val(),//deplyment periodid
+                Field9: applyAllDeployments,//apply to all deployment periods
+                Field7: $("#rdDepositoryType:checked").val() + "," + $("#rdEFcutoff:checked").val() + "," + $("#rdOther:checked").val()
+            };
+
+            $.post('@Url.Action("SaveAdInfo")', param, function (data) {
+             
+                $('input,select').removeClass("required");
+                if (data != null && data[0] != null && (data[0].ErrorMessage != "" && data[0].ErrorMessage != undefined)) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (errors.indexOf(data[i].ErrorMessage) == -1)
+                            errors += "*" + data[i].ErrorMessage + "<br/>";
+                        var element = "#" + data[i].ErrorMessage.split(' ')[1];
+                        $(element).addClass("required");
+                    }
+                    //validate for error check 
+                    $('#message').append(errors);
+                    CustomValidation();
+                    $('#message').removeClass("message");
+                    $('#message').addClass("error");
+
+                    if ($('#message').html() != "")
+                        $('#message').prepend('Provide all required fields before saving:<br/><br/>');
+                }
+                else if (data != null && data.AdId != null) {
+                    if (!CustomValidation()) {
+                        //switch screen to read only view
+                        swtichToReadOnly();
+                        $('#spanAdid').text(data.AdId);
+                        $('#message').removeClass("error");
+                        $('#message').addClass("message");
+                        if ($('#htnViewMode').val() == "Add") {
+                            $('#message').append("Ad <b>" + data.AdId + "</b> (" + data.AdName + ") created successfully.");
+                        }
+                        else {
+                            $('#message').append("Updates to basic information for Ad <b>" + data.AdId + "</b> (" + data.AdName + ") saved successfully.");
+                            $('#depositoryVal').val($("#rdDepositoryType:checked").val());
+                            $('#eFcutoffVal').val($("#rdEFcutoff:checked").val());
+                            $('#otherVal').val($("#rdOther:checked").val());
+
+                        }
+                    }
+                    $('#adId').val(data.AdId);
+                    $('#spanAdid').text(data.AdId);
+
+                    var restrictionName = "";
+                    if ($("#rdDepositoryType:checked").val() != undefined)
+                        restrictionName = $("#rdDepositoryType:checked").attr("title") + ", ";
+
+                    if ($("#rdEFcutoff:checked").val() != undefined)
+                        restrictionName = restrictionName + "EF Cutoff - " + $("#rdEFcutoff:checked").attr("title") + ", ";
+
+                    if ($("#rdOther:checked").val() != undefined)
+                        restrictionName = restrictionName + $("#rdOther:checked").attr("title")
+
+
+                    $('#spanRestrictionName').text(restrictionName);
+                    $('#spanStatus').text("Active");
+                    
+                }
+                else {
+                    if (!CustomValidation()) {
+                        $('#message').append('Encountered error while saving data. Please contact technical support for assistance.');
+                        $('#message').removeClass("message");
+                        $('#message').addClass("error");
+                    }
+                    else {
+                        if ($('#message').html() != "")
+                            $('#message').prepend('Provide all required fields before saving:<br/><br/>');
+                    }
+                }
+                window.scrollTo(0, 0);
+                $('.detail-sec').removeClass("grayout");
+                $('#divProgress').hide();
+                
+
+            });
+         
+            return false;
+        });
+
+        $('#adLocationCode').change(function () {
+           
+            if ($('#htnViewMode').val() == "Add") {
+                GetMediaType(false);
+            }
+            else {
+                if (confirm("Updating the ad location will reset the ad type and remove existing media or iUtility configuration on saving the basic ad information. Proceed? Yes/No")) {
+                    GetMediaType(false);
+                }
+                else {
+                   
+                    if ($('#htnLocationId').val() != "")
+                    {
+                        $("#adLocationCode option[value='" + $('#htnLocationId').val() + "']").attr('selected', 'selected')
+                    }
+                }
+            }
+            $('#htnLocationId').val($('#adLocationCode option:selected').val());
+            return false;
+
+        });
+
+      
+        if ($('#clearRes').click(function () {
+            $('input:radio[name=depository]').prop("checked", false);
+              $('input:radio[name=EFcutoff]').prop("checked", false);
+              $('input:radio[name=Other]').prop("checked", false);
+
+              $('input:radio').removeClass("activeRadio");
+
+            return false;
+        }));
+
+        if ($('#adLocationCode').val() == "") {
+            // $('#ddlMediaType').attr("disabled", true);
+            $(".divMediaType").hide();
+        }
+
+
+        $('#ddlMediaType').change(function () {
+            if ($('#htnViewMode').val() != "Add") {
+                
+                if (!confirm("Updating the ad type will make the existing media or iUtility configuration obsolete and they will be removed on saving the basic ad information. Proceed? Yes/No")) {
+                  
+                    if ($('#htnMediaType').val() != "")
+                        $("#ddlMediaType option[value='" + $('#htnMediaType').val() + "']").attr('selected', 'selected')
+                    return false;
+                }
+            }
+            $('#htnMediaType').val($('#ddlMediaType option:selected').text());
+        });
+
+        // 
+
+
+    });
+
+    //function performs custom validation on page controls
+    function CustomValidation()
+    {
+        var retVal = false;
+        if ($('#adLocationCode').val() == "") {
+            $('#message').append('*The Adlocation field is required.<br/>');
+            $('#adLocationCode').addClass("required");
+            $('#message').addClass("error");
+            retVal = true;
+        }
+        if ($('#adLocationCode').val() != "" && $('#ddlMediaType option:selected').text()=="Select") {
+            $('#message').append('*The Ad Type is required.<br/>');
+            $('#ddlMediaType').addClass("required");
+            $('#message').addClass("error");
+            retVal = true;
+        }
+        return retVal;
+    }
+
+    //function gets media available for selected ad location
+    //through ajax GET and populates a drop-down
+    function GetMediaType(defaultSelect) {
+        var _adlocationCode = $('#adLocationCode').val();
+
+        if (_adlocationCode != "") {
+            $(".divMediaType").show();
+            //$('#ddlMediaType').attr("disabled", false);
+            $.ajax({
+                url: '@Url.Action("GetMediaTypeByAdlocation")',
+                data: { adlocationCode: _adlocationCode },
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    var markup = "<option value='0'>Select</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        markup += "<option value=" + data[x] + ">" + data[x] + "</option>";
+                    }
+                    $("#ddlMediaType").html(markup).show();
+                    if (defaultSelect) {
+                        var selectValue = "#ddlMediaType option:contains('" + $('#spanMedia').text() + "')";
+                        $(selectValue).prop('selected', true);
+                    }
+
+                    if ($('#ddlMediaType option:selected').text() != 'Select')
+                        $('#spanMedia').text($('#ddlMediaType  option:selected').text());
+
+                }, error: function (reponse) {
+                    // alert("error : " + reponse);
+                }
+            });
+        }
+        else
+            $(".divMediaType").hide();
+        return false;
+    }
+
+    //display available options
+    function showApplyAll()
+    {
+        if ($('#depositoryVal').val != "" || $('#eFcutoffVal').val != "" || $('#otherVal').val != "")
+        {
+            $("#divApplyAll").show("slow");
+        }
+    }
+
+    //set-up controls on the screen
+    function defaultFlag() {
+        if ($('#depositoryVal').val != "") {
+            $("#rdDepositoryType").removeClass("activeRadio");
+            $("input[name=depository][value=" + $('#depositoryVal').val() + "]").prop("checked", true);
+            $("#rdDepositoryType[value=" + $('#depositoryVal').val() + "]").addClass("activeRadio");
+        }
+
+        if ($('#eFcutoffVal').val != "") {
+            $("#rdEFcutoff").removeClass("activeRadio");
+            $("input[name=EFcutoff][value=" + $('#eFcutoffVal').val() + "]").prop("checked", true);
+            $("#rdEFcutoff[value=" + $('#eFcutoffVal').val() + "]").addClass("activeRadio");
+        }
+
+        if ($('#otherVal').val != "") {
+            $("#rdOther").removeClass("activeRadio");
+            $("input[name=Other][value=" + $('#otherVal').val() + "]").prop("checked", true);
+            $("#rdOther[value=" + $('#otherVal').val() + "]").addClass("activeRadio");
+        }
+    }
+
+    //switch page controls to read-only view
+    function swtichToReadOnly() {
+
+        if ($('#ddlMediaType option:selected').text() != 'Select')
+            $('#spanMedia').text($('#ddlMediaType  option:selected').text());
+
+        if ($('#adLocationCode option:selected').text() != 'Select')
+            $('#spanadLocationCode').text($('#adLocationCode  option:selected').text());
+
+        $('#spanAdName').text($('#AdName').val());
+
+        if ($('#adProductTypeId option:selected').text() != 'Select')
+            $('#spanadProductTypeId').text($('#adProductTypeId  option:selected').text());
+
+        $(".add_Mode").hide();
+        $(".edit_Mode").show();
+        $(".tdToggle").hide();
+    }
+
+    function revertAdChanges() {
+
+        if ($('#spanMedia').text() != "") {
+            $("#ddlMediaType option").filter(function () {
+                return $(this).text() == $('#spanMedia').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#ddlMediaType").prop('selectedIndex', 0);
+
+        if ($('#spanadLocationCode').text() != "") {
+            $("#adLocationCode option").filter(function () {
+                return $(this).text() == $('#spanadLocationCode').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#adLocationCode").prop('selectedIndex', 0);
+
+        if ($('#spanadProductTypeId').text() != "") {
+            $("#adProductTypeId option").filter(function () {
+                return $(this).text() == $('#spanadProductTypeId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#adProductTypeId").prop('selectedIndex', 0);
+
+        $('#AdName').val($('#spanAdName').text());
+       
+        $("#chkAllDeployments").prop('checked', false);
+        $("#chkApplyAll").prop('checked', false);
+
+        defaultFlag();
+
+        $(".add_Mode").hide();
+        $(".edit_Mode").show();
+        $(".tdToggle").hide();
+
+    }
+
+    </script>

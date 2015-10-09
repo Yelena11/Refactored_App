@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ACM.Model" />
+  <xs:complexType name="CampaignDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedPMFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedPMId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignedPMLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedPMName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignLocation" nillable="true" type="q1:ArrayOfCampaignLocation" />
+      <xs:element minOccurs="0" name="CampaignName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CampaignStatus" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignTargetFileProvider" nillable="true" type="q2:ArrayOfCampaignTargetFileProvider" />
+      <xs:element minOccurs="0" name="CampaignTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaingEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedPMLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FollowUpRequriements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LOBId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LOBName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedByFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedByLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedByName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RequestorFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequestorId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestorLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequestorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetAudience" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetLoadFrequency" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignDetail" nillable="true" type="tns:CampaignDetail" />
+  <xs:complexType name="ArrayOfGetDataForDropDownList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GetDataForDropDownList" nillable="true" type="tns:GetDataForDropDownList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGetDataForDropDownList" nillable="true" type="tns:ArrayOfGetDataForDropDownList" />
+  <xs:complexType name="GetDataForDropDownList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetDataForDropDownList" nillable="true" type="tns:GetDataForDropDownList" />
+</xs:schema>

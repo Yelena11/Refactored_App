@@ -1,0 +1,189 @@
+﻿@model ACM.Model.Ad
+
+<style>
+    select {
+width:auto;  }
+       option {
+width:auto;  }
+
+        .required {
+        border-color:red;
+    }
+     HR {
+        BORDER-BOTTOM: medium none;
+        BORDER-LEFT: medium none;
+        HEIGHT: 1px;
+     
+        BORDER-RIGHT: medium none;
+    }
+</style>
+<link href="~/Content/common.css" rel="stylesheet" />
+@section scripts{
+    <script type="text/javascript">
+        //set-up controls on document ready
+        $(document).ready(function () {
+            sessionToggle = false;
+          
+            if ($('#htnViewMode').val() == "Add") {
+                messageText = "added Successfully";
+                $(".tdToggle").show();
+                $(".add_Mode").show();
+                $(".edit_Mode").hide();
+            }
+            else {
+                messageText = "updated Successfully";
+                $(".tdToggle").hide();
+                $(".add_Mode").hide();
+                $(".edit_Mode").show();
+            }
+
+            $('#linkCampaign').removeClass('active');
+            $('#linkAd').addClass('active');
+
+            //button Cancel click switch controls to
+            //read only view
+            $('.btnCancel').click(function (e) {
+                var id = $(this).parents('DIV').parents('DIV').parents('DIV').attr("id");
+                var showSection = "#" + id + " .expandable-panel-content";
+                $(showSection + " .add_Mode").hide();
+                $(showSection + " .edit_Mode").show();
+                $('#message').text("");
+                $('#htnViewMode').val("");
+                $(".tdToggle").hide();
+                return false;
+            });
+
+            //switch view to edit mode
+            $('.editMode').click(function (e) {
+                $(".tdToggle").show();
+                $(".add_Mode").show();
+                $(".edit_Mode").hide();
+                var disabled = false;
+                var id = $(this).parents('DIV').parents('DIV').attr("id");
+                var showSection = "#" + id + " .expandable-panel-content";
+
+                $(showSection).show();
+                if (id == "cp-1") {
+                    $('#htnViewMode').val("Edit")
+                    GetMediaType(true);
+                    showApplyAll();
+                }
+                return false;
+            });
+            //$('#cp-1 .expandable-panel-content').show();
+            $('#cp-1 .expandable-panel-content').show();
+            $('#cp-2 .expandable-panel-content').hide();
+            $('#cp-3 .expandable-panel-content').hide();
+            $('#cp-4 .expandable-panel-content').hide();
+
+            $('#btnNext1').click(function () {
+                $('#cp-1 .expandable-panel-content').hide("slow");
+                $('#cp-2 .expandable-panel-content').show();
+            });
+
+            $('#btnNext2').click(function () {
+                $('#cp-1 .expandable-panel-content').hide("slow");
+                $('#cp-2 .expandable-panel-content').hide("slow");
+                $('#cp-3 .expandable-panel-content').show();
+            });
+
+            $('#cp-1 .expandable-panel-heading').click(function (e) {
+                if (e.target.id != "imgAdEdit") {
+
+
+                    if (!sessionToggle) {
+                        $('#cp-1 .expandable-panel-content').hide();
+                        $('#cp-1 .icon-open').addClass("icon-close");
+                        sessionToggle = true;
+                    }
+                    else {
+                        $('#cp-1 .expandable-panel-content').show();
+                        $('#cp-1 .icon-open').removeClass("icon-close");
+                        sessionToggle = false;
+                    }
+                }
+            });
+
+            $('#cp-2 .expandable-panel-heading').click(function (e) {
+
+                if (e.target.tagName != "imgIUtilityEdit") {
+                    $('#cp-2 .expandable-panel-content').toggle(function () {
+                        var imgsrc = ($(this).is(':hidden'));
+                        if (imgsrc) {
+                            $('#cp-2 .sec2').addClass("icon-close");
+                        }
+                        else {
+                            $('#cp-2 .sec2').removeClass("icon-close");
+                            $('#cp-2 .sec2').addClass("icon-open");
+                        }
+                    });
+                }
+            });
+
+            $('#cp-3 .expandable-panel-heading').click(function (e) {
+                if (e.target.tagName != "imgDisplayRuleEdit") {
+                    $('#cp-3 .expandable-panel-content').toggle(function () {
+                        var imgsrc = ($(this).is(':hidden'));
+                        if (imgsrc) {
+                            $('#cp-3 .sec3').addClass("icon-close");
+                        }
+                        else {
+                            $('#cp-3 .sec3').removeClass("icon-close");
+                            $('#cp-3 .sec3').addClass("icon-open");
+                        }
+                    });
+                }
+            });
+        });
+
+
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    
+        <div class="leftNav">
+      @{Html.RenderAction("RenderLeftMenu", "Navigation", new { campaignId = Model.CampaignId });}
+    </div>
+    
+    <input type="hidden" value='@ViewBag.ViewMode' id="htnViewMode" />
+    
+    
+    <div id="container">
+         <div class="deploymentPeriodDiv">
+      @{Html.RenderAction("DeploymentPeriods", "Common");}
+    </div>
+         
+            <div id="message"></div>
+        <div id="cp-1" class="expandable-panel">
+            <div class="expandable-panel-heading">
+                <h2>Ad Detail <span class="icon-open"></span></h2>
+            </div>
+            <div class="expandable-panel-content" style="background-color: white">
+                 <span class="editSpan">  <a class="editMode" id="imgAdEdit">Edit</a> </span>
+                @{Html.RenderAction("AdDetailView", Model);}</div>
+        </div>
+
+        <div id="cp-2" class="expandable-panel" style="visibility:hidden">
+            <div class="expandable-panel-heading">
+                <h2>IUtility Configuration<a id="InfoSection" class="edit"><img src="~/Images/iconEdit.png" class="editMode" id="imgIUtilityEdit" /></a> <span class="sec2 icon-close"></span></h2>
+            </div>
+            <div class="expandable-panel-content">
+
+                @{Html.RenderAction("AdIUtilityConfig", Model);}
+            </div>
+        </div>
+
+
+        <div id="cp-3" class="expandable-panel"  style="visibility:hidden">
+            <div class="expandable-panel-heading">
+                <h2 color: white">Display Rule<a class="edit"><img src="~/Images/iconEdit.png" id="imgDisplayRuleEdit" class="editMode"></a> <span class="sec3 icon-close"></span></h2>
+            </div>
+            <div class="expandable-panel-content">
+                @{Html.RenderAction("AdDisplayRule", Model);}
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,411 @@
+﻿@model ACM.Model.CampaignTargetFileProvider
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+       var cmpTrgFileProviderData = @Html.Raw(Json.Encode(new { CampaignId = Model.CampaignId, IWillProvideTargetFile = Model.IWillProvideTargetFile,
+                                OPRProvideTargetFile = Model.OPRProvideTargetFile, ECNCardNumber = Model.ECNCardNumber, OPRCriteria = Model.OPRCriteria, OPR = Model.OPR,
+                                TargetFileCompleted = Model.TargetFileCompleted, FollowUPNeeded = Model.FollowUPNeeded, Frequency = Model.Frequency, Field1 = Model.Field1}));
+        //   debugger;
+
+        var vmCmpTrgFileProvider = new TargetFileProviderModel(cmpTrgFileProviderData);
+        var nodeCmpTrgFleProvider =  $("#CampaignTargetFileProvider")[0];
+        ko.applyBindings(vmCmpTrgFileProvider, nodeCmpTrgFleProvider);
+
+        //self.radioFollowUPNeeded = ko.observable(cmpTrgFileProviderData.FollowUPNeeded);
+        $('#cp-3').hide();
+        if(cmpTrgFileProviderData.FollowUPNeeded=='Yes')
+            $('#cp-3').show();
+       
+    }); // end document.ready
+
+    var TargetFileProviderModel = function (model) {
+        var self = this;
+        var rdRequestor = "";
+        //debugger;
+        self.OrigModel= ko.observable(model); 
+        self.CampaignId = ko.observable(model.CampaignId);
+        self.isESNVisible = ko.observable(false);
+        self.isOPRVisible = ko.observable(false);
+        
+        self.IWillProvideTargetFile = ko.observable(model.IWillProvideTargetFile=='true');
+        if (self.IWillProvideTargetFile()) {
+            self.RequestorText = ko.observable("Requestor");
+            rdRequestor = "Requestor";
+            self.isESNVisible(true);
+        }
+        else{
+            self.RequestorText = ko.observable("");
+            rdRequestor = "";
+        }
+        self.OPRProvideTargetFile = ko.observable(model.OPRProvideTargetFile=='true');
+        
+        if (self.OPRProvideTargetFile()) {
+            if (rdRequestor.length > 1) rdRequestor = rdRequestor + ", ";
+
+            self.OPRRequestText = ko.observable("OPR Request");
+            rdRequestor = rdRequestor + "OPR Request";
+            self.isOPRVisible(true);
+        }
+        else{
+            self.OPRRequestText = ko.observable("");
+            rdRequestor = rdRequestor + "";
+        }
+        self.TFProvider = ko.observable(rdRequestor);
+
+        //console.log(self.OPRRequestText());
+        //console.log(self.RequestorText());
+
+        self.ChangeLog = ko.observable();
+        self.pageErrors = ko.observable(-1);
+        String.prototype.trim = function() {
+            return this.replace(/^\s+|\s+$/g,"");
+        }
+
+        self.availableECNOptions = ["","ECN", "Card Number", "No"];
+        if (!model.ECNCardNumber){
+            self.chosenESNOption = ko.observable("");
+        }
+        else{
+            self.chosenESNOption = ko.observable(model.ECNCardNumber);
+        }
+        self.OPRCriteria = ko.observable(model.OPRCriteria);
+        self.OPR = ko.observable(model.OPR);
+        self.radioTargetFileCompleted = ko.observable(model.TargetFileCompleted);
+        self.radioFollowUPNeeded = ko.observable(model.FollowUPNeeded);
+        self.availableTrgFileFrequency = ["", "Weekly", "Monthly", "Quarterly", "Select own value"];
+        if (!model.Frequency){
+            self.chosenTrgFileFrequency = ko.observable("");
+        }
+        else{
+            self.chosenTrgFileFrequency = ko.observable(model.Frequency);
+        }
+        self.Field1 = ko.observable(model.Field1);
+        self.isF1Visible = ko.observable(false);
+        
+        if(model.Frequency=="Select own value")
+            self.isF1Visible = ko.observable(true);
+        //subscribe event to show/hide text box
+        //for "Select own value" option.
+        self.chosenTrgFileFrequency.subscribe(function(selectedValue) {
+            if (selectedValue == self.availableTrgFileFrequency[4]){
+                //alert("The selected value is " + selectedValue);
+                self.isF1Visible(true);
+            }
+            else{
+                self.isF1Visible(false);
+                self.Field1("");
+            }
+        });
+
+        self.chosenESNOption.subscribe(function(selectedValue) {
+            //alert(self.OPRProvideTargetFile());
+            if (selectedValue == "No"){
+                //alert("The selected value is " + selectedValue);
+                self.isOPRVisible(true);
+            }
+            else {
+                if (!self.OPRProvideTargetFile()){
+                    self.isOPRVisible(false);
+                    self.OPRCriteria("");
+                    self.OPR("");
+                }
+            }
+        });
+
+        self.IWillProvideTargetFile.subscribe( function() {
+            if (self.IWillProvideTargetFile() == true ){
+                self.isESNVisible(true);
+            }
+            else {
+                self.isESNVisible(false);
+            }
+
+            if (self.IWillProvideTargetFile() == true && self.chosenESNOption() == 'No') {
+                self.isOPRVisible(true);
+            }
+            else{
+                     if (!self.OPRProvideTargetFile()){
+                        self.isOPRVisible(false);
+                        self.OPRCriteria("");
+                        self.OPR("");
+                     }
+            }
+        });
+
+        self.OPRProvideTargetFile.subscribe(function() {
+            //debugger;
+         //   alert(self.OPRProvideTargetFile());
+            if (self.OPRProvideTargetFile() == true) {
+                self.isOPRVisible(true);
+            }
+            else {
+                if (self.IWillProvideTargetFile() == true && self.chosenESNOption() == 'No') {
+                    self.isOPRVisible(true);
+                } else {
+                    self.isOPRVisible(false);
+                    self.OPRCriteria("");
+                    self.OPR("");
+                }
+            }
+            
+        });
+
+        self.testLength = function(text, max_length) {      
+            if (self.isNullCheck(text)) {
+                text = text.trim();
+                if (text.length >  max_length)
+                    return text = text.substring(0, max_length);
+                else
+                    return text;
+            }
+            else
+                return text;
+        }
+
+        self.isNullCheck = function(data){
+            if (data != null && data !== undefined) {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        
+        self.SubmitChanges = function (){
+            var CmpTargetFileProvider = {};
+            var rdRequestor = "";
+
+            CmpTargetFileProvider.CampaignId = self.CampaignId();       
+            CmpTargetFileProvider.IWillProvideTargetFile = self.IWillProvideTargetFile();
+            CmpTargetFileProvider.OPRProvideTargetFile = self.OPRProvideTargetFile();
+            CmpTargetFileProvider.Frequency = self.chosenTrgFileFrequency();
+            CmpTargetFileProvider.ECNCardNumber = self.chosenESNOption();
+            CmpTargetFileProvider.TargetFileCompleted = self.radioTargetFileCompleted();
+
+            //check OPRCriteria before saving
+            var OPRCriteria2Save = self.testLength(self.OPRCriteria(), 1000);
+            CmpTargetFileProvider.OPRCriteria = OPRCriteria2Save;
+            self.OPRCriteria(OPRCriteria2Save);
+
+            //check OPR# before saving
+            var OPR2Save = self.testLength(self.OPR(), 20);
+            CmpTargetFileProvider.OPR = OPR2Save;
+            self.OPR(OPR2Save);
+
+            CmpTargetFileProvider.FollowUPNeeded = self.radioFollowUPNeeded();
+            CmpTargetFileProvider.Status = 'Active';
+            var ownVal = self.Field1();
+            if (self.isNullCheck(ownVal)) {
+                self.Field1(self.Field1().trim());
+            }
+            CmpTargetFileProvider.Field1 = self.Field1();
+            CmpTargetFileProvider.Field2 = "";
+            CmpTargetFileProvider.Field3= "";
+            CmpTargetFileProvider.Filed4 = "";
+            
+            if (self.IWillProvideTargetFile()) {
+                self.RequestorText = ko.observable("Requestor");
+                rdRequestor = "Requestor";
+            }
+            else{
+                self.RequestorText = ko.observable("");
+                rdRequestor = "";
+            }
+            
+            if (self.OPRProvideTargetFile()) {
+                if (rdRequestor.length > 1) rdRequestor = rdRequestor + ", ";
+                self.OPRRequestText = ko.observable("OPR Request");
+                rdRequestor = rdRequestor + "OPR Request";
+            }
+            else{
+                self.OPRRequestText = ko.observable("");
+                rdRequestor = rdRequestor + "";
+            }
+            self.TFProvider(rdRequestor);
+            var posting = $.post('@Url.Action("SaveCampaignTargetFileProvider", "CampaignView")', CmpTargetFileProvider, function (data) { 
+                //refreshTargetData = data;
+            });
+            posting.done(function() {
+                ////start update original model/////////////////
+                self.OrigModel().IWillProvideTargetFile= self.IWillProvideTargetFile();
+                self.OrigModel().OPRProvideTargetFile = self.OPRProvideTargetFile();
+                self.OrigModel().ECNCardNumber = CmpTargetFileProvider.ECNCardNumber;
+                self.OrigModel().OPRCriteria = CmpTargetFileProvider.OPRCriteria;
+                self.OrigModel().OPR = CmpTargetFileProvider.OPR;
+                self.OrigModel().TargetFileCompleted = CmpTargetFileProvider.TargetFileCompleted;
+                self.OrigModel().FollowUPNeeded = CmpTargetFileProvider.FollowUPNeeded;
+                self.OrigModel().Frequency = CmpTargetFileProvider.Frequency;
+                self.OrigModel().Field1 = CmpTargetFileProvider.Field1;
+                /////////////////////////////////////////////////
+                self.pageErrors(-1);
+                $("#cp-2 .add_Mode").hide(); 
+                $("#cp-2 .edit_Mode").show(); 
+                $("#btnSection_TargetFile").hide(); 
+                if(CmpTargetFileProvider.FollowUPNeeded=="Yes")
+                    $("#cp-3").show("slow");
+                else
+                    $("#cp-3").hide("slow");
+                self.ChangeLog("Changes Saved!");
+            });
+
+            posting.fail( function(xhr, textStatus, errorThrown) {
+                self.pageErrors(1);
+                self.ChangeLog("Encountered error while saving data. Please contact technical support for assistance.");
+            });
+        }
+
+        self.CancelChanges = function (){
+            var rdRequestor = "";
+           //start reverse changes
+                    
+            self.IWillProvideTargetFile(self.OrigModel().IWillProvideTargetFile==true || self.OrigModel().IWillProvideTargetFile=='true');
+            if (self.IWillProvideTargetFile()) {
+                self.RequestorText("Requestor");
+                rdRequestor = "Requestor";
+                self.isESNVisible(true);
+            }
+            else{
+                self.RequestorText("");
+                rdRequestor = "";
+            }
+            self.OPRProvideTargetFile(self.OrigModel().OPRProvideTargetFile==true || self.OrigModel().OPRProvideTargetFile=='true');
+        
+            if (self.OPRProvideTargetFile()) {
+                if (rdRequestor.length > 1) rdRequestor = rdRequestor + ", ";
+
+                self.OPRRequestText("OPR Request");
+                rdRequestor = rdRequestor + "OPR Request";
+                self.isOPRVisible(true);
+            }
+            else{
+                self.OPRRequestText("");
+                rdRequestor = rdRequestor + "";
+            }
+            self.TFProvider(rdRequestor);
+
+            self.pageErrors(-1);
+            if (!self.OrigModel().ECNCardNumber){
+                self.chosenESNOption("");
+            }
+            else{
+                self.chosenESNOption(self.OrigModel().ECNCardNumber);
+            }
+            self.OPRCriteria(self.OrigModel().OPRCriteria);
+            self.OPR(self.OrigModel().OPR);
+
+            self.radioTargetFileCompleted(self.OrigModel().TargetFileCompleted);
+            self.radioFollowUPNeeded(self.OrigModel().FollowUPNeeded);
+            if (!self.OrigModel().Frequency){
+                self.chosenTrgFileFrequency("");
+            }
+            else{
+                self.chosenTrgFileFrequency(self.OrigModel().Frequency);
+            }
+            self.Field1(self.OrigModel().Field1);
+            self.isF1Visible = ko.observable(false);
+        
+            if(self.OrigModel().Frequency=="Select own value")
+                self.isF1Visible(true);
+            
+
+            //end reverse changes
+            $("#cp-2 .add_Mode").hide(); 
+            $("#cp-2 .edit_Mode").show(); 
+            $("#btnSection_TargetFile").hide(); 
+      }
+  }
+</script>
+<style>
+
+    .tblTargetContent th, td {
+        padding: 0px !important;
+    }
+
+
+    #CampaignTargetFileProvider div {
+        padding:5px;
+    }
+
+    div, span {
+       
+        vertical-align: top;
+    }
+    /*td div {
+        background-color:red;
+    }*/
+</style>
+
+<div id="CampaignTargetFileProvider" class="divContent">
+    <table style="width: 100%;">
+        <tr><td colspan="2">
+            <br />
+                <span data-bind="style: {color: pageErrors() < 0 ? 'green' : 'red' }, text: ChangeLog" style="float: left;" >&nbsp;</span>
+        </td></tr>
+        <tr>
+            <td style="width: 50%;"> 
+                <div style="display: inline;">
+                    <span class="pg-text">Target File Provided By:</span>
+                    <div style="display: inline-block;" class="pg-textbox add_Mode">
+                    <input type="checkbox" value="Requestor" class="pg-text-control" data-bind="checked: IWillProvideTargetFile"> Requestor <br />
+                    <input type="checkbox" value="OPR request" class="pg-text-control" data-bind="checked: OPRProvideTargetFile"> ORP Request 
+                    </div>
+                    <span class="pg-text edit_Mode" data-bind="text: TFProvider" style="width: 250px; height: 50px;" >&nbsp;</span>
+               </div><br/>
+               <div style="display: inline;" data-bind="visible: isESNVisible">
+                   <span class="pg-text">ECN or Card Number<br /> provided?</span>
+                   <select class="mycombo add_Mode" data-bind="options: availableECNOptions, value: chosenESNOption"></select>
+                   <span class="pg-text edit_Mode" data-bind="text: chosenESNOption" >&nbsp;</span>
+               </div><br/>
+               <div style="display: inline;">
+                   <span class="pg-text">Target File Frequency:</span>
+                   <div class="pg-textbox add_Mode" style="display: inline-block;">
+                    <select class="mycombo" data-bind="options: availableTrgFileFrequency, value: chosenTrgFileFrequency"></select>
+                    <input class="pg-text-control" type="text" data-bind="value: Field1, visible: isF1Visible" style="width: 170px;"/>
+                   </div>
+                   <div style="display: inline;">
+                   <span class="pg-text edit_Mode" data-bind="text: chosenTrgFileFrequency"  >&nbsp;</span>
+                   <span class="pg-text edit_Mode" data-bind="text: Field1, visible: isF1Visible"  >&nbsp;</span>
+                       </div>
+               </div><br/>
+               <div style="display: inline;">
+                   <span class="pg-text">Follow Up needed?</span>
+                   <div style="display: inline;" class="pg-textbox add_Mode">
+                        <input type="radio" name="rdFollowup" value="Yes" class="pg-text-control" data-bind="checked: radioFollowUPNeeded" style="width: 20px;">Yes                        
+                        <input type="radio" name="rdFollowup" value="No" class="pg-text-control" data-bind="checked: radioFollowUPNeeded" style="width: 20px;">No
+                    </div>
+                   <span class="pg-text edit_Mode" data-bind="text: radioFollowUPNeeded" style="width: 250px; height: 50px;" >&nbsp;</span>
+               </div>
+            </td>
+            <td style="width: 50%;">
+               <div style="display: inline;" data-bind="visible: isOPRVisible">
+                <span class="pg-text" >OPR Criteria:</span>
+                <input class="pg-textbox add_Mode" type="text" data-bind="value: OPRCriteria" maxlength="1000"/>
+                <span class="pg-text edit_Mode" data-bind="text: OPRCriteria" >&nbsp;</span>
+               </div><br/>
+               <div style="display: inline;" data-bind="visible: isOPRVisible">
+                <span class="pg-text" >OPR #:</span>
+                <input class="pg-textbox add_Mode" type="text" data-bind="value: OPR"  maxlength="20"/>
+                <span class="pg-text edit_Mode" data-bind="text: OPR" >&nbsp;</span>
+               </div><br/>
+               <div style="display: inline;">
+                <span class="pg-text">Target File Completed:</span>
+                <div style="display: inline-block;" class="pg-textbox add_Mode">
+                        <input type="radio" value="Yes" class="pg-text-control" data-bind="checked: radioTargetFileCompleted" style="width: 20px;">Yes                        
+                        <input type="radio" value="No" class="pg-text-control" data-bind="checked: radioTargetFileCompleted" style="width: 20px;">No
+                </div>
+                <span class="pg-text edit_Mode" data-bind="text: radioTargetFileCompleted" >&nbsp;</span>
+               </div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 100%; margin-top: 0px; ">
+        <div style="width: 100%; text-align: right;"  class="tdToggle" id="btnSection_TargetFile">
+            <hr />
+            <input id="SubmitButton" style="width: 70px;" type="submit" value="Save" data-bind="click: SubmitChanges"/>
+            <input id="btnCancel_Target"  style="width: 70px;"   type="submit" class="btnCancel" data-bind="click: CancelChanges" value="Cancel" />
+        </div>
+    </div> 
+</div>
+

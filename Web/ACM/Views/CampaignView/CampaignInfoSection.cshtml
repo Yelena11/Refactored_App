@@ -1,0 +1,908 @@
+﻿@model ACM.Model.Campaign
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<p>
+</p>
+<style>
+    .mycombo {
+        width: 220px !important;
+        height: 25px;
+    }
+
+    #CampaignStartDate {
+        background: url('../Images/calendar.gif') no-repeat right;
+        background-position-x:200PX;
+    }
+
+    #CampaingEndDate {
+        background: url('../Images/calendar.gif') no-repeat right;
+         background-position-x:200PX;
+    }
+
+   .container th, td {
+        padding: 5px;
+    }
+
+    div, span {
+        vertical-align: top;
+    }
+
+    .CampaignInfomessage {
+        color: green;
+    }
+
+    .error { 
+        color: red;
+    }
+    .tdToggle {
+        padding-bottom:5px;
+    }
+ 
+
+    /*#tblContent td{
+        border:1px solid lightgrey;
+    }*/
+   
+</style>
+
+<input type="hidden" id="hdnCategory" value="@ViewBag.categoryName" />
+<input type="hidden"  id="hdnSubcategoryName" value="@ViewBag.subCategoryName" />
+
+<div class="divContent">
+      <input type="hidden" value='@ViewBag.campaignTypeName' id="htnCampTypeName" />
+    <input type="hidden" value='@ViewBag.campaignTypeId' id="htnCampTypeId" />
+    <input id="CampaignId" type="hidden"  style="background-color:red"   value ="@Model.CampaignId"/>
+    <input id="CampaignStatus" type="hidden"  style="background-color:red"   value ="@Model.CampaignStatus"/>
+     <div id="CampaignInfomessage"></div>
+    <table id="tblContent" style="width: 100%">
+        <tr>
+            <td style="width: 35%; vertical-align:top;">
+                 <div style="display: inline;" >
+                     <span class="pg-text" >Campaign ID: </span>
+                    <span class="pg-text" id="spanCampaignId1"></span>
+
+                </div>
+                     <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Name: </span>
+                    <input id="CampaignName"  class="pg-textbox add_Mode"  value ="@Model.CampaignName" maxlength="100"/>
+                    <span id="spanCampaignName" class="pg-text edit_Mode">@Model.CampaignName</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+                    <span class="pg-text">Start Date: </span>
+
+                    <input id="CampaignStartDate"  class="pg-textbox add_Mode"  value ="@Model.CampaignStartDate.ToString("MM/dd/yyyy")"/>
+                    <span id="spanCampaignStartDate" class="pg-text edit_Mode">@Model.CampaignStartDate.ToString("MM/dd/yyyy")</span>
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">End Date: </span>
+
+                    <input id ="CampaingEndDate" class="pg-textbox add_Mode" value ="@Model.CampaingEndDate.ToString("MM/dd/yyyy")"/>
+                    <span id="spanCampaingEndDate" class="pg-text edit_Mode">@Model.CampaingEndDate.ToString("MM/dd/yyyy")</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text" >Description: </span>
+
+                    <textarea id="CampaignDescription" class="pg-textbox add_Mode" style=" maxlength="10">@Model.CampaignDescription</textarea>
+                    <span id="spanCampaignDescription" class="pg-text edit_Mode" style="width: 250px; ">@Model.CampaignDescription</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Details: </span>
+
+                    <textarea id="CampaignDetails" class="pg-textbox add_Mode" data-bind="value: CampaignName" maxlength="10">@Model.CampaignDetails </textarea>
+                    <span id="spanCampaignDetails" class="pg-text edit_Mode">@Model.CampaignDetails</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+                    <span class="pg-text">Type: </span>
+                    @Html.DropDownListFor(x => x.CampaignTypeId, (SelectList)ViewBag.campaigntypelist, "Select", new { id = "CampaignTypeID", @class = "mycombo add_Mode" })
+                    <span id="spanCampaignTypeID" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Requestor: </span>
+
+                    @Html.DropDownListFor(x => x.RequestorId, (SelectList)ViewBag.requestorlist, "Select", new { id = "RequestorId", @class = "mycombo add_Mode" })
+                    <span id="spanRequestorId" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">LOB: </span>
+
+                    @Html.DropDownListFor(x => x.User.LOBId, (SelectList)ViewBag.loblist, "Select", new { id = "LOBId", @class = "mycombo add_Mode" })
+                    <span id="spanLOBId" class="pg-text edit_Mode"></span>
+
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Product Manager: </span>
+
+                    @Html.DropDownListFor(x => x.PrimaryProductManagerId, (SelectList)ViewBag.primarypmlist, "Select", new { id = "PrimaryProductManagerId", @class = "mycombo add_Mode" })
+                    <span id="spanPrimaryProductManagerId" class="pg-text edit_Mode"></span>
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Secondary PM: </span>
+
+                    @Html.DropDownListFor(x => x.SecondaryProductManagerId, (SelectList)ViewBag.secondarypmlist, "Select", new { id = "SecondaryProductManagerId", @class = "mycombo add_Mode" })
+
+                    <span id="spanSecondaryProductManagerId" class="pg-text edit_Mode"></span>
+
+
+
+                </div>
+                <div style="height: 5px;"></div>
+
+                <div style="display: inline">
+                    <span class="pg-text">Super Category: </span>
+
+                    @Html.DropDownListFor(x => x.SuperCategoryId, (SelectList)ViewBag.supercategory, "Select", new { id = "SuperCategoryId", @class = "mycombo add_Mode", @onchange = "javascript:GetCategory(this.value);" })
+                    <span id="spanSuperCategoryId" class="pg-text edit_Mode"></span>
+
+
+
+                </div>
+                <div style="height: 5px;"></div>
+
+                <div style="display: inline">
+                    <span class="pg-text">Category: </span>
+                    <select id="CategoryId" name="CategoryId" class="mycombo add_Mode" onchange="GetSubCategory(this.value)" style="width: 200px">
+                        <option>Select</option>
+
+                    </select>
+
+                    <span id="spanCategoryId" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+
+
+
+                    <span class="pg-text">Sub Category: </span>
+
+                    <select id="SubCategoryId" class="mycombo add_Mode" name="SubCategoryId1" style="width: 200px">
+                        <option>Select</option>
+                    </select>
+
+                    <span id="spanSubCategoryId" class="pg-text edit_Mode"></span>
+
+                </div>
+
+            </td>
+
+            <td style="vertical-align: top;width:50%">
+                <div style="display: inline" id="HidePromoButton">
+
+                    <span class="pg-text">Promo Button Type: </span>
+
+                    @Html.DropDownListFor(x => x.PromoButtonTypeId, (SelectList)ViewBag.promobuttontypelist, "Select", new { id = "PromoButtonTypeId", @class = "mycombo add_Mode", @readonly = "true" })
+                    <span id="spanPromoButtonTypeId" class="pg-text edit_Mode"></span>
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+                    <span class="pg-text">Target Audience: </span>
+
+
+                    <input  id="TargetAudience" class="pg-textbox add_Mode"  value ="@Model.TargetAudience" maxlength="1000" />
+                    <span id="spanTargetAudience" class="pg-text edit_Mode">@Model.TargetAudience</span>
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    
+
+                    <span class="pg-text">Show Limit: </span>
+
+                    <input  id="ShowLimit"   required  class="pg-textbox add_Mode"  maxlength="3"  value ="@Model.ShowLimit"   />
+                    <span id="spanShowLimit" class="pg-text edit_Mode">@Model.ShowLimit</span>
+
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Type: </span>
+                   
+                    @* <input id="CampaignAdvertisementType" class="pg-textbox add_Mode" readonly="true" data-bind="value: CampaignName" value="Static" />*@
+
+                    <span  class="pg-text" style="font-weight:normal" >Static</span>
+                     <div style="visibility:hidden; height:0px">
+                    <select id="CampaignAdvertisementType"  visible="false" class="add_Mode">
+                        <option>Static</option>
+                        <option>Interactive</option>
+
+                    </select></div>
+
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+                    <span class="pg-text">Priority: </span>
+
+                    <input  id="CampaignPriority" class="pg-textbox add_Mode" maxlength="3"   value ="@Model.CampaignPriority"/>
+                    <span id="spanCampaignPriority" class="pg-text edit_Mode">@Model.CampaignPriority</span>
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+    
+                 <span class="pg-text">Table Status: </span>
+           <div  hidden="hidden" >
+                  @Html.DropDownListFor(x => x.CampaignTableStatusId, (SelectList)ViewBag.campaignTableStatuslist,   new { id = "CampaignTableStatusId", @class = "mycombo add_Mode" })
+                       
+ </div>
+                        <span   id="spanCampaignTableStatusId"  class="pg-text" >
+                        </span>  
+                  
+
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+
+
+                    <span class="pg-text">Product Placement: </span>
+
+                    @Html.DropDownListFor(x => x.ProductPlacementId, (SelectList)ViewBag.productplacementlist, "Select", new { id = "ProductPlacementId", @class = "mycombo add_Mode" })
+
+                    <span id="spanProductPlacementId" class="pg-text edit_Mode"></span>
+                </div>
+
+                <div id="ETM" class="groupETM" style="padding-top: 5px;">
+                    <div style="height: 5px;"></div>
+                    <div style="display: inline;">
+
+                        <span class="pg-text">ETM Duration: </span>
+
+                        <select id="Field1" class="mycombo add_Mode">
+                            <option value="Transaction">Transaction </option>
+                            <option value="Session">Session</option>
+                            <option value="OneAdSpot">OneAdSpot</option>
+                        </select>
+                        <span id="spanField1" class="pg-text edit_Mode"></span>
+
+                    </div>
+                    <div style="height: 5px;"></div>
+                    <div>
+                        <span class="pg-text">ETM End on Interaction: </span>
+
+                        <select id="Field2" class="mycombo add_Mode">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <span id="spanField2" class="pg-text edit_Mode"></span>
+
+                    </div>
+
+                    <div style="height: 5px;"></div>
+                    <div>
+                        <span class="pg-text">ETM Switch to next ETM: </span>
+
+                        <select id="Field3" class="mycombo add_Mode">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <span id="spanField3" class="pg-text edit_Mode"></span>
+
+                    </div>
+                    <div style="height: 5px;"></div>
+                    <div>
+                        <span class="pg-text">Event Trigger: </span>
+                        @Html.DropDownListFor(x => x.Field5, (SelectList)ViewBag.eventTrigger, new { id = "Field5", @class = "mycombo add_Mode" })
+                        <span id="spanField5" class="pg-text edit_Mode"></span>
+
+                    </div>
+                    <div style="height: 5px;"></div>
+                    <div>
+                        <span class="pg-text ">Suppress Default: </span>
+
+                        <select id="Field4" class="mycombo add_Mode">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                       
+                        <span id="spanField4" class="pg-text edit_Mode"></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 100%; margin-top: 0px; ">
+         <br />
+         <div style="width: 100%; text-align: right;"  class="tdToggle"  id="btnSection_campaignInfo">
+              <hr />
+           
+                        <input id="SubmitButton"  style="width: 70px;" type="submit" value="Save" />
+
+                           <input id="btnCancel_Info"  onclick="revertCampaignInfoChanges();" class="btnCancel" style="width: 70px;" type="submit" value="Cancel" />
+        
+         </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    function GetSubCategory(_CategoryId) {
+        if (_CategoryId != "" && _CategoryId != "Select") {
+            $.ajax({
+                url: '@Url.Action("GetAllSubCategory", "CampaignView")',
+                data: { CategoryId: _CategoryId },
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    var markup = "<option value='0'>Select</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        if (data[x].Text == $('#spanSubCategoryId').text())
+                            markup += "<option selected='selected' value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        else
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+
+                       
+                    }
+                    $("#SubCategoryId").html(markup);
+
+                }, error: function (reponse) {
+                    alert("error : " + reponse);
+                }
+            });
+        }
+    }
+   
+    function GetCategory(_SuperCategoryId) {
+        //debugger;
+      
+      //  if (_SuperCategoryId != "") {
+        var SuperCategoryId = $("#SuperCategoryId").val()
+        if (SuperCategoryId == "")
+        {
+            SuperCategoryId = 0;
+            _SuperCategoryId = 0;
+
+        }
+            $.ajax({
+                url: '@Url.Action("GetAllCategory", "CampaignView")',
+                data: { SuperCategoryId: _SuperCategoryId },
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    var markup = "<option value='0'>Select</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        if (data[x].Text == $('#spanCategoryId').text()) {
+                            selectedCategoryID = data[x].Value;
+                            markup += "<option selected='selected'  value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        }
+                        else
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                    }
+                    $("#CategoryId").html(markup);
+                    
+                    var markup1 = "<option value='0'>Select</option>";
+                    $("#SubCategoryId").html(markup1);
+
+                    if ($("#CategoryId").val() != "")
+                    {
+                        if ($('#CategoryId option:selected').val() != "") {
+                            GetSubCategory($("#CategoryId").val());
+                        }
+                    }
+
+                }, error: function (reponse) {
+                    alert("error : " + reponse);
+                }
+            });
+      //  }
+    }
+    $(document).ready(function () {
+       
+
+        switchToReadOnlyCampaignInfo();
+
+        var campaignStateDate = $("#CampaignStartDate").val();
+        var campaingEndDate = $("#CampaingEndDate").val();
+        $("#CampaingEndDate").mask("?99/99/9999");
+        $("#CampaignStartDate").mask("?99/99/9999");
+        $("#CampaignStartDate").val(campaignStateDate);
+        $("#CampaingEndDate").val(campaingEndDate);
+
+        //$('#CampaingEndDate, #CampaignStartDate').on('blur', function () {
+        //    if ($('#CampaingEndDate').val() == "")
+        //        $('#CampaingEndDate').val($('#spanCampaingEndDate').text());
+
+        //    if ($('#CampaignStartDate').val() == "")
+        //        $('#CampaignStartDate').val($('#spanCampaignStartDate').text());
+        //});
+
+        selectedCategoryID = "";
+        $('#CampaignDescription, #CampaignDetails').on('keypress change', function () {
+            $(this).maxInputLength($(this), 1000);
+        });
+      
+        if ($('#LeftStatus').text() == "Cancelled") {
+
+            $('#imgCampaignEdit').hide();
+            $('#imgFollowupEdit').hide();
+            $('#imgMainFrameEdit').hide();
+            $('#imgTargetEdit').hide();
+        }
+        $('#CampaignTypeID').change(function () {
+            var Campaigntypeval = $("#CampaignTypeID option:selected").text();
+            var newVal = $(this).val();
+            if ($('#htnViewMode').val() != "Add") {
+                if (!confirm("Changing the campaign type can make some of the data irrelevant. These data will be removed according to the campaign type. Is this acceptable? Yes/No")) {
+                    if ($('#htnCampTypeId').val() != "") {
+                        $("#CampaignTypeID option[value='" + $('#htnCampTypeId').val() + "']").attr('selected', 'selected')
+                        Campaigntypeval = $('#htnCampTypeName').val();
+                    }
+
+                }
+            }
+            if (Campaigntypeval == "Event Triggered – Targeted" || Campaigntypeval == "Event Triggered – Untargeted") {
+
+                $(".groupETM").show("slow");
+            } else {
+                $(".groupETM").hide("slow");
+
+            }
+            if (Campaigntypeval == "Targeted - Promo Button" || Campaigntypeval == "ETM - Targeted - Promo Button" || Campaigntypeval == "ETM - Untargeted - Promo Button") {
+                $("#HidePromoButton").show("slow");
+
+            } else {
+                $("#HidePromoButton").hide("slow");
+            }
+
+            $('#htnCampTypeId').val($('#CampaignTypeID option:selected').val());
+            $('#htnCampTypeName').val($('#CampaignTypeID option:selected').text());
+            return false;
+        });
+
+
+      
+        $('#ShowLimit, #CampaignPriority').keydown(function (event) {
+            $(this).number(event);
+        });
+
+
+    });
+
+
+    function checkforDateErrors()
+    {
+        if (!$("#CampaignStartDate").isDate() && $("#CampaignStartDate").val() != "" && $('#CampaignInfomessage').text().indexOf("CampaignStartDate") == -1) {
+            $('#CampaignInfomessage').append('*The Start Date format should be "mm/dd/yyyy" </br>');
+        }
+        if (!$("#CampaingEndDate").isDate() && $("#CampaingEndDate").val() != "" && $('#CampaignInfomessage').text().indexOf("CampaingEndDate") == -1) {
+            $('#CampaignInfomessage').append('*The End Date format should be "mm/dd/yyyy"');
+        }
+        $('#CampaignInfomessage').addClass("error");
+
+    }
+
+    $('#SubmitButton').click(function () {
+        $('#CampaignInfomessage').text(" ");
+            var param = {
+                CampaignId: $('#CampaignId').val(),
+                CampaignName: $('#CampaignName').trimVal(),
+                CampaignTypeID: $("#CampaignTypeID").val(),
+                CampaignStartDate: $("#CampaignStartDate").val(),
+                CampaingEndDate: $("#CampaingEndDate").val(),
+                CampaignDescription: $("#CampaignDescription").trimVal(),
+                CampaignDetails: $("#CampaignDetails").trimVal(),
+                RequestorId: $("#RequestorId").val(),
+                LOBId: $("#LOBId").val(),
+                PrimaryProductManagerId: $("#PrimaryProductManagerId").val(),
+                SecondaryProductManagerId: $("#SecondaryProductManagerId").val(),
+                SuperCategoryId: $("#SuperCategoryId").val(),
+                CategoryId: $("#CategoryId").val(),
+                SubCategoryId: $("#SubCategoryId").val(),
+                PromoButtonTypeId: $("#PromoButtonTypeId").val(),
+                TargetAudience: $("#TargetAudience").trimVal(),
+                ShowLimit: $("#ShowLimit").val(),
+                CampaignAdvertisementType: $("#CampaignAdvertisementType").val(),
+                CampaignPriority: $("#CampaignPriority").val(),
+                ProductPlacementId: $("#ProductPlacementId").val(),
+                CampaignStatus: 'Active',
+                CampaignTableStatusId: 1,
+                Field1: $("#Field1").val(),
+                Field2: $("#Field2").val(),
+                Field3: $("#Field3").val(),
+                Field4: $("#Field4").val(),
+                Field5: $("#Field5").val(),
+                Notes: $("#CampaignStartDate").val() + "|" + $("#CampaingEndDate").val()
+            };
+           
+            if (param.SuperCategoryId == "Select" || param.SuperCategoryId == 0) {
+                param.SuperCategoryId = "";
+
+            }
+            if (param.CategoryId == "Select" || param.CategoryId == 0) {
+                param.CategoryId = "";
+
+            }
+            if (param.SubCategoryId == "Select" || param.SubCategoryId == 0) {
+                param.SubCategoryId = "";
+
+            }
+            if (param.CampaignId == "") {
+                param.CampaignId = 0;
+            }
+            if (param.PrimaryProductManagerId == "Select") {
+                param.PrimaryProductManagerId = "";
+            }
+            if (param.SecondaryProductManagerId == "Select") {
+                param.SecondaryProductManagerId = "";
+            }
+            if (param.ProductPlacementId == "Select") {
+                param.ProductPlacementId = "";
+            }
+            if (param.PromoButtonTypeId == "Select") {
+                param.PromoButtonTypeId = "";
+            }
+
+            if (param.RequestorId == "Select") {
+                param.RequestorId = "";
+            }
+
+            if (param.LOBId == "Select") {
+                param.LOBId = "";
+            }
+
+            if (isNaN(param.CampaignPriority)) {
+                alert("CampaignPriority Not a number");
+                return false;
+            }
+            $.post('@Url.Action("SaveCampaignInfo", "CampaignView")', param, function (data) {
+                //  debugger;
+                var errors = "";
+                $('#CampaignInfomessage').text(" ");
+                $('input,select').removeClass("required");
+                if (data == "Error") {
+                    $('#message').append('Encountered error while saving data. Please contact technical support for assistance.');
+                    $('#message').removeClass("message");
+                    $('#message').addClass("error");
+                }
+                else if (data == "DateError")
+                { checkforDateErrors(); }
+                else if (data != null && data[0] != null && data[0].ErrorMessage != "") {
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (errors.indexOf(data[i].ErrorMessage) == -1 && data[i].ErrorMessage.indexOf("CampaignId") == -1)
+                            errors += "*" + data[i].ErrorMessage + "<br/>";
+                        var element = "#" + data[i].ErrorMessage.split(' ')[1];
+                        $(element).addClass("required");
+                        window.scrollTo(0, 0);
+                    }
+                    $('#CampaignInfomessage').append(errors);
+                    $('#CampaignInfomessage').removeClass("CampaignInfomessage");
+                    $('#CampaignInfomessage').addClass("error");
+                    checkforDateErrors();
+
+                }
+                else {
+                    $('#CampaignId').val(data.CampaignId);
+
+                    $('#ShowLimit').val(data.ShowLimit);
+                    $('#CampaignPriority').val(data.CampaignPriority);
+
+
+                    $('#spanCampaignId1').text($('#CampaignId').val());
+                    $('#spanCampaignId').text($('#CampaignId').val());
+                    $('#CampaignStatus').val("Active");
+
+
+                    $('#CampaignInfomessage').append("Campaign ID <b>" + data.CampaignId + "</b> " + messageText + " <br /> <br />");
+                    $('#CampaignInfomessage').removeClass("error");
+                    $('#CampaignInfomessage').addClass("CampaignInfomessage");
+                    $('#htnViewMode').val("Edit");
+
+                    window.scrollTo(0, 0);
+
+                    var Campaigntypeval = $("#CampaignTypeID option:selected").text();
+                    var CampaignVal = $('#CampaignId').val();
+                    if (Campaigntypeval != "Untargeted" && CampaignVal != 0) {
+
+                        $("#cp-2").show("slow");
+                  //      $("#cp-3").show("slow");
+                        $("#cp-4").show("slow");
+                    }
+                    else {
+
+                        $("#cp-2").hide("slow");
+                   //     $("#cp-3").hide("slow");
+                        $("#cp-4").hide("slow");
+                    }
+                    if (Campaigntypeval == "Event Triggered – Targeted" || Campaigntypeval == "Event Triggered – Untargeted") {
+
+                        $(".groupETM").show("slow");
+                    } else {
+                        $(".groupETM").hide("slow");
+
+                    }
+                    if (Campaigntypeval == "Targeted - Promo Button" || Campaigntypeval == "ETM - Targeted - Promo Button" || Campaigntypeval == "ETM - Untargeted - Promo Button" || Campaigntypeval == "Event Triggered – Targeted" || Campaigntypeval == "Event Triggered – Untargeted") {
+                        $("#HidePromoButton").show("slow");
+                    } else {
+
+                        $("#HidePromoButton").hide("slow");
+                    }
+                    //For Left Naviagation
+                    $('#LeftCampaignName').text($('#CampaignName').val());
+                    $('#LeftStatus').text($('#CampaignStatus').val());
+                    switchToReadOnlyCampaignInfo();
+                    $("#cp-1 .add_Mode").hide();
+                    $("#cp-1 .edit_Mode").show();
+                    $("#btnSection_campaignInfo").hide();
+                }
+            });
+        
+        
+
+        return false;
+    });
+
+    function revertCampaignInfoChanges() {
+        $('#CampaingEndDate').val($('#spanCampaingEndDate').text());
+        $('#CampaignStartDate').val($('#spanCampaignStartDate').text());
+        $('#CampaignName').val($('#spanCampaignName').text());
+        $('#ShowLimit').val($('#spanShowLimit').text());
+        $('#TargetAudience').val($('#spanTargetAudience').text());
+        $('#CampaignDescription').val($('#spanCampaignDescription').text());
+        $('#CampaignDetails').val($('#spanCampaignDetails').text());
+        $('#CampaignPriority').val($('#spanCampaignPriority').text());
+       
+
+        if ($('#spanRequestorId').text() != "") {
+            $("#RequestorId option").filter(function () {
+                return $(this).text() == $('#spanRequestorId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#RequestorId").prop('selectedIndex', 0);
+
+
+        if ($('#spanCampaignTableStatusId').text() != "") {
+            $("#CampaignTableStatusId option").filter(function () {
+                return $(this).text() == $('#spanCampaignTableStatusId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CampaignTableStatusId").prop('selectedIndex', 0);
+
+        if ($('#spanPromoButtonTypeId').text() != "") {
+            $("#PromoButtonTypeId option").filter(function () {
+                return $(this).text() == $('#spanPromoButtonTypeId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#PromoButtonTypeId").prop('selectedIndex', 0);
+
+        if ($('#spanCampaignTypeID').text() != "") {
+            $("#CampaignTypeID option").filter(function () {
+                return $(this).text() == $('#spanCampaignTypeID').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CampaignTypeID").prop('selectedIndex', 0);
+
+        if ($('#spanProductPlacementId').text() != "") {
+            $("#ProductPlacementId option").filter(function () {
+                return $(this).text() == $('#spanProductPlacementId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#ProductPlacementId").prop('selectedIndex', 0);
+
+        if ($('#spanPrimaryProductManagerId').text() != "") {
+            $("#PrimaryProductManagerId option").filter(function () {
+                return $(this).text() == $('#spanPrimaryProductManagerId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#PrimaryProductManagerId").prop('selectedIndex', 0);
+
+        if ($('#spanSecondaryProductManagerId').text() != "") {
+            $("#SecondaryProductManagerId option").filter(function () {
+                return $(this).text() == $('#spanSecondaryProductManagerId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#SecondaryProductManagerId").prop('selectedIndex', 0);
+
+        if ($('#spanPromoButtonTypeId').text() != "") {
+            $("#PromoButtonTypeId option").filter(function () {
+                return $(this).text() == $('#spanPromoButtonTypeId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#PromoButtonTypeId").prop('selectedIndex', 0);
+
+
+        if ($('#spanSuperCategoryId').text() != "") {
+            $("#SuperCategoryId option").filter(function () {
+                return $(this).text() == $('#spanSuperCategoryId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#SuperCategoryId").prop('selectedIndex', 0);
+
+        if ($('#spanCategoryId').text() != "") {
+            $("#CategoryId option").filter(function () {
+                return $(this).text() == $('#spanCategoryId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CategoryId").prop('selectedIndex', 0);
+
+        if ($('#spanSubCategoryId').text() != "") {
+            $("#SubCategoryId option").filter(function () {
+                return $(this).text() == $('#spanSubCategoryId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#SubCategoryId").prop('selectedIndex', 0);
+
+        var Campaigntypeval = $("#CampaignTypeID option:selected").text();
+        var CampaignVal = $('#CampaignId').val();
+        if (Campaigntypeval != "Untargeted" && CampaignVal != 0) {
+            $("#cp-2").show("slow");
+            $("#cp-4").show("slow");
+        }
+        else {
+            $("#cp-2").hide("slow");
+            $("#cp-4").hide("slow");
+        }
+        if (Campaigntypeval == "Event Triggered – Targeted" || Campaigntypeval == "Event Triggered – Untargeted") {
+            $(".groupETM").show("slow");
+        } else {
+            $(".groupETM").hide("slow");
+
+        }
+        if (Campaigntypeval == "Targeted - Promo Button" || Campaigntypeval == "ETM - Targeted - Promo Button" || Campaigntypeval == "ETM - Untargeted - Promo Button" || Campaigntypeval == "Event Triggered – Targeted" || Campaigntypeval == "Event Triggered – Untargeted") {
+            $("#HidePromoButton").show("slow");
+
+        } else {
+            $("#HidePromoButton").hide("slow");
+        }
+
+        for (var i = 1; i < 5; i++) {
+
+            if ($('#spanField' + i).text() != "") {
+                $("#Field" + i + " option").filter(function () {
+                    return $(this).text() == $('#spanField' + i).text();
+                }).attr('selected', 'selected');
+            }
+            else
+                $("#Field" + i).prop('selectedIndex', 0);
+        }
+
+
+
+        if ($('#spanLOBId').text() != "") {
+            $("#LOBId option").filter(function () {
+                return $(this).text() == $('#spanLOBId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#LOBId").prop('selectedIndex', 0);
+
+        if ($('#spanCampaignTypeID').text() != "") {
+            $("#CampaignTypeID option").filter(function () {
+                return $(this).text() == $('#spanCampaignTypeID').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CampaignTypeID").prop('selectedIndex', 0);
+
+        $("#btnSection_campaignInfo").hide();
+    }
+    function SetAllCategory() {
+        if ($('#SuperCategoryId option:selected').val() != "") {
+            GetCategory($('#SuperCategoryId option:selected').val());
+        }
+        
+    }
+
+    function switchToReadOnlyCampaignInfo() {
+        if ($('#CampaignId').val() == 0)
+            $('#CampaignId').val("");
+        if ($('#CampaingEndDate').val() == "01/01/0001")
+            $('#CampaingEndDate').val("");
+
+        $('#spanCampaingEndDate').text($('#CampaingEndDate').val());
+        $('#spanCampaignName').text($('#CampaignName').val());
+        $('#spanShowLimit').text($('#ShowLimit').val());
+        $('#spanTargetAudience').text($('#TargetAudience').val());
+
+
+        $('#spanCampaignDescription').text($('#CampaignDescription').val());
+        $('#spanCampaignDetails').text($('#CampaignDetails').val());
+        $('#spanCampaignPriority').text($('#CampaignPriority').val());
+        
+        if ($('#RequestorId option:selected').text() != 'Select') {
+            $('#spanRequestorId').text($('#RequestorId option:selected').text());
+        }
+        if ($('#CampaignTableStatusId option:selected').text() != 'Select') {
+            $('#spanCampaignTableStatusId').text($('#CampaignTableStatusId option:selected').text());
+        }
+        if ($('#CampaignStartDate').val() == "01/01/0001")
+            $('#CampaignStartDate').val("");
+        $('#spanCampaignStartDate').text($('#CampaignStartDate').val());
+
+        $('#spanPromoButtonTypeId').text($('#PromoButtonTypeId option:selected').text());
+        if ($('#CampaignTypeID option:selected').text() != 'Select')
+            $('#spanCampaignTypeID').text($('#CampaignTypeID option:selected').text());
+
+        if ($('#ProductPlacementId option:selected').text() != 'Select')
+            $('#spanProductPlacementId').text($('#ProductPlacementId option:selected').text());
+        if ($('#PrimaryProductManagerId option:selected').text() != 'Select') {
+            $('#spanPrimaryProductManagerId').text($('#PrimaryProductManagerId option:selected').text());
+            $('#LeftPrimaryPM').text($('#PrimaryProductManagerId option:selected').text());
+        }
+        if ($('#SecondaryProductManagerId option:selected').text() != 'Select') {
+            $('#spanSecondaryProductManagerId').text($('#SecondaryProductManagerId option:selected').text());
+            $('#LeftSecondaryPM').text($('#SecondaryProductManagerId option:selected').text());
+        }
+        if ($('#PromoButtonTypeId option:selected').text() != 'Select') {
+            $('#spanPromoButtonTypeId').text($('#PromoButtonTypeId option:selected').text());
+            $('#LeftPromboButton').text($('#PromoButtonTypeId option:selected').text());
+        }
+
+        if ($('#SuperCategoryId option:selected').text() != 'Select')
+            $('#spanSuperCategoryId').text($('#SuperCategoryId option:selected').text());
+        else
+            $('#spanSuperCategoryId').text("");
+       
+
+
+        if ($('#CategoryId option:selected').text() != 'Select')
+            $('#spanCategoryId').text($('#CategoryId option:selected').text());
+        else
+            $('#spanCategoryId').text($('#hdnCategory').val());
+
+        if ($('#SubCategoryId option:selected').text() != 'Select')
+            $('#spanSubCategoryId').text($('#SubCategoryId option:selected').text());
+        else
+            $('#spanSubCategoryId').text($('#hdnSubcategoryName').val());
+
+        if ($('#Field1 option:selected').text() != 'Select')
+            $('#spanField1').text($('#Field1 option:selected').text());
+        if ($('#Field2 option:selected').text() != 'Select')
+            $('#spanField2').text($('#Field2 option:selected').text());
+        if ($('#Field3 option:selected').text() != 'Select')
+            $('#spanField3').text($('#Field3 option:selected').text());
+        if ($('#Field4 option:selected').text() != 'Select')
+            $('#spanField4').text($('#Field4 option:selected').text());
+        if ($('#Field5 option:selected').text() != 'Select')
+            $('#spanField5').text($('#Field5 option:selected').text());
+
+        if ($('#LOBId option:selected').text() != 'Select') {
+            $('#spanLOBId').text($('#LOBId option:selected').text());
+        }
+
+        $('#LeftCampaignName').text($('#CampaignName').val());
+
+        if ($('#CampaignTypeID option:selected').text() != 'Select') {
+            $('#LeftCampaignType').text($('#CampaignTypeID option:selected').text());
+        }
+
+        $('#LeftStatus').text($('#CampaignStatus').val());
+        $('#spanCampaignId1').text($('#CampaignId').val());
+        if ($('#CampaignStatus').val() == "Cancelled") {
+            $('#LeftCancelCampaign').text("Reinstate");
+        }
+        else
+            $('#LeftCancelCampaign').text("Cancel");
+    }
+</script>

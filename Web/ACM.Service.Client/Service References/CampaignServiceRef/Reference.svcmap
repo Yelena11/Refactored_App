@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d9b0fb26-0862-4f61-8cdd-4c4f8c6c3bac" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/ACM.CampaignService/ACM.CampaignService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CampaignService.wsdl" MetadataType="Wsdl" ID="d42efaba-6711-4615-ae56-17cb2f050fb1" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?wsdl" />
+    <MetadataFile FileName="ACM.disco" MetadataType="Disco" ID="a02804aa-a6cb-4350-b714-25d9dcabf0e1" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?disco" />
+    <MetadataFile FileName="ACM.xsd" MetadataType="Schema" ID="6ea04490-cf2b-4cac-b5de-fdedc7dc7b00" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ACM1.xsd" MetadataType="Schema" ID="316fe83f-523f-416d-9b00-d5d1809e3c4d" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ACM2.xsd" MetadataType="Schema" ID="f739bff3-747b-404c-a74e-b07bd6738d6e" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ACM3.xsd" MetadataType="Schema" ID="267b89da-17e2-446a-a740-ebec475221b5" SourceId="1" SourceUrl="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

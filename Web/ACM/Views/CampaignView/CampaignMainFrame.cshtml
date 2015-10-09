@@ -1,0 +1,295 @@
+﻿@model ACM.Model.CampaignMainFrame
+
+<style type="text/css">
+    .mycombo
+    {
+        width: 265px;
+    }
+   
+    th, td {
+        padding: 5px;
+    }
+
+    div, span {
+        vertical-align: top;
+    }
+</style>
+
+<div class="divContent">
+    <table style="width: 100%">
+        <tr><td colspan="2">
+                <span style="color: green; float: left;" id="ChangeLog">&nbsp;</span>
+        </td></tr>
+        <tr>
+            <td style="width: 50%; vertical-align: top;">
+                <div style="display: inline">
+                    <span class="pg-text">Card Type: </span>
+                    @Html.DropDownListFor(x => x.CardTypeId, (SelectList)ViewBag.cardTypeList,"Select", new { id = "CardTypeId", @class = "mycombo add_Mode" })
+                    <span id="spanCardTypeId" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Customer Type: </span>
+                   @Html.DropDownListFor(x => x.CustomerTypeId, (SelectList)ViewBag.customerTypeList, new { id = "CustomerTypeId", @class = "mycombo add_Mode" })
+                    <span id="spanCustomerTypeId" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Business Product Code: </span>
+                    <input  class="pg-textbox add_Mode" id ="BusinessProductCode" value ="@Model.BusinessProductCode"  maxlength="10"/>
+                    <span id="spanBusinessProductCode" class="pg-text edit_Mode">@Model.BusinessProductCode</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Consumer Product Code: </span>
+                    <input  class="pg-textbox add_Mode" id ="ConsumerProductCode" value ="@Model.ConsumerProductCode" maxlength="10"/>
+                    <span id="spanConsumerProductCode"class="pg-text edit_Mode">@Model.ConsumerProductCode</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Target Year Period:</span>
+                    <input  class="pg-textbox add_Mode" id ="TargetYearPeriod" value ="@Model.TargetYearPeriod"  maxlength="7"/>
+                    <span id="spanTargetYearPeriod" class="pg-text edit_Mode">@Model.TargetYearPeriod</span>
+                </div>
+                <div style="height: 5px;"></div>
+            </td>
+
+            <td style="width: 50%;">
+                <div style="display: inline">
+                    <span class="pg-text">Employee Washout: </span>
+                    <div class="add_Mode">
+                        @Html.RadioButtonFor(x => x.EmployeeWashOut, "Yes") Yes
+                        @Html.RadioButtonFor(x => x.EmployeeWashOut, "No", new { id = "rdEmployeeWashOut"}) No
+                    </div>
+                    <span id="spanEmployeeWashOut" class="pg-text edit_Mode">@Model.EmployeeWashOut</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">HV Washout: </span>
+                    <div class="add_Mode">
+                        @Html.RadioButtonFor(x => x.HV_WashOut, "Yes") Yes
+                        @Html.RadioButtonFor(x => x.HV_WashOut, "No",new { id = "rdHV_WashOut"}) No
+                    </div>
+                    <span id="spanHV_WashOut" class="pg-text edit_Mode">@Model.HV_WashOut</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Trust Washout: </span>
+                    <div class="add_Mode">
+                        @Html.RadioButtonFor(x => x.TrustWashOut, "Yes" ) Yes
+                        @Html.RadioButtonFor(x => x.TrustWashOut, "No") No
+                    </div>
+                    <span id="spanTrustWashOut" class="pg-text edit_Mode">@Model.TrustWashOut</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">PCS Washout: </span>
+                    <div class="add_Mode">
+                        @Html.RadioButtonFor(x => x.PCS_WashOut, "Yes") Yes
+                        @Html.RadioButtonFor(x => x.PCS_WashOut, "No") No
+                    </div>
+                    <span id="spanPCS_WashOut" class="pg-text edit_Mode">@Model.PCS_WashOut</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Sourced From: </span>
+                    <input  class="pg-textbox add_Mode" id ="Sourced_From" value ="@Model.Sourced_From"  maxlength="10"/>
+                    <span id="spanSourced_From" class="pg-text edit_Mode">@Model.Sourced_From</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Sourced LOB: </span>
+                    <input  class="pg-textbox add_Mode"  id ="Sourced_LOB"  value ="@Model.Sourced_LOB"  maxlength="50"/>
+                    <span id="spanSourced_LOB" class="pg-text edit_Mode">@Model.Sourced_LOB</span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">Special Process: </span>
+                    @Html.DropDownListFor(x => x.SpecialProcessId, (SelectList)ViewBag.specialProcessList,"Select", new { id = "SpecialProcessId", @class = "mycombo add_Mode" })
+                    <span id="spanSpecialProcessId" class="pg-text edit_Mode"></span>
+                </div>
+                <div style="height: 5px;"></div>
+                <div style="display: inline">
+                    <span class="pg-text">CCLR-Channel: </span>
+                    <input  class="pg-textbox add_Mode" id ="CCLR_Channel" value ="@Model.CCLR_Channel"  maxlength="10"/>
+                    <span id="spanCCLR_Channel" class="pg-text edit_Mode">@Model.CCLR_Channel</span>
+                </div>
+                <div style="height: 5px;"></div>
+            </td>
+        </tr>
+    </table>
+
+     <div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 100%; margin-top: 0px; ">
+         <br />
+         <div style="width: 100%; text-align: right;" class="tdToggle" id="btnSection_Mainframe">
+              <hr />
+              <input id="SubmitMainFrameButton" style="width: 70px;" type="submit" value="Save" />
+              <input id="btnCancel_Mainframe" class="btnCancel" style="width: 70px;" type="submit" value="Cancel" onclick="revertMainframeChanges();" />
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("input[name='EmployeeWashOut']:checked").val() == undefined)
+            $("#rdEmployeeWashOut").prop("checked", true);
+
+        if ($("input[name='HV_WashOut']:checked").val() == undefined)
+            $("#rdHV_WashOut").prop("checked", true);
+
+        if ($('#TrustWashOut:checked').val() == undefined)
+            $('#TrustWashOut:nth(0)').prop("checked", true);
+
+        if ($('#PCS_WashOut:checked').val() == undefined)
+            $('#PCS_WashOut:nth(0)').prop("checked", true);
+
+        
+        
+        switchToReadOnly();
+        if ($('#CardTypeId option:selected').text() != 'Select')
+            $('#spanCardTypeId').text($('#CardTypeId option:selected').text());
+        else
+            $('#spanCardTypeId').text("");
+
+        if ($('#SpecialProcessId option:selected').text() != 'Select')
+            $('#spanSpecialProcessId').text($('#SpecialProcessId option:selected').text());
+        else
+            $('#spanSpecialProcessId').text("");
+    });
+
+      $('#spanCustomerTypeId').text($('#CustomerTypeId option:selected').text());
+      $('#spanCardTypeId').text($('#CardTypeId option:selected').text()); 
+      $('#spanSpecialProcessId').text($('#SpecialProcessId option:selected').text());
+      $(function () {
+
+          var SubmitMainFrameButton = $("#SubmitMainFrameButton");
+          var campaignMainFrameform = $("#campaignMainFrameform");
+
+          SubmitMainFrameButton.click(function () {
+            
+          });
+      });
+
+      $('#SubmitMainFrameButton').click(function () {
+
+          var param = {
+              CampaignId: $('#CampaignId').val(),
+              CardTypeId: $("#CardTypeId").val(),
+              CustomerTypeId: $("#CustomerTypeId").val(),
+              EmployeeWashOut: $("input[name='EmployeeWashOut']:checked").val(),
+              HV_WashOut: $("input[name='HV_WashOut']:checked").val(),
+              TrustWashOut: $("#TrustWashOut:checked").val(),
+              PCS_WashOut: $("#PCS_WashOut:checked").val(),
+              BusinessProductCode: $("#BusinessProductCode").trimVal(),
+              ConsumerProductCode: $("#ConsumerProductCode").trimVal(),
+              Sourced_From: $("#Sourced_From").trimVal(),
+              Sourced_LOB: $("#Sourced_LOB").trimVal(),
+              SpecialProcessId: $("#SpecialProcessId").val(),
+              CCLR_Channel: $("#CCLR_Channel").trimVal(),
+              TargetYearPeriod: $("#TargetYearPeriod").trimVal(),
+              TargetListTypeId: "1"
+          };
+
+          if (param.CardTypeId == "Select") {
+              param.CardTypeId = "";
+          }
+
+          if (param.SpecialProcessId == "Select") {
+              param.SpecialProcessId = "";
+          }
+          var posting = $.post('@Url.Action("SaveCampaignMainFrame", "CampaignView")', param, function (data) {
+              $("#cp-4 .add_Mode").hide();
+              $("#cp-4 .edit_Mode").show();
+              $("#btnSection_Mainframe").hide();
+              
+          });
+
+          posting.done(function () {
+              $("#cp-4 .add_Mode").hide();
+              $("#cp-4 .edit_Mode").show();
+              $("#btnSection_Mainframe").hide();
+              $("#ChangeLog").css('color', 'green');
+              $("#ChangeLog").text("Changes Saved!");
+              switchToReadOnly();
+
+           
+          });
+
+          posting.fail(function (xhr, textStatus, errorThrown) {
+              $("#ChangeLog").css('color', 'red');
+              $("#ChangeLog").text("Encountered error while saving data. Please contact technical support for assistance.");
+          });
+        return false;
+    });
+
+    function switchToReadOnly() {
+
+        if ($('#CardTypeId option:selected').text() != 'Select') {
+            $('#spanCardTypeId').text($('#CardTypeId option:selected').text());
+        }
+        $('#spanCustomerTypeId').text($('#CustomerTypeId option:selected').text());
+        $('#spanBusinessProductCode').text($('#BusinessProductCode').val());
+        $('#spanConsumerProductCode').text($('#ConsumerProductCode').val());
+        $('#spanTargetYearPeriod').text($('#TargetYearPeriod').val());
+        $('#spanEmployeeWashOut').text($("input[name='EmployeeWashOut']:checked").val());
+        $('#spanHV_WashOut').text($("input[name='HV_WashOut']:checked").val());
+        $('#spanTrustWashOut').text($('#TrustWashOut:checked').val());
+        $('#spanPCS_WashOut').text($('#PCS_WashOut:checked').val());
+        $('#spanSourced_From').text($('#Sourced_From').val());
+        $('#spanSourced_LOB').text($('#Sourced_LOB').val());
+
+        if ($('#SpecialProcessId option:selected').text() != 'Select') {
+            $('#spanSpecialProcessId').text($('#SpecialProcessId option:selected').text());
+        }
+        $('#spanCCLR_Channel').text($('#CCLR_Channel').val());
+        
+    }
+
+
+    function revertMainframeChanges() {
+
+
+        if ($('#spanCardTypeId').text() != "") {
+            $("#CardTypeId option").filter(function () {
+                return $(this).text() == $('#spanCardTypeId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CardTypeId").prop('selectedIndex', 0);
+
+        if ($('#spanCustomerTypeId').text() != "") {
+            $("#CustomerTypeId option").filter(function () {
+                return $(this).text() == $('#spanCustomerTypeId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#CustomerTypeId").prop('selectedIndex', 0);
+
+        if ($('#spanSpecialProcessId').text() != "") {
+            $("#SpecialProcessId option").filter(function () {
+                return $(this).text() == $('#spanSpecialProcessId').text();
+            }).attr('selected', 'selected');
+        }
+        else
+            $("#SpecialProcessId").prop('selectedIndex', 0);
+
+        $('#BusinessProductCode').val($('#spanBusinessProductCode').text());
+        $('#ConsumerProductCode').val($('#spanConsumerProductCode').text());
+        $('#TargetYearPeriod').val($('#spanTargetYearPeriod').text());
+        $('#Sourced_From').val($('#spanSourced_From').text());
+        $('#Sourced_LOB').val($('#spanSourced_LOB').text());
+        $('#CCLR_Channel').val($('#spanCCLR_Channel').text());
+
+
+
+        $("input[name='EmployeeWashOut'][value='" + $('#spanEmployeeWashOut').text() + "']").attr('checked', 'checked');
+        $("input[name='TrustWashOut'][value='" + $('#spanTrustWashOut').text() + "']").attr('checked', 'checked');
+        $("input[name='HV_WashOut'][value='" + $('#spanHV_WashOut').text() + "']").attr('checked', 'checked');
+        $("input[name='PCS_WashOut'][value='" + $('#spanPCS_WashOut').text() + "']").attr('checked', 'checked');
+
+        $("#btnSection_Mainframe").hide();
+    }
+
+    </script>

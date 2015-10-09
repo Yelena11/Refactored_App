@@ -1,0 +1,180 @@
+﻿@using System.Web
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "ACM Campaign Request Entry Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="~/Content/bootstrap-theme.min.css" type="text/css"> 
+<link rel="Stylesheet" href="~/Content/themes/pepper-grinder/jquery-ui.css" /> 
+<link href="~/Content/TriStateCheckBox.css" rel="stylesheet" />
+ 
+<div style=" font-size: 12px;font-family: Arial, Sans-Serif;color: #000;background-color: #fff;width: 1024px; margin-top: 0px; margin-left: 20px;">
+    
+    <h4>Campaign Request Entry Form </h4>
+ 
+    <div class="ui-widget-content " style="height: 970px; background: none !important; " id="requestor-form">
+        <ul class="pg-text-ul">
+            <li class="pg-text-li">
+                <span  class="pg-text"> Requestor: </span>
+                <span  class="pg-text" data-bind="text: RequestorName"> </span>
+            </li>
+            <li class="pg-text-li">
+                <span  class="pg-text"> Line of Business: </span>
+                <span  class="pg-text" data-bind="text: LOBName">  </span>
+            </li>
+            <li class="pg-text-li">
+                <span  class="pg-text"> Campaign Name: * </span>
+                <input class="pg-textbox" type="text" data-bind="value: CampaignName" />
+            </li>
+            <li class="pg-text-li">
+                <span  class="pg-text"> Campaign Details: *<br>
+                <span  class="pg-small-text">(Description and goal <br>of a campaign)</span></span>
+                <textarea rows="1" cols="1" class="pg-textarea" data-bind="value: CampaignDetails"></textarea>
+            </li>
+            <li class="pg-text-li">
+                <span class="pg-text-long"> Will this be displayed to certain set of customers? *</span>                
+            </li>
+            <li class="pg-text-li">
+                <span  class="pg-text">&nbsp;</span>
+                <div class="btn-group" id="cmp-type-panel" >
+                    <input type="radio" name="cmp-type" value="Targeted" class ="pg-text-control" data-bind="checked: campaignType" checked style="width: 20px;"> Yes.<br />
+                    <input type="radio" name="cmp-type" value="Untargeted" class="pg-text-control" data-bind="checked: campaignType" style="width: 20px;"> No, display in certain geographical regions. 
+                </div>
+            </li>
+        </ul>
+        <div id="targeted-campaign-form" style="visibility: visible;">
+            <ul class="pg-text-ul">
+                <li class="pg-text-li">
+                    <span  class="pg-text"> Target Audience: </span>
+                    <textarea rows="5"  class="pg-text" style="width: 250px;"  data-bind="value: TargetAudience"></textarea>
+                </li>
+                 <li class="pg-text-li">
+                    <span  class="pg-text"> Who will provide the<br> target file? </span>
+                        <div class="pg-text">
+                            <input type="checkbox" value="I will provide the file." class="pg-text-control" data-bind="checked: TargetFileProviderDesc"> I will provide the file. <br />
+                            <input type="checkbox" value="OPR request needed." class="pg-text-control" data-bind="checked: TargetFileProviderDesc"> OPR request needed.    
+                        </div>
+                </li>
+                <li class="pg-text-li">
+                    <span class="pg-text-long">How frequently target file needs to be loaded?</span>                
+                </li>
+                <li class="pg-text-li">
+                    <span  class="pg-text">&nbsp;</span>
+                    <div style="display: inline-block;">
+                        <input type="radio" value="existing_f" class="pg-text-control" data-bind="checked: radioSelectedFrequency" style="width: 20px;">                        
+                        <select data-bind="options: availableFrequency, optionsCaption: 'Select Frequency.....  ', value: Frequency"></select><br>     
+                        
+                        <input type="radio" value="new_f" class="pg-text-control" data-bind="checked: radioSelectedFrequency" style="width: 20px;"> Specify your own value: 
+                        <input  data-bind="value: newFrequencyVal" class="pg-text-control"  style="width: 180px;margin-top: 5px;">
+                    </div>                   
+                </li>
+                <li class="pg-text-li">
+                    <span  class="pg-text"> Follow-up<br> Requirements: </span>
+                    <textarea rows="1" cols="1" class="pg-textarea" data-bind="value: FollowUpRequriements"></textarea>
+                </li>
+            </ul>
+        </div>
+        <ul class="pg-text-ul">
+            <li class="pg-text-li">
+                <span  class="pg-text"> Display Dates: * </span>
+                <div style="display: inline-block;"> <input type="text" id="datepicker-start" class="pg-textbox" data-bind="value: CampaignStartDate"> 
+                    &nbsp;-&nbsp;<input type="text" id="datepicker-end" class="pg-textbox" data-bind="value: CampaingEndDate"> 
+                </div>                   
+            </li>
+            <li class="pg-text-li">
+                <span  class="pg-text"> Where will the <br/>ad show? * <br />(For multiple regions, <br/>please specify.)</span>
+                        <div style="display: inline-block;">
+                            <input type="radio" value="selected_regions" checked class="pg-text-control" data-bind="checked: radioSelectedRegions" style="width: 20px;"> Select regions:  
+                            <div style="height:200px; width:500px; overflow-y:scroll" data-bind="template: { name: 'TriStaeCheckBoxTree-Template', data: $root.children }" ></div>
+
+                            <input type="radio" value="own_regions" class="pg-text-control" data-bind="checked: radioSelectedRegions" style="width: 20px;"> Specify your own value: <input type="text" class="pg-text-control"  style="width: 180px; display:inline-block;" data-bind="value: OwnRegionsVal">    
+                        </div>
+            </li>
+            <li class="pg-text-li">
+                <button class="ui-button ui-button-text-only ui-widget ui-corner-all" style="width: 150px; float: right; background-color: #BC3604; height: 40px;" data-bind="click: SubmitCampaign">
+                <span class="ui-button-text" style="color:white;font-weight:bold; padding: 0px; margin: 0px;">Submit For<br /> Review</span></button>
+            </li>
+        </ul>
+     </div>
+   
+</div>
+
+<script src="~/Scripts/CampaignRequestEntry.js"></script>
+
+
+@section scripts{
+    
+   <script type="text/html" id="TriStaeCheckBox-Template">
+        <div class="CheckBoxOuterDiv" data-bind="click:ChangeStatus,attr: {title:Title}">
+            <img data-bind="css: { UncheckedCheckBox: State() == EnumState.UNCHECKED(),CheckedCheckBox: State() == EnumState.CHECKED(),IndeterminateCheckBox: State() == EnumState.INDETERMINATE()}" >
+            <span class="CheckBoxDisplayText" data-bind="text: DisplayText, value: DisplayID" />
+        </div>
+    </script>
+
+
+    <script type="text/html" id="TriStaeCheckBoxTree-Template">
+        <table >
+            <tr>
+                <td style="width: 16px; padding: 0px;">
+                    <img data-bind="click:ExpandChild,css: { ExpandCheckBoxTree: !ShowChild(),CollapseCheckBoxTree: ShowChild},visible:HasChild">
+                </td>
+                <td style="margin: 0px; padding: 0px; text-align: left">
+                    <div data-bind="template: { name: 'TriStaeCheckBox-Template', data: CurrentNode }" />
+                </td>
+            </tr>
+            <tr data-bind="visible:ShowChild" >
+                <td colspan="2" style="margin: 0px; padding: 0px; text-align: left">
+                    <div data-bind="if:  HasChild">
+                        <ul style="list-style: none; padding-left: 20px;" data-bind="template: { name: 'TriStaeCheckBoxTree-Template', foreach: ChildNodes }" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </script>
+
+   
+
+<script type="text/javascript">
+
+    //DOM available, start AJAX calls to fill out User info 
+    $(document).ready(function () {
+        $.getJSON("LoadUser", null, function (data) {
+            //get regions/super-regions tree view data
+            $.getJSON("LoadRegionTreeView", null, function (result) {
+                ko.applyBindings(new CREFViewModel(data, result));
+            });
+
+        });
+        //set start date today + 50 days
+        $("#datepicker-start").datepicker({
+            minDate: +50,
+            showOn: "button",
+            buttonImage: "../Images/calendar.gif",
+            buttonImageOnly: true
+        });
+        //set start date today + 51 days
+        $("#datepicker-end").datepicker({
+            minDate: +51,
+            showOn: "button",
+            buttonImage: "../Images/calendar.gif",
+            buttonImageOnly: true
+        });
+
+        //hide or show portion of form that related to targeted campaign
+        $('#cmp-type-panel input:radio').click(function () {
+            if ($(this).val() == 'Targeted') {
+                $("#targeted-campaign-form").show();
+            } else if ($(this).val() == 'Untargeted') {
+                $("#targeted-campaign-form").hide();
+            }
+        });
+
+        if ($("input[name='cmp-type']:checked").val() != 'Targeted') {
+            $("#targeted-campaign-form").hide();
+        }
+
+    });
+
+ </script>
+}

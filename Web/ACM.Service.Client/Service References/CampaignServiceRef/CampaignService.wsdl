@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CampaignService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ACM.Model" />
+      <xsd:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICampaign_GetAllCampaings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCampaings" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetAllCampaings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCampaingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaign" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignTargetFileProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignTargetFileProvider" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignTargetFileProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignTargetFileProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignLocation" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRequestorDashboard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRequestorDashboard" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRequestorDashboard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRequestorDashboardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignDetials_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignDetials" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignDetials_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignDetialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRegions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegions" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRegions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CancelCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCampaign" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CancelCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRequestorDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRequestorDetails" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetRequestorDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRequestorDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_SaveCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCampaign" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_SaveCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignInq" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignAdd" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMod" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignModResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignDel" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainframeInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainframeInq" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainframeInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainframeInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameAdd" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameMod" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameModResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameDel" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignMainFrameDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignMainFrameDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpInq" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpAdd" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpMod" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpModResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpDel" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaignFollowUpDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaignFollowUpDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileInq" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileAdd" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileMod" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileModResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileDel" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_CampaigTargetFileDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CampaigTargetFileDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignDashboard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignDashboard" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCampaignDashboard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignDashboardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetMasterDropDownDataforMasterTables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasterDropDownDataforMasterTables" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetMasterDropDownDataforMasterTables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasterDropDownDataforMasterTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetSubCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="ICampaign_GetSubCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICampaign">
+    <wsdl:operation name="GetAllCampaings">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetAllCampaings" message="tns:ICampaign_GetAllCampaings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetAllCampaingsResponse" message="tns:ICampaign_GetAllCampaings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetCampaign" message="tns:ICampaign_GetCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetCampaignResponse" message="tns:ICampaign_GetCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignTargetFileProvider">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetCampaignTargetFileProvider" message="tns:ICampaign_GetCampaignTargetFileProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetCampaignTargetFileProviderResponse" message="tns:ICampaign_GetCampaignTargetFileProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetCampaignLocation" message="tns:ICampaign_GetCampaignLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetCampaignLocationResponse" message="tns:ICampaign_GetCampaignLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequestorDashboard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetRequestorDashboard" message="tns:ICampaign_GetRequestorDashboard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetRequestorDashboardResponse" message="tns:ICampaign_GetRequestorDashboard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignDetials">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignDetials" message="tns:ICampaign_CampaignDetials_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignDetialsResponse" message="tns:ICampaign_CampaignDetials_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetRegions" message="tns:ICampaign_GetRegions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetRegionsResponse" message="tns:ICampaign_GetRegions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CancelCampaign" message="tns:ICampaign_CancelCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CancelCampaignResponse" message="tns:ICampaign_CancelCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequestorDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetRequestorDetails" message="tns:ICampaign_GetRequestorDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetRequestorDetailsResponse" message="tns:ICampaign_GetRequestorDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/SaveCampaign" message="tns:ICampaign_SaveCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/SaveCampaignResponse" message="tns:ICampaign_SaveCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignInq" message="tns:ICampaign_CampaignInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignInqResponse" message="tns:ICampaign_CampaignInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignAdd" message="tns:ICampaign_CampaignAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignAddResponse" message="tns:ICampaign_CampaignAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignMod" message="tns:ICampaign_CampaignMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignModResponse" message="tns:ICampaign_CampaignMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignDel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignDel" message="tns:ICampaign_CampaignDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignDelResponse" message="tns:ICampaign_CampaignDel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignInfo" message="tns:ICampaign_CampaignInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignInfoResponse" message="tns:ICampaign_CampaignInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainframeInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignMainframeInq" message="tns:ICampaign_CampaignMainframeInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignMainframeInqResponse" message="tns:ICampaign_CampaignMainframeInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameAdd" message="tns:ICampaign_CampaignMainFrameAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameAddResponse" message="tns:ICampaign_CampaignMainFrameAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameMod" message="tns:ICampaign_CampaignMainFrameMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameModResponse" message="tns:ICampaign_CampaignMainFrameMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameDel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameDel" message="tns:ICampaign_CampaignMainFrameDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignMainFrameDelResponse" message="tns:ICampaign_CampaignMainFrameDel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpInfo" message="tns:ICampaign_CampaignFollowUpInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpInfoResponse" message="tns:ICampaign_CampaignFollowUpInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpInq" message="tns:ICampaign_CampaignFollowUpInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpInqResponse" message="tns:ICampaign_CampaignFollowUpInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpAdd" message="tns:ICampaign_CampaignFollowUpAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpAddResponse" message="tns:ICampaign_CampaignFollowUpAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpMod" message="tns:ICampaign_CampaignFollowUpMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpModResponse" message="tns:ICampaign_CampaignFollowUpMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpDel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpDel" message="tns:ICampaign_CampaignFollowUpDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaignFollowUpDelResponse" message="tns:ICampaign_CampaignFollowUpDel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileInfo" message="tns:ICampaign_CampaigTargetFileInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileInfoResponse" message="tns:ICampaign_CampaigTargetFileInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileInq" message="tns:ICampaign_CampaigTargetFileInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileInqResponse" message="tns:ICampaign_CampaigTargetFileInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileAdd" message="tns:ICampaign_CampaigTargetFileAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileAddResponse" message="tns:ICampaign_CampaigTargetFileAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileMod" message="tns:ICampaign_CampaigTargetFileMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileModResponse" message="tns:ICampaign_CampaigTargetFileMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileDel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileDel" message="tns:ICampaign_CampaigTargetFileDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/CampaigTargetFileDelResponse" message="tns:ICampaign_CampaigTargetFileDel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignDashboard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetCampaignDashboard" message="tns:ICampaign_GetCampaignDashboard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetCampaignDashboardResponse" message="tns:ICampaign_GetCampaignDashboard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMasterDropDownDataforMasterTables">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetMasterDropDownDataforMasterTables" message="tns:ICampaign_GetMasterDropDownDataforMasterTables_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetMasterDropDownDataforMasterTablesResponse" message="tns:ICampaign_GetMasterDropDownDataforMasterTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetCategoryById" message="tns:ICampaign_GetCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetCategoryByIdResponse" message="tns:ICampaign_GetCategoryById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaign/GetSubCategoryById" message="tns:ICampaign_GetSubCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaign/GetSubCategoryByIdResponse" message="tns:ICampaign_GetSubCategoryById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICampaign" type="tns:ICampaign">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCampaings">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetAllCampaings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaign">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignTargetFileProvider">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetCampaignTargetFileProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignLocation">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetCampaignLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequestorDashboard">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetRequestorDashboard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignDetials">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignDetials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetRegions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelCampaign">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CancelCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequestorDetails">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetRequestorDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCampaign">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/SaveCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignInq">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignAdd">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMod">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignDel">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainframeInq">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignMainframeInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameAdd">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignMainFrameAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameMod">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignMainFrameMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignMainFrameDel">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignMainFrameDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignFollowUpInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpInq">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignFollowUpInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpAdd">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignFollowUpAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpMod">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignFollowUpMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaignFollowUpDel">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaignFollowUpDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaigTargetFileInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileInq">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaigTargetFileInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileAdd">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaigTargetFileAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileMod">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaigTargetFileMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CampaigTargetFileDel">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/CampaigTargetFileDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignDashboard">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetCampaignDashboard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMasterDropDownDataforMasterTables">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetMasterDropDownDataforMasterTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategoryById">
+      <soap:operation soapAction="http://tempuri.org/ICampaign/GetSubCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CampaignService">
+    <wsdl:port name="BasicHttpBinding_ICampaign" binding="tns:BasicHttpBinding_ICampaign">
+      <soap:address location="http://localhost/ACM.CampaignService/ACM.CampaignService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

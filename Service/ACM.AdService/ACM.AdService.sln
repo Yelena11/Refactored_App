@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.AdService", "ACM.AdService.csproj", "{C24CA523-5C02-44A2-873C-7C37185137E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.Util", "..\..\Util\ACM.Util\ACM.Util.csproj", "{76E88ABF-52AB-4FB5-BE6C-1B5151AE25C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.BO", "..\..\ACM.BO\ACM.BO.csproj", "{D0EF12D7-E52A-4670-B08B-46DFB3AE2D45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.DAO", "..\..\ACM.DAO\ACM.DAO.csproj", "{EDC7C22D-7CFB-4EF0-AFB7-35353B91E24E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.Model", "..\..\ACM.Model\ACM.Model.csproj", "{1F544FD6-6668-4841-839F-D4C5CD32B0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.Interfaces", "..\..\ACM.Interfaces\ACM.Interfaces.csproj", "{408607B0-72C4-4D7C-ABA4-BDB91D21D076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.EFL", "..\..\ACM.Entity\ACM.EFL.csproj", "{A8E4AB35-CDBA-4E2D-8803-9317BE02A85C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccProjectUniqueName0 = ACM.AdService.csproj
+		SccProjectName0 = .
+		SccAuxPath0 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = ..\\..\\Util\\ACM.Util\\ACM.Util.csproj
+		SccProjectName1 = ../../Util/ACM.Util
+		SccAuxPath1 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath1 = ..\\..\\Util\\ACM.Util
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = ..\\..\\ACM.BO\\ACM.BO.csproj
+		SccProjectName2 = ../../ACM.BO
+		SccAuxPath2 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath2 = ..\\..\\ACM.BO
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = ..\\..\\ACM.DAO\\ACM.DAO.csproj
+		SccProjectName3 = ../../ACM.DAO
+		SccAuxPath3 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath3 = ..\\..\\ACM.DAO
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = ..\\..\\ACM.Model\\ACM.Model.csproj
+		SccProjectName4 = ../../ACM.Model
+		SccAuxPath4 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath4 = ..\\..\\ACM.Model
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName5 = ..\\..\\ACM.Interfaces\\ACM.Interfaces.csproj
+		SccProjectName5 = ../../ACM.Interfaces
+		SccAuxPath5 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath5 = ..\\..\\ACM.Interfaces
+		SccProvider5 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName6 = ..\\..\\ACM.Entity\\ACM.EFL.csproj
+		SccProjectName6 = ../../ACM.Entity
+		SccAuxPath6 = https://tfs.wellsfargo.com/tfs/atm_banking
+		SccLocalPath6 = ..\\..\\ACM.Entity
+		SccProvider6 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C24CA523-5C02-44A2-873C-7C37185137E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24CA523-5C02-44A2-873C-7C37185137E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24CA523-5C02-44A2-873C-7C37185137E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24CA523-5C02-44A2-873C-7C37185137E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E88ABF-52AB-4FB5-BE6C-1B5151AE25C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E88ABF-52AB-4FB5-BE6C-1B5151AE25C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E88ABF-52AB-4FB5-BE6C-1B5151AE25C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E88ABF-52AB-4FB5-BE6C-1B5151AE25C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EF12D7-E52A-4670-B08B-46DFB3AE2D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EF12D7-E52A-4670-B08B-46DFB3AE2D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EF12D7-E52A-4670-B08B-46DFB3AE2D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EF12D7-E52A-4670-B08B-46DFB3AE2D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC7C22D-7CFB-4EF0-AFB7-35353B91E24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC7C22D-7CFB-4EF0-AFB7-35353B91E24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC7C22D-7CFB-4EF0-AFB7-35353B91E24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC7C22D-7CFB-4EF0-AFB7-35353B91E24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F544FD6-6668-4841-839F-D4C5CD32B0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F544FD6-6668-4841-839F-D4C5CD32B0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F544FD6-6668-4841-839F-D4C5CD32B0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F544FD6-6668-4841-839F-D4C5CD32B0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408607B0-72C4-4D7C-ABA4-BDB91D21D076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408607B0-72C4-4D7C-ABA4-BDB91D21D076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408607B0-72C4-4D7C-ABA4-BDB91D21D076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408607B0-72C4-4D7C-ABA4-BDB91D21D076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E4AB35-CDBA-4E2D-8803-9317BE02A85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E4AB35-CDBA-4E2D-8803-9317BE02A85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E4AB35-CDBA-4E2D-8803-9317BE02A85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E4AB35-CDBA-4E2D-8803-9317BE02A85C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

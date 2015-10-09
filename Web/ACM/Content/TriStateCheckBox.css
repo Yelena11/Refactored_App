@@ -1,0 +1,84 @@
+﻿.UncheckedCheckBox {
+    background: url('Images/chk-1.jpg') no-repeat center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: center;
+}
+
+.CheckedCheckBox {
+    background: url('Images/chk-2.jpg') no-repeat center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: center;
+}
+
+.IndeterminateCheckBox {
+    background: url('Images/chk-3.jpg') no-repeat center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: center;
+}
+
+.CheckBoxOuterDiv {
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: left;
+    cursor: pointer;
+}
+
+.CheckBoxDisplayText {
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: left;    
+}
+
+.ExpandCheckBoxTree {
+    background: url('Images/ex-1.jpg') no-repeat center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: center;
+    cursor: pointer;
+}
+
+.CollapseCheckBoxTree {
+    background: url('Images/ex-2.jpg') no-repeat center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: central;
+    text-align: center;
+    cursor: pointer;
+}

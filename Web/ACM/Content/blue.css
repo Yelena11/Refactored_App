@@ -1,0 +1,36 @@
+#tabbed label.tabs {
+	background: rgb(110, 152, 227); color: rgb(255, 255, 255);
+}
+#tabbed label.tabs:hover {
+	background: rgb(72, 119, 203);
+}
+#tabbed label.tabs:focus {
+	background: rgb(72, 119, 203);
+}
+#tabbed .blue.first.table.cell {
+	background: rgb(110, 152, 227);
+}
+#tabbed p.framed-quote {
+	background: rgb(110, 152, 227);
+}
+#tabbed p.arrow-left.framed-quote::before {
+	border-color: transparent rgb(110, 153, 227) transparent transparent;
+}
+#tabbed .blue.button {
+	background: rgb(110, 152, 227);
+}
+#tabbed .blue.button:hover {
+	background: rgb(51, 51, 51);
+}
+#tabbed .large.title {
+	color: rgb(72, 119, 203);
+}
+#tabbed p.quote {
+	color: rgb(110, 153, 227);
+}
+#tabbed a {
+	color: rgb(110, 152, 227);
+}
+#tabbed input.reset:hover {
+	color: rgb(110, 152, 227);
+}

@@ -1,0 +1,165 @@
+﻿@model IEnumerable<ACM.Model.CampaignRequestor>
+<style type="text/css">
+    #CampaignRequest
+    {
+        background-color: #f2f2f2;
+    }
+    #gridDiv
+    {
+        margin-left:20px;
+    }
+ 
+    .evenTableRow {       background-color:#eee;color:#000;   }   .oddTableRow  {       background-color:#fff;color:#000;   }      
+</style>
+<div style="font-size: 12px; font-family: Arial, Sans-Serif; color: #000; background-color: #fff; width: 100%; margin-top: 0px; margin-left: 20px;">
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <table>
+        <tr>
+            <td>
+                <span class="pg-text">Display: </span>
+
+                <select id="DisplayId" name="DisplayName" onchange=" UpdateRecords();">
+                    <option value="requestorId">My Requests</option>
+                    <option value="lobId">My LOB Requests</option>
+                </select>
+            </td>
+             <td style="width:10%"></td>
+            <td>
+
+                <span class="pg-text">Filter By: </span>
+
+                <select id="FilterById" name="Filter By: " onchange=" UpdateRecords();">
+                    <option value="Active">Active Campaigns</option>
+                    <option value="Cancelled">Past Campaigns</option>
+                    <option value="All">All Campaigns</option>
+                </select>
+
+            </td>
+            <td style="width:39%"></td>
+            
+                
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:right; width:100%">
+                <button value="Create New Request">Create New Request</button>
+            </td>
+            </tr>
+    </table>
+
+</div>
+
+
+<div id="gridDiv">
+    <table id="RequestorTable"></table>
+    <div id="RequestorTablePager"></div>
+</div>
+
+
+
+
+<link rel="Stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/pepper-grinder/jquery-ui.css" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        function UpdateRecords() {
+            jQuery("#RequestorTable").setGridParam({ postData: null });
+            jQuery('#RequestorTable').setGridParam({ postData: { displayID: $("#DisplayId").val(), filterID: $("#FilterById").val() } }).trigger('reloadGrid');
+        }
+        $(document).ready(function () {
+            LoadGrid();
+        });
+
+        function ModifyGridDefaultStyles() {
+            $('#' + "RequestorTable" + ' tr').removeClass("ui-widget-content");
+            $('#' + "RequestorTable" + ' tr:nth-child(even)').addClass("evenTableRow");
+            $('#' + "RequestorTable" + ' tr:nth-child(odd)').addClass("oddTableRow");
+        }
+
+
+        function LoadGrid() {
+            jQuery("#RequestorTable").jqGrid({
+                url: '/Campaign/CampaignRequestView',
+                mtype: 'POST',
+                datatype: "json",
+                contentType: "application/json; charset=utf-8",
+                postData: { displayID: $("#DisplayId").val(), filterID: $("#FilterById").val() },
+                jsonReader: {
+                    root: "rows", //array containing actual data
+                    page: "page", //current page
+                    total: "total", //total pages for the query
+                    records: "records", //total number of records
+                    repeatitems: false
+
+                },
+                colNames: ['Campaign ID', 'Campaign Name', 'Assigned PM', 'Start Date', 'End Date', 'Requestor Name', 'Status', 'Action'],
+                colModel: [
+
+                { name: 'CampaignId', index: 'CampaignId', width: 160, edittype: 'select', formatter: formateadorLink },
+                { name: 'CampaignName', index: 'CampaignName', width: 160 },
+                { name: 'AssignedPMName', index: 'AssignedPMName', width: 160 },
+                { name: 'CampaignStartDate', index: 'CampaignStartDate', width: 160 },
+                { name: 'CampaingEndDate', index: 'CampaingEndDate', width: 160 },
+                { name: 'RequestorName', index: 'RequestorName', width: 160 },
+                { name: 'CampaignStatus', index: 'CampaignStatus', width: 160 },
+                { name: 'Action', index: 'Action', width: 160, edittype: 'select', formatter: formateadorCancelLink }
+                ],
+                rowNum: 10,
+                rowList: [20, 30, 40],
+                pager: jQuery('#RequestorTablePager'),
+                sortname: 'CampaignName',
+                viewrecords: true,
+                sortOrder: "desc",
+
+                caption: "Requestor Dashboard",
+                altRows: true,
+                height: 250,
+                error: function (result) {
+                    alert('Failed');
+                    alert(result);
+
+                },
+                success: function (result) {
+                    alert('Success');
+                    alert(result);
+
+                },
+                loadComplete: function () { ModifyGridDefaultStyles(); }
+            });
+
+
+
+
+        }
+
+        var nullFormatter = function (cellvalue, options, rowObject) {
+            if (cellvalue === undefined || isNull(cellvalue) || cellvalue === 'NULL') {
+                cellvalue = '';
+            }
+
+            return cellvalue;
+        }
+
+
+
+        function formateadorLink(cellvalue, options, rowObject) {
+
+            return "<a style='color:blue' href=/Campaign/CampaignDetail?CampaignId=" + cellvalue + ">" + cellvalue + "</a>";
+        }
+        function formateadorCancelLink(cellvalue, options, rowObject) {
+
+            /*
+            if (cellvalue === undefined || isNull(cellvalue) || cellvalue === 'NULL') {
+                cellvalue = '';
+            }
+            */
+            return "<a style='color:blue' href=/Campaign/CancelCampaign?CampaignId=" + rowObject.CampaignId + ">" + cellvalue + "</a>";
+        }
+    </script>
+}

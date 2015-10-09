@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ACM.Model" />
+  <xs:import schemaLocation="http://localhost/ACM.CampaignService/ACM.CampaignService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" />
+  <xs:element name="GetAllCampaings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCampaingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetAllCampaingsResult" nillable="true" type="q1:ArrayOfCampaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetCampaignResult" nillable="true" type="q2:ArrayOfCampaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignTargetFileProvider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignTargetFileProviderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetCampaignTargetFileProviderResult" nillable="true" type="q3:ArrayOfCampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetCampaignLocationResult" nillable="true" type="q4:ArrayOfCampaignLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestorDashboard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestorId" type="xs:int" />
+        <xs:element minOccurs="0" name="lobId" type="xs:int" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isLobRequest" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestorDashboardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetRequestorDashboardResult" nillable="true" type="q5:ArrayOfCampaignRequestor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignDetials">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignDetialsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" minOccurs="0" name="CampaignDetialsResult" nillable="true" type="q6:CampaignDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetRegionsResult" nillable="true" type="q7:ArrayOfRegion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCampaign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCampaignResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestorDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestorDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetRequestorDetailsResult" nillable="true" type="q8:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCampaign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="campaign" nillable="true" type="q9:Campaign" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="campaignTFPL" nillable="true" type="q10:ArrayOfCampaignTargetFileProvider" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="campaignLocList" nillable="true" type="q11:ArrayOfCampaignLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCampaignResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignInq">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q12:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignInqResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignInqResult" nillable="true" type="q13:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q14:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignAddResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignAddResult" nillable="true" type="q15:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q16:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignModResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignModResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignDel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q17:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignDelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignDelResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q18:Campaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignInfoResult" nillable="true" type="q19:ArrayOfCampaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainframeInq">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q20:CampaignMainFrame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainframeInqResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignMainframeInqResult" nillable="true" type="q21:CampaignMainFrame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q22:CampaignMainFrame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameAddResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignMainFrameAddResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameMod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q23:CampaignMainFrame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameModResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignMainFrameModResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameDel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q24:CampaignMainFrame" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignMainFrameDelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignMainFrameDelResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q25:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignFollowUpInfoResult" nillable="true" type="q26:ArrayOfCampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpInq">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q27:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpInqResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaignFollowUpInqResult" nillable="true" type="q28:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q29:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpAddResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignFollowUpAddResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpMod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q30:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpModResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignFollowUpModResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpDel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q31:CampaignFollowUp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaignFollowUpDelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaignFollowUpDelResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q32:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaigTargetFileInfoResult" nillable="true" type="q33:ArrayOfCampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileInq">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q34:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileInqResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="CampaigTargetFileInqResult" nillable="true" type="q35:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q36:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileAddResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaigTargetFileAddResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileMod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q37:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileModResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaigTargetFileModResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileDel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="request" nillable="true" type="q38:CampaignTargetFileProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CampaigTargetFileDelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CampaigTargetFileDelResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignDashboard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AcmUserId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CampaignStatus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCampaignDashboardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetCampaignDashboardResult" nillable="true" type="q39:ArrayOfCampaign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMasterDropDownDataforMasterTables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MasterTableID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterTableDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterTableName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMasterDropDownDataforMasterTablesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" minOccurs="0" name="GetMasterDropDownDataforMasterTablesResult" nillable="true" type="q40:ArrayOfGetDataForDropDownList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoryById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SuperCategoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoryByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetCategoryByIdResult" nillable="true" type="q41:ArrayOfCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubCategoryById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubCategoryByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/ACM.Model" minOccurs="0" name="GetSubCategoryByIdResult" nillable="true" type="q42:ArrayOfSubCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

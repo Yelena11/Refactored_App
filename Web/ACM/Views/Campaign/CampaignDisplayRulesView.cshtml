@@ -1,0 +1,177 @@
+﻿@model ACM.Model.Campaign
+
+@{
+    ViewBag.Title = "CampaignDisplayRules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/common.css" rel="stylesheet" />
+<link rel="Stylesheet" href="~/Content/themes/pepper-grinder/jquery-ui.css" /> 
+<link rel="stylesheet" href="~/Content/jquery.jqGrid/ui.jqgrid.css"  />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<style type="text/css">
+    .editcontrols {
+        background-color: lightgray;
+    }
+</style>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            LoadGrid();
+            SetGridWidth();
+            SetData();
+
+            $('#aRightArrowAll').click(function () {
+                var fromGrid = $('#AvailableStatesTbl');
+                var toGrid = $('#SelectedStatesTbl');
+                MoveGridDataAll(fromGrid, toGrid);              
+            });
+
+            $('#aLeftArrowAll').click(function () {
+                var fromGrid = $('#SelectedStatesTbl');
+                var toGrid = $('#AvailableStatesTbl');
+                MoveGridDataAll(fromGrid, toGrid);
+            });
+
+            
+            $('#aRightArrow').click(function () {
+                var fromGrid = $('#AvailableStatesTbl');
+                var toGrid = $('#SelectedStatesTbl');
+                MoveGridData(fromGrid, toGrid);               
+            });
+            $('#aLeftArrow').click(function () {
+                var fromGrid = $('#SelectedStatesTbl');
+                var toGrid = $('#AvailableStatesTbl');
+                MoveGridData(fromGrid, toGrid);
+            });
+
+
+        });
+
+        //jqGrid set-up
+        LoadGrid = function () {
+            jQuery("#AvailableStatesTbl").jqGrid({
+            datatype: "local",
+            colNames: ['State'],
+            colModel: [
+            { name: 'StateCode', index: 'StateCode', width: 153 },
+            ],
+
+            rowNum: 20,
+            sortname: 'State',
+            viewrecords: true,
+            sortorder: "asc",
+            multiselect: true,
+
+            loadError: function (xhr, st, err) {
+                jQuery("#ErrorLog").text("Encountered error while displaying data. Please contact technical support for assistance.");
+            },
+
+            height: 100,
+            hidegrid: false
+            });
+
+            jQuery("#SelectedStatesTbl").jqGrid({
+                datatype: "local",
+                colNames: ['State'],
+                colModel: [
+                { name: 'StateCode', index: 'StateCode', width: 153 },
+                ],
+                rowNum: 20,
+                sortname: 'State',
+                viewrecords: true,
+                sortorder: "asc",
+                multiselect: true,
+
+                loadError: function (xhr, st, err) {
+                    jQuery("#ErrorLog").text("Encountered error while displaying data. Please contact technical support for assistance.");
+                },
+
+                height: 100,
+                hidegrid: false
+            });
+    }
+
+    //set-up jqGrid width paramether
+        SetGridWidth = function () {
+       jQuery('#AvailableStatesTbl').jqGrid('hideCol', 'cb');
+       jQuery('#AvailableStatesTbl').jqGrid('setGridWidth', '150');
+
+       jQuery('#SelectedStatesTbl').jqGrid('hideCol', 'cb');
+       jQuery('#SelectedStatesTbl').jqGrid('setGridWidth', '150');
+    }
+
+    SetData = function () {
+        var arrAvailableStates = [{ StateCode: "AK" }, { StateCode: "CA" }, { StateCode: "NY"}];
+        for (var i = 0; i <= arrAvailableStates.length; i++) jQuery("#AvailableStatesTbl").jqGrid('addRowData', i + 1, arrAvailableStates[i]);
+    }
+
+    MoveGridDataAll = function (fromGrid, toGrid) {
+        var RowList = fromGrid.getRowData();
+        var Row;
+        for (Row in RowList) {
+            toGrid.addRowData(Row, RowList[Row]);
+        }
+        fromGrid.clearGridData();
+    };
+
+   /* MoveGridData = function (fromGrid, toGrid) {
+        var rowId = fromGrid.jqGrid('getGridParam', 'selrow');
+        debugger;
+        if (rowId !== null) {
+            var rowData = fromGrid.getRowData(rowId);
+            toGrid.addRowData(rowId, rowData);
+            fromGrid.delRowData(rowId);
+        }
+    };*/
+
+    MoveGridData = function (fromGrid, toGrid) {
+        //debugger;
+        var rowId = 0;
+        var rowData = {};
+
+        var rowKeys = fromGrid.getGridParam('selarrrow');
+        var j = rowKeys.length;
+
+        for (var i = 0;  i < j; i++) {
+            rowId = rowKeys[0];
+            rowData = fromGrid.getRowData(rowId);
+            toGrid.addRowData(rowId, rowData);
+            fromGrid.delRowData(rowId);
+        }
+    };
+    
+    </script>
+}
+
+<div class="leftNav">
+ @{Html.RenderAction("RenderLeftMenu", "Navigation");}
+</div>
+   
+     
+<div id="container"> 
+    <div class="expandable-panel-heading">
+        <h2>Campaign Display Rules<a class="edit" ><img src="~/Images/iconEdit.png" class="editMode" id="imgCampaignEdit" style="float: right;"/></a></h2>
+    </div>
+
+    <div>
+        <span id="ErrorLog" style="float: left; color: red;">&nbsp;</span>
+        <span id="MessageLog" style="float: left; color: green;">&nbsp;</span>
+    </div>
+
+    <div class="expandable-panel-content" style="background-color: white">Display Rules</div>
+    
+    <div style="float: left; margin-top: 0px; display: inline;float: left;">
+        <table id="AvailableStatesTbl" style="width: 150px;float: left;"></table>
+    </div>
+    <div id="MoveStatesTbl" style="width: 100px; padding: 0px;float: left;  margin-top: 30px;">
+        <div style="text-align: center;"><a style="height: 24px; color: grey; cursor: pointer; text-decoration:none;" id="aRightArrowAll">&nbsp;>>&nbsp;</a></div>
+        <div style="text-align: center;"><a style="height: 24px; color: grey; cursor: pointer; text-decoration:none;" id="aRightArrow">&nbsp;>&nbsp;</a></div>
+        <div style="text-align: center;"><a style="height: 24px; color: grey; cursor: pointer; text-decoration:none;" id="aLeftArrow">&nbsp;<&nbsp;</a></div>
+        <div style="text-align: center;"><a style="height: 24px; color: grey; cursor: pointer; text-decoration:none;" id="aLeftArrowAll">&nbsp;<<&nbsp;</a></div>
+    </div>
+    <div style="float: left; margin-top: 0px; display: inline;float: left;">
+        <table id="SelectedStatesTbl" style="width: 150px;float: left;"></table>
+    </div>
+    </div>
+    

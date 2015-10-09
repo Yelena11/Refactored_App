@@ -1,0 +1,56 @@
+﻿@using System.Web
+@using System.Web.Optimization
+@model IEnumerable<ACM.Model.Campaign>
+
+@{
+    ViewBag.Title = "ACM Campaign Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="~/Content/bootstrap-theme.min.css" type="text/css"> 
+<link rel="Stylesheet" href="~/Content/themes/pepper-grinder/jquery-ui.css" /> 
+
+@section scripts{
+<script type="text/javascript">
+
+</script>
+}
+<style type="text/css">
+    .webGrid { margin: 4px; border-collapse: collapse; width: 100%;  background-color:#FFFFFF; border: 2px solid #808080;}
+    .header { background-color: red; font-weight: bold; color: #000000; }
+    .webGrid th, .webGrid td { border: 1px solid #C0C0C0; padding: 5px; }
+    .alt { background-color: #C0C0C0; color: #000; }
+    .gridHead a:hover {text-decoration:underline;}
+    .description { width:auto; word-wrap:break-word}
+    .select{background-color: #ffffff}
+    a{ color: #800000; cursor: pointer; }
+</style>
+
+<div style=" font-size: 12px;font-family: Arial, Sans-Serif;color: #000;background-color: #fff;width: 1024px; margin-top: 0px; margin-left: 20px;">
+    
+    <h4>Campaign Dashboard</h4>
+   
+    <a href="@Url.Action("CampaignView", "CampaignView", new {CampaignId = 0})"  class="ui-button ui-button-text-only ui-widget ui-corner-all" style="width: 130px; float: right; background-color: #AC0B0B; height: 35px;" >
+    <span class="ui-button-text" style="color:white;font-weight:bold; padding: 0px; margin: 0px;">Campaign View</span></a><br/><br/>
+    <div id="gridContent">
+   @{
+    var grid = new WebGrid(Model, defaultSort:"Id", canPage: true, rowsPerPage: 15, 
+    selectionFieldName: "selectedRow",ajaxUpdateContainerId: "gridContent");
+        grid.Pager(WebGridPagerModes.NextPrevious);} 
+    
+
+ 
+    @grid.GetHtml(columns: grid.Columns(grid.Column(header: "Campaign ID", format: @<a href="@Url.Action("CampaignView", "CampaignView", new {CampaignId = item.CampaignId})"> @item.CampaignId</a>, canSort: true), 
+    grid.Column("CampaignName", header: "Campaign Name " , canSort: true),
+        grid.Column(header: "Pending Tasks",format: @<a >Assign PM</a>),
+        grid.Column(header: "Scheduling",format: @<a ></a>)),
+    tableStyle: "webGrid",
+            headerStyle: "header",
+            alternatingRowStyle: "alt",
+            selectedRowStyle: "select" )
+    </div>
+
+</div>
+

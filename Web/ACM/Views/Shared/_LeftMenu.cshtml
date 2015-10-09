@@ -1,0 +1,270 @@
+﻿@model ACM.Model.PartialViewInfo
+<link href="~/Content/leftmenu.css" rel="stylesheet" />
+<style>
+    .pg-textHyperLine {
+        width: 150px;
+        font-size: 12px;
+        font-family: Arial;
+        display: inline-block;
+        font-weight: bold;
+        text-wrap: normal;
+        text-align: left;
+        padding-left: 2px;
+    }
+    span {
+        font-size: 11px;
+        font-family: Verdana;
+        display: inline-block;
+        text-wrap: normal;
+        text-align: left;
+        word-wrap: break-word;
+    }
+   .tblLeftContent td:first-child {
+        padding: 1px 1px 1px 1px !important;
+        width:40% !important;
+    }
+    .pg-textHyperLine a {
+        cursor: pointer;
+        color: blue;
+        font-family: Arial;
+    }
+    /*.tblLeftContent td {
+        border-bottom:1px solid lightgrey;
+         border-right:1px solid lightgrey;
+    }*/
+</style>
+<div class="shadow"></div>
+<div class="leftNavSection">
+    <div class="leftNavTopSection" >
+        <div style="display: inline;">
+            <span class="Leftpg-text">Campaign Id: </span>
+            <span id="spanCampaignId" class="Leftpg-value">@Model.CampaignId </span>
+        </div>
+              <div style="height: 1px;"></div>
+        <div style="display: inline;">
+            <span class="Leftpg-text">Name: </span>
+            <span id="LeftCampaignName" class="Leftpg-value">@Model.CampaignName</span>
+
+        </div>
+              <div style="height: 1px;"></div>
+        <div style="display: inline;">
+            <span class="Leftpg-text">CampaignType: </span>
+            <span class="Leftpg-value" id="LeftCampaignType">@Model.CampaignType</span>
+
+        </div>
+              <div style="height: 1px;"></div>
+        <div style="display: inline;">
+            <span class="Leftpg-text">Promo Button: </span>
+            <span id="LeftPromboButton">@Model.PromoButton </span>
+
+        </div>
+              <div style="height: 1px;"></div>
+
+        <div style="display: inline;">
+            <span class="Leftpg-text">ATMA PM:</span>
+            <span id="LeftPrimaryPM" class="Leftpg-value">@Model.ATMPM</span>
+
+        </div>
+           <div style="height: 1px;"></div>
+        <div style="display: inline;">
+            <span class="Leftpg-text">Secondary:</span>
+            <span id="LeftSecondaryPM" class="Leftpg-value">@Model.SecondaryPM</span>
+
+        </div>
+              <div style="height: 1px;"></div>
+        <div style="display: inline;">
+            <span class="Leftpg-text">Status:</span>
+            <span id="LeftStatus" class="Leftpg-value">@Model.Status</span>
+
+        </div>
+
+
+
+
+        <table>
+                 <tr>
+                <td>
+                    <span >
+                        <br />
+                        <a id="LeftCancelCampaign" href='javascript: cancelclick()'>Cancel</a>
+                    </span>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <br />
+    <div id='cssmenu_leftnav'>
+    <ul>
+        <li></li>
+        <li class='active has-sub' id="linkCampaign"><a id="aCampaign" href='#'><span>Campaign Details</span></a>
+            <ul id="ulCampaignSub">
+                <li><a href='#'><span>Missing Priority</span></a></li>
+                <li><a href='#'><span>Resolve conflict </span></a></li>
+                <li class='last'><a href='#'><span>Expired</span></a></li>
+            </ul>
+        </li>
+        
+         <li class='last'><a href='#'><span>Display Rules</span></a></li>
+        <li class='has-sub' id="linkAd"><a id="aAds" href='#'><span>Ads</span></a>
+           <ul id="ulAdsSub">
+                <li><a href='#'><span>Missing media</span></a></li>
+                <li class='last'><a href='#'><span>Pending iUtility configuration</span></a></li>
+            </ul>
+        </li>
+       
+    </ul>
+</div>
+
+    <br />
+    <div class="leftBottomSection" id="divNote">
+
+        <br />
+        <ul style="list-style-type: none;">
+            <li><span> Notes </span>
+                
+                <a class="edit" id="lnkEdit" style="cursor: pointer; visibility: visible; float: right;">Edit</a>
+                <a id="lnkCancel" style="cursor: pointer; visibility: hidden;  float: right;left:5px; position:relative">Cancel</a>
+                <a id="lnkSave" style="cursor: pointer; visibility: hidden;  float: right;" >Save</a>
+
+            </li>
+
+        </ul>
+        <span id="spnChangeLog"></span>
+        <div style="margin-left: 5px; width:100%">
+        <textarea rows="5" class="pg-textbox" style="border-color:skyblue; width: 90%; top:-20px; position:relative" id="taNotes" readonly>@Model.Note</textarea>
+</div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var actualNote = "";
+    $(document).ready(function () {
+        actualNote = $('#taNotes').text();
+
+        if ($('#LeftStatus').text() == "Cancelled") {
+            $('input[type=submit]').attr("disabled", false);
+            $('#LeftCancelCampaign').text("Reinstate");
+            $('#LeftStatus').text('Cancelled');
+        } else if ($('#LeftStatus').text() == "Reinstate") {
+            $('#LeftCancelCampaign').text("Cancel");
+            $('#LeftStatus').text('Active');
+        }
+        $('#cssmenu_leftnav > ul > li > a').click(function () {
+            $('#cssmenu_leftnav li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+          
+            if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                //$(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+                $(this).closest('li').addClass('Inactive');
+            }
+            if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+
+                $(this).closest('li').removeClass('Inactive');
+                $('#cssmenu_leftnav ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+                if ($(this)[0].id == "aCampaign")
+                {
+                    if (window.location.pathname.indexOf('CampaignView/CampaignView') == -1)
+                        location.href = '@Url.Action("CampaignView", "CampaignView", new { CampaignId = @Model.CampaignId })';
+                }
+                else if ($(this)[0].id == "aAds")
+                {
+                    if (window.location.pathname.indexOf('Ad/AdDashboard') == -1)
+                        location.href = '@Url.Action("AdDashboard", "Ad", new { CampaignId = @Model.CampaignId })';
+                }
+            }
+            return false;
+        });
+    });
+
+    $('#taNotes').on('keypress change', function () {
+        $(this).maxInputLength($(this), 5000);
+    });
+
+    $("#lnkEdit").click(function () {
+        var CampaignId = parseInt($('#spanCampaignId').text());
+        $('#taNotes').prop('readonly', false);
+        $('#lnkCancel').css("visibility", "visible");
+        if (CampaignId > 0) {
+            $('#lnkSave').css("visibility", "visible");
+        }
+        $('#lnkEdit').css("visibility", "hidden");
+        $('#taNotes').focus();
+        $('#spnChangeLog').text("");
+    });
+
+    $("#lnkCancel").click(function () {
+        $('#taNotes').text(actualNote);
+        $('#taNotes').prop('readonly', true);
+        $('#lnkCancel').css("visibility", "hidden");
+        $('#lnkSave').css("visibility", "hidden");
+        $('#lnkEdit').css("visibility", "visible");
+        $('#spnChangeLog').text("");
+
+    });
+
+    $("#lnkSave").click(function () {
+        actualNote = $('#taNotes').trimVal();
+        $('#taNotes').prop('readonly', true);
+        $('#lnkCancel').css("visibility", "hidden");
+        $('#lnkSave').css("visibility", "hidden");
+        $('#lnkEdit').css("visibility", "visible");
+        $('#spnChangeLog').text("");
+
+        var param = {
+            CampaignId: parseInt($('#spanCampaignId').text()),
+            Notes: $('#taNotes').val()
+        }
+        var posting = $.post('@Url.Action("SaveCampaignNotes", "CampaignView")', param, function (data) { });//end post
+        posting.fail(function (xhr, textStatus, errorThrown) {
+            $('#spnChangeLog').text("Encountered error while saving data. Please contact technical support for assistance.");
+            $('#spnChangeLog').addClass("error");
+        });
+
+    });
+
+    function cancelclick() {
+        var CampaignId = @Model.CampaignId
+             $.post('@Url.Action("ReinstateCancelCampaign", "CampaignView")', { 'CampaignId': CampaignId }, function (data) {
+                 if (data == "Error") {
+                     var ErrorAction = $('#LeftStatus').text();
+                     if (ErrorAction == "Cancelled")
+                         ErrorAction = "reinstate";
+                     else
+                         ErrorAction = "cancelling";
+                     $('#spnCancelLog').text("Encountered error while " + ErrorAction + "  the campaign. please contact technical support for assistance.");
+                     $('#spnCancelLog').addClass("error");
+                 }
+
+                 else if (data != null) {
+                     if (data == "Cancelled") {
+                         $('#LeftCancelCampaign').text("Reinstate");
+                         $('#LeftStatus').text('Cancelled');
+                         $('#imgCampaignEdit').hide();
+                         $('#imgFollowupEdit').hide();
+                         $('#imgMainFrameEdit').hide();
+                         $('#imgTargetEdit').hide();
+                         $('#AddDashboard').hide();
+                         $('input[type=submit]').attr("disabled", true);
+                     } else {
+                         $('#LeftCancelCampaign').text("Cancel");
+                         $('#AddDashboard').show();
+                         $('#LeftStatus').text(data);
+                         $('#imgCampaignEdit').show();
+                         $('#imgFollowupEdit').show();
+                         $('#imgMainFrameEdit').show();
+                         $('#imgTargetEdit').show();
+                         $('input[type=submit]').attr("disabled", false);
+
+                     }
+                 }
+             });
+    }
+</script>
+
+

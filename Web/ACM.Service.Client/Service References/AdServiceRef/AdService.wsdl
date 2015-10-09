@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AdService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ACM.Model.CustomModel" />
+      <xsd:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/ACM.AdService/AdService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ACM.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAdService_GetAdRestrictionCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdRestrictionCategory" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_GetAdRestrictionCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdRestrictionCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_GetOutstandingTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutstandingTask" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_GetOutstandingTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutstandingTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdInq" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdAdd" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdMod" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdModResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdDel" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_UpdateAdRestriction_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAdRestriction" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_UpdateAdRestriction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAdRestrictionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdLocationsByCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdLocationsByCampaign" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdLocationsByCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdLocationsByCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_CheckMediaFileTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMediaFileTypes" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_CheckMediaFileTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMediaFileTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdsByCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdsByCampaign" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdsByCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdsByCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_GetAdRestrictionFlag_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdRestrictionFlag" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_GetAdRestrictionFlag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdRestrictionFlagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdAdRestrictionFlagAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdAdRestrictionFlagAdd" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdAdRestrictionFlagAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdAdRestrictionFlagAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInfoInq_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdInfoInq" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdInfoInq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdInfoInqResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdStatusModify_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdStatusModify" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdStatusModify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdStatusModifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdStatusInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdStatusInquiry" />
+  </wsdl:message>
+  <wsdl:message name="IAdService_AdStatusInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdStatusInquiryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAdService">
+    <wsdl:operation name="GetAdRestrictionCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/GetAdRestrictionCategory" message="tns:IAdService_GetAdRestrictionCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/GetAdRestrictionCategoryResponse" message="tns:IAdService_GetAdRestrictionCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutstandingTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/GetOutstandingTask" message="tns:IAdService_GetOutstandingTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/GetOutstandingTaskResponse" message="tns:IAdService_GetOutstandingTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdInfo" message="tns:IAdService_AdInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdInfoResponse" message="tns:IAdService_AdInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdInq" message="tns:IAdService_AdInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdInqResponse" message="tns:IAdService_AdInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdAdd" message="tns:IAdService_AdAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdAddResponse" message="tns:IAdService_AdAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdMod" message="tns:IAdService_AdMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdModResponse" message="tns:IAdService_AdMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdDel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdDel" message="tns:IAdService_AdDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdDelResponse" message="tns:IAdService_AdDel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdRestriction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/UpdateAdRestriction" message="tns:IAdService_UpdateAdRestriction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/UpdateAdRestrictionResponse" message="tns:IAdService_UpdateAdRestriction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdLocationsByCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdLocationsByCampaign" message="tns:IAdService_AdLocationsByCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdLocationsByCampaignResponse" message="tns:IAdService_AdLocationsByCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMediaFileTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/CheckMediaFileTypes" message="tns:IAdService_CheckMediaFileTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/CheckMediaFileTypesResponse" message="tns:IAdService_CheckMediaFileTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdsByCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdsByCampaign" message="tns:IAdService_AdsByCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdsByCampaignResponse" message="tns:IAdService_AdsByCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdRestrictionFlag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/GetAdRestrictionFlag" message="tns:IAdService_GetAdRestrictionFlag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/GetAdRestrictionFlagResponse" message="tns:IAdService_GetAdRestrictionFlag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdAdRestrictionFlagAdd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdAdRestrictionFlagAdd" message="tns:IAdService_AdAdRestrictionFlagAdd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdAdRestrictionFlagAddResponse" message="tns:IAdService_AdAdRestrictionFlagAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdInfoInq">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdInfoInq" message="tns:IAdService_AdInfoInq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdInfoInqResponse" message="tns:IAdService_AdInfoInq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdStatusModify">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdStatusModify" message="tns:IAdService_AdStatusModify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdStatusModifyResponse" message="tns:IAdService_AdStatusModify_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdStatusInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdService/AdStatusInquiry" message="tns:IAdService_AdStatusInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdService/AdStatusInquiryResponse" message="tns:IAdService_AdStatusInquiry_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAdService" type="tns:IAdService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAdRestrictionCategory">
+      <soap:operation soapAction="http://tempuri.org/IAdService/GetAdRestrictionCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutstandingTask">
+      <soap:operation soapAction="http://tempuri.org/IAdService/GetOutstandingTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdInfo">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdInq">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdAdd">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdMod">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdDel">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdRestriction">
+      <soap:operation soapAction="http://tempuri.org/IAdService/UpdateAdRestriction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdLocationsByCampaign">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdLocationsByCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMediaFileTypes">
+      <soap:operation soapAction="http://tempuri.org/IAdService/CheckMediaFileTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdsByCampaign">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdsByCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdRestrictionFlag">
+      <soap:operation soapAction="http://tempuri.org/IAdService/GetAdRestrictionFlag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdAdRestrictionFlagAdd">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdAdRestrictionFlagAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdInfoInq">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdInfoInq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdStatusModify">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdStatusModify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdStatusInquiry">
+      <soap:operation soapAction="http://tempuri.org/IAdService/AdStatusInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdService">
+    <wsdl:port name="BasicHttpBinding_IAdService" binding="tns:BasicHttpBinding_IAdService">
+      <soap:address location="http://localhost/ACM.AdService/AdService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

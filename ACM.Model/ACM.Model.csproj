@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1F544FD6-6668-4841-839F-D4C5CD32B0BC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACM.Model</RootNamespace>
+    <AssemblyName>ACM.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomModel\AdInfo.cs" />
+    <Compile Include="CustomModel\AdRestriction.cs" />
+    <Compile Include="CustomModel\Campaign.cs" />
+    <Compile Include="CustomModel\CampaignDetail.cs" />
+    <Compile Include="CustomModel\Adlocation.cs" />
+    <Compile Include="CustomModel\CampaignRequestor.cs" />
+    <Compile Include="CustomModel\GetDataForDropDownList.cs" />
+    <Compile Include="CustomModel\PartialViewInfo.cs" />
+    <Compile Include="Models\ACM_REDESIGN_DEVContext.cs" />
+    <Compile Include="Models\Ad.cs" />
+    <Compile Include="Models\AdCategory.cs" />
+    <Compile Include="Models\AdDeploymentPeriod.cs" />
+    <Compile Include="Models\AdLocation.cs" />
+    <Compile Include="Models\AdLocationMedia.cs" />
+    <Compile Include="Models\AdOutStandingTask.cs" />
+    <Compile Include="Models\AdProductType.cs" />
+    <Compile Include="Models\AdRestriction.cs" />
+    <Compile Include="Models\AdRestrictionAd.cs" />
+    <Compile Include="Models\AdRestrictionCategory.cs" />
+    <Compile Include="Models\AdSchedulingCondition.cs" />
+    <Compile Include="Models\ATMAdDisplayRule.cs" />
+    <Compile Include="Models\ATMCampaignDisplayRule.cs" />
+    <Compile Include="Models\ATMType.cs" />
+    <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\CampaignDeploymentPeriod.cs" />
+    <Compile Include="Models\CampaignFollowUp.cs" />
+    <Compile Include="Models\CampaignLocation.cs" />
+    <Compile Include="Models\CampaignMainFrame.cs" />
+    <Compile Include="Models\CampaignSchedulingCondition.cs" />
+    <Compile Include="Models\CampaignTableStatu.cs" />
+    <Compile Include="Models\CampaignTargetFileProvider.cs" />
+    <Compile Include="Models\CampaignType.cs" />
+    <Compile Include="Models\CardType.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\DeploymentPeriod.cs" />
+    <Compile Include="Models\ETMConfiguration.cs" />
+    <Compile Include="Models\EventTrigger.cs" />
+    <Compile Include="Models\FollowUp.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\LOB.cs" />
+    <Compile Include="Models\Mapping\AdCategoryMap.cs" />
+    <Compile Include="Models\Mapping\AdDeploymentPeriodMap.cs" />
+    <Compile Include="Models\Mapping\AdLocationMap.cs" />
+    <Compile Include="Models\Mapping\AdLocationMediaMap.cs" />
+    <Compile Include="Models\Mapping\AdMap.cs" />
+    <Compile Include="Models\Mapping\AdOutStandingTaskMap.cs" />
+    <Compile Include="Models\Mapping\AdProductTypeMap.cs" />
+    <Compile Include="Models\Mapping\AdRestrictionAdMap.cs" />
+    <Compile Include="Models\Mapping\AdRestrictionCategoryMap.cs" />
+    <Compile Include="Models\Mapping\AdRestrictionMap.cs" />
+    <Compile Include="Models\Mapping\AdSchedulingConditionMap.cs" />
+    <Compile Include="Models\Mapping\ATMAdDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\ATMCampaignDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\ATMTypeMap.cs" />
+    <Compile Include="Models\Mapping\CampaignDeploymentPeriodMap.cs" />
+    <Compile Include="Models\Mapping\CampaignFollowUpMap.cs" />
+    <Compile Include="Models\Mapping\CampaignLocationMap.cs" />
+    <Compile Include="Models\Mapping\CampaignMainFrameMap.cs" />
+    <Compile Include="Models\Mapping\CampaignMap.cs" />
+    <Compile Include="Models\Mapping\CampaignSchedulingConditionMap.cs" />
+    <Compile Include="Models\Mapping\CampaignTableStatuMap.cs" />
+    <Compile Include="Models\Mapping\CampaignTargetFileProviderMap.cs" />
+    <Compile Include="Models\Mapping\CampaignTypeMap.cs" />
+    <Compile Include="Models\Mapping\CardTypeMap.cs" />
+    <Compile Include="Models\Mapping\CategoryMap.cs" />
+    <Compile Include="Models\Mapping\CustomerTypeMap.cs" />
+    <Compile Include="Models\Mapping\DeploymentPeriodMap.cs" />
+    <Compile Include="Models\Mapping\ETMConfigurationMap.cs" />
+    <Compile Include="Models\Mapping\EventTriggerMap.cs" />
+    <Compile Include="Models\Mapping\FollowUpMap.cs" />
+    <Compile Include="Models\Mapping\LanguageMap.cs" />
+    <Compile Include="Models\Mapping\LOBMap.cs" />
+    <Compile Include="Models\Mapping\MediaFileTypeMap.cs" />
+    <Compile Include="Models\Mapping\ProductPlacementMap.cs" />
+    <Compile Include="Models\Mapping\PromoButtonMap.cs" />
+    <Compile Include="Models\Mapping\RegFileCategoryMap.cs" />
+    <Compile Include="Models\Mapping\RegionAdDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\RegionCampaignDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\RegionMap.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Models\Mapping\SpecialProcessTypeMap.cs" />
+    <Compile Include="Models\Mapping\SpecificProductCodeMap.cs" />
+    <Compile Include="Models\Mapping\StateAdDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\StateCampaignDisplayRuleMap.cs" />
+    <Compile Include="Models\Mapping\StateMap.cs" />
+    <Compile Include="Models\Mapping\SubCategoryMap.cs" />
+    <Compile Include="Models\Mapping\SuperCategoryMap.cs" />
+    <Compile Include="Models\Mapping\SuperRegionMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\TargetCampaignTypeMap.cs" />
+    <Compile Include="Models\Mapping\TargetListTypeMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Mapping\View_CampaignDetialsMap.cs" />
+    <Compile Include="Models\Mapping\VW_CampaignMap.cs" />
+    <Compile Include="Models\MediaFileType.cs" />
+    <Compile Include="Models\ProductPlacement.cs" />
+    <Compile Include="Models\PromoButton.cs" />
+    <Compile Include="Models\RegFileCategory.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionAdDisplayRule.cs" />
+    <Compile Include="Models\RegionCampaignDisplayRule.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SpecialProcessType.cs" />
+    <Compile Include="Models\SpecificProductCode.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\StateAdDisplayRule.cs" />
+    <Compile Include="Models\StateCampaignDisplayRule.cs" />
+    <Compile Include="Models\SubCategory.cs" />
+    <Compile Include="Models\SuperCategory.cs" />
+    <Compile Include="Models\SuperRegion.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TargetCampaignType.cs" />
+    <Compile Include="Models\TargetListType.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\View_CampaignDetials.cs" />
+    <Compile Include="Models\VW_Campaign.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

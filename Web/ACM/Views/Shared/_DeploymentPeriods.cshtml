@@ -1,0 +1,27 @@
+﻿@model ACM.Model.PartialViewInfo 
+<style>
+    .deploymentDiv {
+        padding-top:15px;
+
+    }
+    .deploymentPeriodCombo {
+        width:auto;
+    }
+
+    .hrStyle {
+ background-color:lightgray;
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#C8C8C8", endColorstr="#F8F8F8");	
+      
+        BORDER-BOTTOM: medium none;
+        BORDER-LEFT: medium none;
+        HEIGHT: 3px;
+        BORDER-TOP: #999 1px solid;
+        BORDER-RIGHT: medium none;
+} 
+
+</style>
+<div>
+    <span  class="pg-text">Deployment Period: </span>
+    @Html.DropDownListFor(x => x.DeploymentPeriodId, (SelectList)ViewBag.deploymentPeriod, new { id = "ddlDeploymentPeriod", @class = "deploymentPeriodCombo" })
+  <div class="deploymentDiv"> </div>
+</div>

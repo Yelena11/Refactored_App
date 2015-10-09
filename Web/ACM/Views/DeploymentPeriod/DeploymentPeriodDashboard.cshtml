@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "DeploymentPeriod View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<link rel="stylesheet" href="~/Content/jquery.jqGrid/ui.jqgrid.css"  />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/common.css" rel="stylesheet" />
+
+
+<style>
+    #AssetTable a {
+        color: #BC3604;
+        text-decoration: underline;
+    }
+
+   .spanCaptionHeader {
+        font-size: 12px;
+        font-family: Georgia;
+        height:25px;
+        vertical-align:central;
+    
+    }
+
+    #AssetTable td {
+        font-size: 11px;
+        font-family: Verdana;
+        color: #000;
+    }
+
+    th {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        white-space: normal !important;
+        font-size: 12px;
+        font-weight: bold !important;
+        font-family: Verdana;
+        height: 23px;
+        /*color: #990000 !important;*/
+        text-decoration: underline;
+    }
+
+    .tblDashBoard {
+        POSITION: relative;
+        MARGIN: 0px auto;
+        WIDTH: 970px;
+    }
+
+    .btntd {
+    }
+
+    .ui-th-column-header {
+        text-align: center;
+    }
+
+
+    .ui-jqgrid tr.jqgrow td {
+        word-wrap: break-word; /* IE 5.5+ and CSS3 */
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        overflow: hidden;
+        height: 23px;
+        font-size: 11px;
+        font-family: Verdana;
+        color: #000;
+        margin-left: 5px;
+    }
+
+    .ui-jqgrid tr.jqgrow td:first-child {
+        background-color: #EEEEEE;
+        text-align: right;
+    }
+</style>
+
+<script type="text/javascript"  >
+
+    $(document).ready(function () {
+        $('#campaignTab').removeClass('active');
+        $('#adminTab').addClass('active');
+        LoadGrid();
+        SetGridWidth();
+        $('#campaignMenu').removeClass('active');
+        $('#adminMenu').addClass('active');
+    });
+    LoadGrid = function () {
+        jQuery("#AssetTable").jqGrid({
+            url: '@Url.Action("GetDeploymentPeriodDashboard", "DeploymentPeriod")',
+            mtype: 'POST',
+            datatype: "json",
+            jsonReader: {
+                root: "rows", //array containing actual data
+                page: "page", //current page
+                total: "total", //total pages for the query
+                records: "records", //total number of records
+                repeatitems: false,
+                id: "CampaignId" //index of the column with the PK in it
+            },
+            colNames: ['DeploymentPeriod ID', 'DeploymentPeriod Name', 'Start Date', 'End Date', 'Status', 'Action'],
+            colModel: [
+            { name: 'DeploymentPeriodId', index: 'DeploymentPeriodId', key: true, width: 40, hidden: true },
+            { name: 'DeploymentName', index: 'DeploymentName', width: 110 },
+            { name: 'DeploymentStartDate', index: 'DeploymentStartDate', width: 50 },
+            { name: 'DeploymentEndEndDate', index: 'DeploymentEndEndDate', width: 50 },
+            { name: 'Status', index: 'Status', width: 50 },
+               { name: 'Action', index: 'Action', width: 85, formatter: LinkFormatter, sortable: false },
+            ],
+            rowNum: 20,
+            rowList: [20, 30, 40],
+            pager: '#AssetTablePager',
+            sortname: 'DeploymentPeriodId',
+            viewrecords: true,
+            sortorder: "desc",
+            multiselect: false,
+            caption: "<div class='spanCaptionHeader'>Deployment Dashboard</div> ",
+            altRows: true,
+            altclass: 'oddRow',
+
+            gridComplete: function () {
+                $(".jqgrow:odd").hover(
+                    function () { $(this).removeClass("oddRow"); },
+                    function (event) { $(this).addClass("oddRow"); }
+                );
+                var gridName = '#AssetTable';
+                var objHeader = $(gridName);
+
+                //$('#AssetTable_CampaignName').addClass('fixWidth');
+                //for (var i = 0; i < objHeader.length; i++) {
+                //    var col = $("table[id=" + gridName + "] td[aria-describedby=" + objHeader[i].id + "]");
+                //    var width = col.outerWidth();
+                //    $(objHeader[i]).css("width", width);
+                //}
+            },
+            loadError: function (xhr, st, err) {
+                jQuery("#ErrorLog").text("Encountered error while displaying data. Please contact technical support for assistance.");
+            },
+            height: 400,
+            hidegrid: false
+        });
+        //   jQuery("#AssetTable").jqGrid('setGroupHeaders');
+        jQuery("#AssetTable").jqGrid('navGrid', '#AssetTablePager', { edit: false, add: false, del: false });
+    }
+    SetGridWidth = function () {
+        var DataGrid = jQuery('#AssetTable');
+        DataGrid.jqGrid('setGridWidth', '970');
+    }
+
+    //function helper for jqGrid to prepare hyperlinks
+    //to cancel/reinstantiate available ads
+    function ActionFormatter(cellvalue, options, rowObject) {
+
+        debugger;
+        var cellText = "";
+        var bAction = "";
+
+
+        cellText = "Edit";
+        bAction = 1;
+
+        var sFunc = rowObject.DeploymentPeriodId;
+
+        return "<a style='color:blue; text-decoration: underline;' href='javascript: ActionAd(" + sFunc + ")'>" + cellText + "</a>";
+    }
+
+    function LinkFormatter(cellvalue, options, rowObject) {
+        cellText = "Edit";
+        sUrl = '@Url.Action("CreateDeploymentPeriod", "DeploymentPeriod")';
+        sUrl = sUrl + '?deploymentPeirodId=' + rowObject.DeploymentPeriodId;
+        return "<a style='color: blue; text-decoration: underline;' href='" + sUrl + "'>" + cellvalue + "</a>";
+    }
+
+
+    //sub-function of ActionFormatter that helps to 
+    //cancel/reinstantiate ads through AJAX Post and jqGrid refresh
+    function ActionAd(deploymentperiodid) {
+        debugger;
+        var sAction = "";
+        jQuery("#MessageLog").text("");
+
+        //if (bAction == 0)
+        //    sAction = "re-instatiated";
+        //else if (bAction == 1)
+        //    sAction = "cancelled";
+
+        return $.post('@Url.Action("CreateDeploymentPeriod", "DeploymentPeriod")', { 'deploymentPeirodId': deploymentperiodid }, function (data) {
+
+        });
+        //posting.done(function () {
+
+        //});
+    };
+
+    function CreateDeploymentPeriod() {
+
+        window.location.href = '@Url.Action("CreateDeploymentPeriod", "DeploymentPeriod")';
+    }
+
+</script>
+
+
+
+<table class="tblDashBoard">
+     <tr>
+        <td class="btntd" style="text-align: right; position: relative;">
+            <input id="CreateNewDeploymentPeriod" onclick="CreateDeploymentPeriod()" type="submit" style="width: 170px;" value="Add New DeploymentPeriod" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <span id="ErrorLog" style="float: left; color: red;"></span>
+            <div id="grid-wrapper" style="margin-top: 2px;">
+                <table id="AssetTable"></table>
+                <div id="AssetTablePager"></div>
+            </div>
+        </td>
+    </tr>
+   
+</table>

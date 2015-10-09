@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ACM.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ACM.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfCampaign">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Campaign" nillable="true" type="tns:Campaign" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaign" nillable="true" type="tns:ArrayOfCampaign" />
+  <xs:complexType name="Campaign">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedPMId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignAdvertisementType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignFollowUp" nillable="true" type="tns:CampaignFollowUp" />
+      <xs:element minOccurs="0" name="CampaignGuid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignLocation" nillable="true" type="tns:CampaignLocation" />
+      <xs:element minOccurs="0" name="CampaignMainFrame" nillable="true" type="tns:CampaignMainFrame" />
+      <xs:element minOccurs="0" name="CampaignName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignPriority" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CampaignStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignTableStatu" nillable="true" type="tns:CampaignTableStatu" />
+      <xs:element minOccurs="0" name="CampaignTableStatusId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignTargetFileProvider" nillable="true" type="tns:CampaignTargetFileProvider" />
+      <xs:element minOccurs="0" name="CampaignType" nillable="true" type="tns:CampaignType" />
+      <xs:element minOccurs="0" name="CampaignTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaingEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
+      <xs:element minOccurs="0" name="CategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ETMConfiguration" nillable="true" type="tns:ETMConfiguration" />
+      <xs:element minOccurs="0" name="Field1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field5" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field6" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field7" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowUpRequriements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrimaryProductManagerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductPlacement" nillable="true" type="tns:ProductPlacement" />
+      <xs:element minOccurs="0" name="ProductPlacementId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PromoButton" nillable="true" type="tns:PromoButton" />
+      <xs:element minOccurs="0" name="PromoButtonTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestorId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SecondaryProductManagerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ShowLimit" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SubCategory" nillable="true" type="tns:SubCategory" />
+      <xs:element minOccurs="0" name="SubCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SuperCategory" nillable="true" type="tns:SuperCategory" />
+      <xs:element minOccurs="0" name="SuperCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TargetAudience" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetLoadFrequency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="User1" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="User2" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="User3" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Campaign" nillable="true" type="tns:Campaign" />
+  <xs:complexType name="CampaignFollowUp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Business" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Campaign" nillable="true" type="tns:Campaign" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FollowUp" nillable="true" type="tns:FollowUp" />
+      <xs:element minOccurs="0" name="FollowUpId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowUpRequirements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FollowUpSystem" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowUpSystemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignFollowUp" nillable="true" type="tns:CampaignFollowUp" />
+  <xs:complexType name="FollowUp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignFollowUps" nillable="true" type="tns:ArrayOfCampaignFollowUp" />
+      <xs:element minOccurs="0" name="FollowUpDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FollowUpId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FollowUp" nillable="true" type="tns:FollowUp" />
+  <xs:complexType name="ArrayOfCampaignFollowUp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CampaignFollowUp" nillable="true" type="tns:CampaignFollowUp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaignFollowUp" nillable="true" type="tns:ArrayOfCampaignFollowUp" />
+  <xs:complexType name="CampaignLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaign" nillable="true" type="tns:Campaign" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Region" nillable="true" type="tns:Region" />
+      <xs:element minOccurs="0" name="RegionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpecifyRegionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="tns:State" />
+      <xs:element minOccurs="0" name="StateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperRegion" nillable="true" type="tns:SuperRegion" />
+      <xs:element minOccurs="0" name="SuperRegionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignLocation" nillable="true" type="tns:CampaignLocation" />
+  <xs:complexType name="Region">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignLocations" nillable="true" type="tns:ArrayOfCampaignLocation" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RegionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegionStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperRegion" nillable="true" type="tns:SuperRegion" />
+      <xs:element minOccurs="0" name="SuperRegionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Region" nillable="true" type="tns:Region" />
+  <xs:complexType name="ArrayOfCampaignLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CampaignLocation" nillable="true" type="tns:CampaignLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaignLocation" nillable="true" type="tns:ArrayOfCampaignLocation" />
+  <xs:complexType name="SuperRegion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignLocations" nillable="true" type="tns:ArrayOfCampaignLocation" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Regions" nillable="true" type="tns:ArrayOfRegion" />
+      <xs:element minOccurs="0" name="SuperRegionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperRegionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperRegionStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SuperRegion" nillable="true" type="tns:SuperRegion" />
+  <xs:complexType name="ArrayOfRegion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Region" nillable="true" type="tns:Region" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegion" nillable="true" type="tns:ArrayOfRegion" />
+  <xs:complexType name="State">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignLocations" nillable="true" type="tns:ArrayOfCampaignLocation" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="State" nillable="true" type="tns:State" />
+  <xs:complexType name="CampaignMainFrame">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CCLR_Channel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Campaign" nillable="true" type="tns:Campaign" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CardType" nillable="true" type="tns:CardType" />
+      <xs:element minOccurs="0" name="CardTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ConsumerProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CustomerType" nillable="true" type="tns:CustomerType" />
+      <xs:element minOccurs="0" name="CustomerTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EmployeeWashOut" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Filed4" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HV_WashOut" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PCS_WashOut" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sourced_From" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sourced_LOB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpecialProcessId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SpecialProcessType" nillable="true" type="tns:SpecialProcessType" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetListType" nillable="true" type="tns:TargetListType" />
+      <xs:element minOccurs="0" name="TargetListTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TargetYearPeriod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrustWashOut" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignMainFrame" nillable="true" type="tns:CampaignMainFrame" />
+  <xs:complexType name="CardType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignMainFrames" nillable="true" type="tns:ArrayOfCampaignMainFrame" />
+      <xs:element minOccurs="0" name="CardDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardType" nillable="true" type="tns:CardType" />
+  <xs:complexType name="ArrayOfCampaignMainFrame">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CampaignMainFrame" nillable="true" type="tns:CampaignMainFrame" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaignMainFrame" nillable="true" type="tns:ArrayOfCampaignMainFrame" />
+  <xs:complexType name="CustomerType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignMainFrames" nillable="true" type="tns:ArrayOfCampaignMainFrame" />
+      <xs:element minOccurs="0" name="CustomerTypeDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerType" nillable="true" type="tns:CustomerType" />
+  <xs:complexType name="SpecialProcessType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignMainFrames" nillable="true" type="tns:ArrayOfCampaignMainFrame" />
+      <xs:element minOccurs="0" name="SpecialProcessTypeDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpecialProcessTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SpecialProcessType" nillable="true" type="tns:SpecialProcessType" />
+  <xs:complexType name="TargetListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignMainFrames" nillable="true" type="tns:ArrayOfCampaignMainFrame" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetListTypeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TargetListType" nillable="true" type="tns:TargetListType" />
+  <xs:complexType name="CampaignTableStatu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignTableStatusDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignTableStatusId" type="xs:int" />
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignTableStatu" nillable="true" type="tns:CampaignTableStatu" />
+  <xs:complexType name="CampaignTargetFileProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaign" nillable="true" type="tns:Campaign" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ECNCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Field3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Filed4" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowUPNeeded" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Frequency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IWillProvideTargetFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPRCriteria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPRProvideTargetFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetFileCompleted" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignTargetFileProvider" nillable="true" type="tns:CampaignTargetFileProvider" />
+  <xs:complexType name="CampaignType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignTypeStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignType" nillable="true" type="tns:CampaignType" />
+  <xs:complexType name="Category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubCategories" nillable="true" type="tns:ArrayOfSubCategory" />
+      <xs:element minOccurs="0" name="SuperCategory" nillable="true" type="tns:SuperCategory" />
+      <xs:element minOccurs="0" name="SuperCategoryID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfSubCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubCategory" nillable="true" type="tns:SubCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubCategory" nillable="true" type="tns:ArrayOfSubCategory" />
+  <xs:complexType name="SubCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
+      <xs:element minOccurs="0" name="CategoryID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubCategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="SubCategoryName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubCategory" nillable="true" type="tns:SubCategory" />
+  <xs:complexType name="SuperCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfCategory" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperCategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="SuperCategoryName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SuperCategory" nillable="true" type="tns:SuperCategory" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="ETMConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaign" nillable="true" type="tns:Campaign" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="ETMCanSwitchToNextETM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ETMDuration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ETMEndonInteraction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventTrigger" nillable="true" type="tns:EventTrigger" />
+      <xs:element minOccurs="0" name="EventTriggerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupressDefault" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ETMConfiguration" nillable="true" type="tns:ETMConfiguration" />
+  <xs:complexType name="EventTrigger">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ETMConfigurations" nillable="true" type="tns:ArrayOfETMConfiguration" />
+      <xs:element minOccurs="0" name="EventTriggerId" type="xs:int" />
+      <xs:element minOccurs="0" name="EventTriggerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegisterEntry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventTrigger" nillable="true" type="tns:EventTrigger" />
+  <xs:complexType name="ArrayOfETMConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ETMConfiguration" nillable="true" type="tns:ETMConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfETMConfiguration" nillable="true" type="tns:ArrayOfETMConfiguration" />
+  <xs:complexType name="ProductPlacement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductPlacementId" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UIMapping" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductPlacement" nillable="true" type="tns:ProductPlacement" />
+  <xs:complexType name="PromoButton">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="PromoButtonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromoButtonTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="RegisterEntry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PromoButton" nillable="true" type="tns:PromoButton" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AU" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Campaigns" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Campaigns1" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Campaigns2" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="Campaigns3" nillable="true" type="tns:ArrayOfCampaign" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LOB" nillable="true" type="tns:LOB" />
+      <xs:element minOccurs="0" name="LOBId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManagerEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManagerFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManagerLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phoneno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="tns:Role" />
+      <xs:element minOccurs="0" name="Role1" nillable="true" type="tns:Role" />
+      <xs:element minOccurs="0" name="RoleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="LOB">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LOBId" type="xs:int" />
+      <xs:element minOccurs="0" name="LOBName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LOB" nillable="true" type="tns:LOB" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RoleId" type="xs:int" />
+      <xs:element minOccurs="0" name="RoleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+      <xs:element minOccurs="0" name="Users1" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Role" nillable="true" type="tns:Role" />
+  <xs:complexType name="ArrayOfCampaignTargetFileProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CampaignTargetFileProvider" nillable="true" type="tns:CampaignTargetFileProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaignTargetFileProvider" nillable="true" type="tns:ArrayOfCampaignTargetFileProvider" />
+  <xs:complexType name="ArrayOfCampaignRequestor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CampaignRequestor" nillable="true" type="tns:CampaignRequestor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCampaignRequestor" nillable="true" type="tns:ArrayOfCampaignRequestor" />
+  <xs:complexType name="CampaignRequestor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedPMFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedPMId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignedPMLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CampaignStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampaignTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaingEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedPMLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FollowUpRequriements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LOBId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedByFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedByLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RequestorFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequestorId" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestorLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetAudience" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetLoadFrequency" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignRequestor" nillable="true" type="tns:CampaignRequestor" />
+</xs:schema>

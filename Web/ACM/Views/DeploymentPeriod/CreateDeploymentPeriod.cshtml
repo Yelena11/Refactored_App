@@ -1,0 +1,203 @@
+﻿@model ACM.Model.DeploymentPeriod
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "CreateDeploymentPeriod";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>create Deployment Period</h4>
+<style>
+    #DeploymentStartDate
+    {
+        background: url('../Images/calendar.gif') no-repeat right;
+    }
+
+    #DeploymentEndDate
+    {
+        background: url('../Images/calendar.gif') no-repeat right;
+    }
+</style>
+<script type="text/javascript">
+    $('#DeploymentStartDate').click(function () {
+
+        $("#DeploymentStartDate").datepicker();
+        //$("#DeploymentEndDate").datepicker();
+    });
+    $(document).ready(function () {
+
+        $("#DeploymentStartDate").datepicker();
+
+
+        //set start date today + 51 days
+        $("#DeploymentEndDate").datepicker();
+    });
+
+
+
+    //Save functionality
+
+
+
+</script>
+<script type="text/javascript">
+
+
+    $(document).ready(function (){
+        $('#campaignMenu').removeClass('active');
+        $('#adminMenu').addClass('active');
+        if ($('#DeploymentStartDate').val() == "1/1/0001") {
+
+            $('#DeploymentStartDate').val("");
+        }
+        if ($('#DeploymentEndDate').val() == "1/1/0001") {
+
+            $('#DeploymentEndDate').val("");
+        }
+        var d = new Date();
+        
+      //  alert(d.getVarDate());
+        if ($('#DeploymentEndDate').val() < Date.now) {
+
+            $('#Status').val("Closed");
+        }
+      //  alert($('#Status').val());
+  //      debugger;
+        if ($('#Status').val()=="") {
+            $('#Status').text("Open");
+
+            //$('#Status').val("Active");
+        }
+
+         
+    });
+
+    function SaveDeploymentPeriodclick() {
+     
+        var param = {
+            DeploymentPeriodId: $('#DeploymentPeriodId').val(),
+            DeploymentName: $('#DeploymentName').val(),
+            DeploymentStartDate: $('#DeploymentStartDate').val(),
+            DeploymentEndEndDate: $('#DeploymentEndDate').val(),
+            Status: $('#Status').text(),
+
+            Closed: "N"
+
+        };
+        $.post('@Url.Action("SaveDeploymentPeriod", "DeploymentPeriod")', param, function (data) {
+            //   alert('hi');.   
+            var errors = "";
+            $('#CampaignInfomessage').text(" ");
+            if (data == "Error") {
+                $('#message').append('Encountered error while saving data. Please contact technical support for assistance.');
+                $('#message').removeClass("message");
+                $('#message').addClass("error");
+            } else if (data != null && data[0] != null && data[0].ErrorMessage != "") {
+
+                for (var i = 0; i < data.length; i++) {
+                    if (errors.indexOf(data[i].ErrorMessage) == -1 && data[i].ErrorMessage.indexOf("CampaignId") == -1)
+                        errors += "*" + data[i].ErrorMessage + "<br/>";
+                    var element = "#" + data[i].ErrorMessage.split(' ')[1];
+                    $(element).addClass("required");
+                    window.scrollTo(0, 0);
+                }
+                $('#CampaignInfomessage').append(errors);
+                $('#CampaignInfomessage').removeClass("CampaignInfomessage");
+                $('#CampaignInfomessage').addClass("error");
+
+            } else {
+                window.location.href = '@Url.Action("DeploymentPeriodDashboard", "DeploymentPeriod")';
+            }
+             
+        });
+    }
+    //$('.SubmitButton').click(function () {
+    //    debugger;
+
+
+    //});
+    //$('#abc').click(function () {
+    //    alert('hi');
+    //});
+</script>
+
+@*<script>
+    function abcd() {
+        alert('hi');
+    }
+
+</script>*@
+<style>
+    td, div
+    {
+        padding-left :5px;
+    }
+     .CampaignInfomessage {
+        color: green;
+    }
+
+</style>
+
+
+<div style=" border-width:2px;padding-left:20px  " >
+       <div id="CampaignInfomessage"></div>
+<table style="border: 1px solid gray;width: 30%;     ">
+    
+    <tr>
+        <td>
+            <div style="display: inline;">
+                <span class="pg-text">Name: </span>
+                
+                <input id="DeploymentPeriodId" type="hidden"  class="pg-textbox "  value ="@Model.DeploymentPeriodId " />
+
+                <input id="DeploymentName"  class="pg-textbox "  value ="@Model.DeploymentName" maxlength="50"/>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="display: inline;">
+                <span class="pg-text">Start Date: </span>
+
+
+                <input id="DeploymentStartDate"  class="pg-textbox editMode"  value ="@Model.DeploymentStartDate.ToShortDateString()"  />
+
+            </div>
+    </tr>
+    <tr>
+        <td>
+            <div style="display: inline;">
+                <span class="pg-text">End Date: </span>
+
+                <input id="DeploymentEndDate"  class="pg-textbox editMode"  value ="@Model.DeploymentEndEndDate.ToShortDateString()"  />
+
+            </div>
+    </tr>
+    <tr>
+        <td>
+            <div style="display: inline;">
+                <span class="pg-text">Status </span>
+
+                @*<input id="Status"  class="pg-textbox "  value ="@Model.Status" maxlength="100"/>*@
+                <span id="Status"  class="pg-text">@Model.Status </span>
+
+            </div>
+        </td>
+    </tr>
+
+      <tr>
+        <td>
+            <div style="text-align:right ">
+            <input id="SubmitButton" style="width: 70px; color: white; background-color: #AC0B0B; height: 35px;" type="submit" value="Save" onclick="SaveDeploymentPeriodclick()" />
+                </div>
+        </td>
+    </tr>
+</table>
+<table>
+
+  
+</table>
+         
+    </div>
+
+
+

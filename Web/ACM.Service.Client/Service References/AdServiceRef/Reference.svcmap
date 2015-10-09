@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f7ad97f0-2a70-4d7c-8e3d-6521a8653846" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/ACM.AdService/AdService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdService.xsd" MetadataType="Schema" ID="c7089756-b5ea-4980-a318-0a088f25b7b0" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdService1.xsd" MetadataType="Schema" ID="5f2f5a83-63ea-4e7f-865a-f5c4adf51468" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdService.disco" MetadataType="Disco" ID="18d0bdf8-ccb7-40f6-a898-b355b53805ad" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?disco" />
+    <MetadataFile FileName="AdService.wsdl" MetadataType="Wsdl" ID="e489f0f7-a794-42d6-9cd5-6ec4f3285c68" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?wsdl" />
+    <MetadataFile FileName="AdService2.xsd" MetadataType="Schema" ID="e4e5aa8a-2332-4382-b1e9-6845922db49a" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?xsd=xsd4" />
+    <MetadataFile FileName="AdService3.xsd" MetadataType="Schema" ID="d8dd3b08-d4f6-4cba-aaea-dcaf83786a40" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdService4.xsd" MetadataType="Schema" ID="c19030f4-6017-4bf3-8ef5-ef22dc8da5c2" SourceId="1" SourceUrl="http://localhost/ACM.AdService/AdService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,147 @@
+﻿@model ACM.Model.CustomModel.CampaignDetail
+
+@{
+    ViewBag.Title = "CampaignDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .displaylocations td
+    {
+        border-width: 2px;
+        border-color: black;
+        border-style: solid;
+    }
+</style>
+<h4>Campaign Details</h4>
+
+<fieldset>
+    <legend>CampaignDetail</legend>
+    <div style="display: inline">
+
+        <ul class="pg-text-ul">
+            <li class="pg-text-li">
+                <span class="pg-text">Requestor : </span>
+                <span class="pg-text" data-bind="text: RequestorName">@Html.DisplayFor(model => model.RequestorName) </span>
+            </li>
+            <li class="pg-text-li">
+                <span class="pg-text">Line of Business : </span>
+                <span class="pg-text">@Html.DisplayFor(model => model.LOBName)</span>
+            </li>
+
+            <li class="pg-text-li">
+                <span class="pg-text">Request Status :  </span>
+                <span class="pg-text" data-bind="text: RequestStatus">@Html.DisplayFor(model => model.CampaignStatus)</span>
+            </li>
+            <li class="pg-text-li">
+                <span class="pg-text">Assigned PM : </span>
+                <span class="pg-text" data-bind="text: AssignedPM">@Html.DisplayFor(model => model.AssignedPMName)</span>
+            </li>
+            <li class="pg-text-li">
+                <span class="pg-text">Campaign Name : </span>
+                <span class="pg-text" data-bind="text: CampaignName">@Html.DisplayFor(model => model.CampaignName)</span>
+                
+                 @if (Model.ModifiedBy != 0)
+                 {
+                 <span class="pg-text.long" data-bind="text: ModifiedByName">(Updated by @Html.DisplayFor(model => model.ModifiedByName) on @Html.DisplayFor(model => model.ModifiedDate))</span>
+                 }
+
+            </li>
+
+            <li class="pg-text-li">
+                <span class="pg-text">Campaign Details : <br />(Description and goal of <br /> a campaign) </span>
+                <span class="pg-text" data-bind="text: CampaignDetails">@Html.DisplayFor(model => model.CampaignDetails)</span>
+            </li>
+
+            <li class="pg-text-li">
+                <span class="pg-text.long">Will this be displayed to certain set of customers? </span>
+                <span class="pg-text" data-bind="text: CampaignTypeName">@Html.DisplayFor(model => model.CampaignTypeName)</span>
+            </li>
+            
+            @if (Model.CampaignTypeName == "Yes")
+             {
+            <li class="pg-text-li">
+                <span class="pg-text">Target Audience  : </span>
+                <span class="pg-text" data-bind="text: TargetAudience">@Html.DisplayFor(model => model.TargetAudience)</span>
+            </li>
+
+            <li>
+                
+                    <table>
+                        <tr>
+                            <td style="vertical-align: top; width: 160px;"><span>Who Will provide
+                                <br />
+                                the target file?</span>    </td>
+                            <td>
+                                @foreach (var item in Model.CampaignTargetFileProvider)
+                                {
+                                   
+                                    <br />
+                                }</td>
+                        </tr>
+                    </table>
+               
+            </li>
+
+
+            <li class="pg-text-li">
+                <span class="pg-text.long">How frequesntly 
+                    <br />
+                    target file needs to 
+                    <br />
+                    be loaded? </span>
+                <span class="pg-text" data-bind="text: "></span>
+                @if(Model.CampaignTargetFileProvider.Count>0){
+                <span class="pg-text" data-bind="text: Frequency">@Html.DisplayFor(model => model.CampaignTargetFileProvider[0].Frequency)</span>
+                }
+            </li>
+
+            <li class="pg-text-li">
+                <span class="pg-text.long">Follow-up
+                    <br />
+                    Requirements : </span>
+                <span class="pg-text" data-bind="text: FollowUpRequriements">@Html.DisplayFor(model => model.FollowUpRequriements)</span>
+            </li>
+            }
+            <li class="pg-text-li">
+                <table>
+                    <tr>
+                        <td style="vertical-align: top; width: 160px;"><span>Display
+                                <br />
+                            Requirements :</span>    </td>
+                        <td>
+                            <table class="displaylocations">
+                                <tr>
+                                    <td >Start Date</td>
+                                    <td>End Date</td>
+                                    <td>Geographical Location</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align :top;">@Model.CampaignStartDate.ToShortDateString()</td>
+                                    <td style="vertical-align :top;">@Model.CampaingEndDate.ToShortDateString()</td>
+                                    <td>
+                                    @foreach (var item in Model.CampaignLocation)
+                                    {
+                                         @item.RegionId   <br />
+                                         
+                                    
+                                    }
+                                        </td>
+                                </tr>
+                                
+                            </table>
+                             
+                        </td>
+                    </tr>
+                   
+                </table>
+                <span class="pg-text"></span>  
+                @if (Model.ModifiedBy != 0)
+                 {
+                 <span class="pg-text.long" data-bind="text: ModifiedByName">(Updated by @Html.DisplayFor(model => model.ModifiedByName) on @Html.DisplayFor(model => model.ModifiedDate))</span>
+                 }
+                              
+            </li>
+
+        </ul>
+</fieldset>

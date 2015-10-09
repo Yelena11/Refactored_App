@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2fee644d-3130-42d1-8ba5-a0c0e7c23da0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/ACM.CampService.Ad/AdService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdService.disco" MetadataType="Disco" ID="5c25aa2b-af23-4505-96be-300ef7380cb6" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?disco" />
+    <MetadataFile FileName="AdService.xsd" MetadataType="Schema" ID="72ccf1d4-ef38-4bd0-b352-f4d9855a51e8" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdService1.xsd" MetadataType="Schema" ID="9cc400fa-8b86-477e-b30c-94881e9b4b4e" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AdService2.xsd" MetadataType="Schema" ID="41254cb1-e979-4f50-8e31-561e111cf4e2" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdService3.xsd" MetadataType="Schema" ID="474cd82e-06e0-4fdc-a451-127945000a88" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdService4.xsd" MetadataType="Schema" ID="c06727d3-d255-4689-b566-76dd56bf0ca1" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?xsd=xsd4" />
+    <MetadataFile FileName="AdService.wsdl" MetadataType="Wsdl" ID="d6f64bc1-6b1e-4e05-bccc-f69bb8076a5a" SourceId="1" SourceUrl="http://localhost/ACM.CampService.Ad/AdService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

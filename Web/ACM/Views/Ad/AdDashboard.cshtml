@@ -1,0 +1,301 @@
+﻿@model ACM.Model.PartialViewInfo
+@{
+    ViewBag.Title = "Ad Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="~/Content/jquery.jqGrid/ui.jqgrid.css"  />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+   @* <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.trirand.net/aspnetmvc/Content/themes/ui.jqgrid.css" />*@
+
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#ulAdsSub').show();
+        if ($('#LeftStatus').text() == "Cancelled")
+            $('#AddDashboard').hide();
+        else
+            $('#AddDashboard').show();
+
+        //Set-up document ufter upload
+        var CampaignId = $('#htnCampaignId').attr("value");
+        $('#linkCampaign').removeClass('active');
+        $('#linkAd').addClass('active');
+
+        LoadGrid(CampaignId);
+        SetGridWidth();
+        HideActiveLink();
+        $('#ddlDeploymentPeriod').change(function () {
+            var postdata = jQuery("#AssetTable").jqGrid('getGridParam', 'postData');
+            $.extend(postdata, { adStatus: 'Active', deploymentPeriodId: $('#ddlDeploymentPeriod').val() });
+            jQuery("#AssetTable").jqGrid('setGridParam', { postData: postdata });
+            jQuery("#AssetTable").trigger("reloadGrid", [{ page: 1 }]);
+        });
+
+        //Display cancelled hyperlink clicked
+        //jqGrid will be reloaded with cancelled ads 
+        $("#DisplayCancelled").click(function () {
+            $("#DisplayActive").show();
+            $("#DisplayCancelled").hide();
+            jQuery("#MessageLog").text("");
+
+            //filter grid to get canceled ads
+            //var text = $("#searchText").val();
+            var postdata = jQuery("#AssetTable").jqGrid('getGridParam', 'postData');
+            $.extend(postdata, { adStatus: 'Cancelled' });
+            jQuery("#AssetTable").jqGrid('setGridParam', { postData: postdata });
+            jQuery("#AssetTable").trigger("reloadGrid", [{ page: 1 }]);
+        });
+
+        //Display active hyperlink clicked
+        //jqGrid will be reloaded with active ads 
+        $("#DisplayActive").click(function () {
+            $("#DisplayCancelled").show();
+            $("#DisplayActive").hide();
+            jQuery("#MessageLog").text("");
+
+            var postdata = jQuery("#AssetTable").jqGrid('getGridParam', 'postData');
+            $.extend(postdata, { adStatus: 'Active' });
+            jQuery("#AssetTable").jqGrid('setGridParam', { postData: postdata });
+            jQuery("#AssetTable").trigger("reloadGrid", [{ page: 1 }]);
+        });
+
+        //Create new ad button click event handler
+        //page will be redirected.
+        $("#CreateNewAd").click(function () {
+            //@Url.Action("AdView", "Ad", new {CampaignId = 0, AdId = 0});
+            //debugger;
+            window.location.href = '@Url.Action("AdView", "Ad")' + '?CampaignId=' + CampaignId + '&AdId=0';
+        });
+    }); // end document.ready
+
+    //page controls set-up on document load event
+    function HideActiveLink() {
+        $("#DisplayCancelled").show();
+        $("#DisplayActive").hide();
+        jQuery("#MessageLog").text("");
+
+    }
+
+    //function helper for jqGrid to prepare hyperlinks
+    //to ad page redirect
+    function LinkFormatter(cellvalue, options, rowObject) {
+        sUrl = '@Url.Action("AdView", "Ad")';
+        sUrl = sUrl + '?CampaignId=' + rowObject.CampaignId + '&AdId=' + rowObject.AdId;
+        return "<a style='color: blue; text-decoration: underline;' href='" + sUrl + "'>" + cellvalue + "</a>";
+    }
+
+    //function helper for jqGrid to prepare hyperlinks
+    //to cancel/reinstantiate available ads
+    function ActionFormatter(cellvalue, options, rowObject) {
+        var cellText = "";
+        var bAction = "";
+        if (rowObject.Status == 'Cancelled') {
+            cellText = "Reinstate";
+            bAction = 0;
+        }
+        else {
+            cellText = "Cancel";
+            bAction = 1;
+        }
+     
+        var sFunc = rowObject.AdId + ", " + bAction + ",\"" +  rowObject.AdName + "\", " + rowObject.CampaignId;
+        
+        return "<a style='color:blue; text-decoration: underline;' href='javascript: ActionAd(" + sFunc + ")'>" + cellText + "</a>";
+    }
+
+    //sub-function of ActionFormatter that helps to 
+    //cancel/reinstantiate ads through AJAX Post and jqGrid refresh
+    function ActionAd(AdId, bAction, AdName, CampaignId) {
+        var sAction = "";
+        jQuery("#MessageLog").text("");
+        if (bAction == 0)
+            sAction = "re-instatiated";
+        else if (bAction == 1)
+            sAction = "cancelled";
+
+        var posting = $.post('@Url.Action("ReinstateCancelAd", "Ad")', { 'AdId': AdId, 'CampaignId': CampaignId, 'deploymentPeriodId': $('#ddlDeploymentPeriod').val() }, function (data) {
+            var postdata = jQuery("#AssetTable").jqGrid('getGridParam', 'postData');
+            $.extend(postdata, { 'disableSorting': true });
+            jQuery("#AssetTable").jqGrid('setGridParam', { postData: postdata });
+            jQuery("#AssetTable").trigger("reloadGrid", [{ page: 1 }]);
+            jQuery("#MessageLog").append("Ad <b>" + AdId + "</b> (" + AdName + ") " + data.AdStatus + " successfully.");
+
+            $.extend(postdata, { 'disableSorting': false });
+        });
+       
+    };
+
+    //jqGrid set-up
+    LoadGrid = function (cmpId) {
+        jQuery("#AssetTable").jqGrid({
+            url: '@Url.Action("GetAdDashboardData", "Ad")',
+            mtype: 'POST',
+            datatype: "json",
+            postData: { CampaignId: cmpId, adStatus: 'Active', deploymentPeriodId: $('#ddlDeploymentPeriod').val(), 'disableSorting': false },
+            jsonReader: {
+                root: "rows", //array containing actual data
+                page: "page", //current page
+                total: "total", //total pages for the query
+                records: "records", //total number of records
+                repeatitems: false,
+                id: "AdId" //index of the column with the PK in it
+            },
+            colNames: ['Ad ID', 'Campaign ID', 'Name', 'Location', 'Restriction', 'Template', 'Static Media', 'Status', 'Action'],
+            colModel: [
+            { name: 'AdId', index: 'AdId', key: true, width: 70, formatter: LinkFormatter },
+            { name: 'CampaignId', index: 'CampaignId', hidden: true },
+            { name: 'AdName', index: 'AdName', width: 140 },
+            { name: 'AdLocation', index: 'AdLocation', width: 150 },
+            { name: 'Restriction', index: 'Restriction', width: 130 },
+            { name: 'Template', index: 'Template', width: 100 },
+            { name: 'StaticMedia', index: 'StaticMedia', width: 100 },
+            { name: 'Status', index: 'Status', width: 80 },
+            { name: 'Action', index: 'Action', width: 85, formatter: ActionFormatter, sortable: false },
+            ],
+
+            rowNum: 20,
+            rowList: [20, 30, 40],
+            pager: '#AssetTablePager',
+            viewrecords: true,
+            multiselect: false,
+            altRows: true,
+            altclass: 'oddRow',
+
+            gridComplete: function () {
+                $(".jqgrow:odd").hover(
+                    function () { $(this).removeClass("oddRow"); },
+                    function (event) { $(this).addClass("oddRow"); }
+                );
+                var grid = $("#AssetTable");
+                var trHead = jQuery("thead:first tr", grid.hdiv);
+                var colModel = grid.getGridParam("colModel");
+
+                for (var iCol = 0; iCol < colModel.length; iCol++) {
+                    var columnInfo = colModel[iCol];
+                    if (iCol == 8) {
+                        var headDiv = jQuery("th:eq(" + 8 + ")", trHead);
+                        headDiv.addClass("gridDisableSorting");
+                    }
+                    else {
+                        var headDiv = jQuery("th:eq(" + iCol + ")", trHead);
+                        headDiv.addClass("gridHeaderStyle");
+                    }
+                }
+                var ids = grid.jqGrid('getDataIDs');
+                if (ids) {
+                    var sortName = grid.jqGrid('getGridParam', 'sortname');
+                    var sortOrder = grid.jqGrid('getGridParam', 'sortorder');
+                    for (var i = 0; i < ids.length; i++) {
+                        grid.jqGrid('setCell', ids[i], sortName, '', '',
+                                    {
+                                        style: (sortOrder === 'asc' ? 'background:EEF1FB;' :
+                                                                 'background:EEF1FB;')
+                                    });
+                    }
+                }
+            },
+
+            loadError: function (xhr, st, err) {
+                jQuery("#ErrorLog").text("Encountered error while displaying data. Please contact technical support for assistance.");
+            },
+
+            height: 370,
+            hidegrid: false
+        });
+        jQuery("#AssetTable").jqGrid('navGrid', '#AssetTablePager', { edit: false, add: false, del: false });
+    }
+
+        //set-up jqGrid width paramether
+    SetGridWidth = function () {
+        var DataGrid = jQuery('#AssetTable');
+        DataGrid.jqGrid('setGridWidth', '850');
+    }
+</script>
+
+<style>
+   #AssetTable a {
+        color: #205080;
+        text-decoration: underline;
+        font-size: 11px;
+        font-family: Arial;
+    }
+    .disableSorting {
+         text-decoration: none !important;
+         background-color:blue;
+    }
+    .ui-jqgrid tr.jqgrow td {
+        word-wrap: break-word; /* IE 5.5+ and CSS3 */
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        overflow: hidden;
+        font-size: 12px;
+        height: 23px;
+        font-size: 11px;
+        font-family: Arial;
+        color:#000;
+    }
+
+        .ui-jqgrid tr.jqgrow td:first-child {
+        background-color: #EEEEEE;
+        text-align: right;
+    }
+
+
+    .gridDisableSorting {
+        white-space: normal !important;
+        font-size: 11px;
+        font-weight: bold !important;
+        font-family: Arial;
+        /*color:#F3F2EE;*/
+        text-decoration: none;
+        padding: 2px;
+        height: 24px;
+    }
+    .gridHeaderStyle {
+        white-space: normal !important;
+        font-size: 11px;
+        font-weight: bold !important;
+        /*color:#F3F2EE;*/
+        text-decoration: underline;
+        font-family: Arial;
+        padding: 2px;
+        height: 24px;
+    }
+    
+</style>
+<input type="hidden" value="@Model.CampaignId" id="htnCampaignId" />
+<input type="hidden" value="" id="hdnAdName" />
+<div class="leftNav">
+    @{Html.RenderAction("RenderLeftMenu", "Navigation", new { campaignId = Model.CampaignId });}
+</div>
+<div style="margin-top: 0px; margin-left: 25%;" id="AddDashboard" >
+    <div id="search-wrapper" style="float: left; margin-top: 10px; width: 850px; display: inline-block;">
+        <div class="deploymentPeriodDiv">
+            @{Html.RenderAction("DeploymentPeriods", "Common", new { defaultDeploymentPeriod = @Model.DeploymentPeriodId });}
+        </div>
+        <div>
+            <span id="ErrorLog" style="float: left; color: red;">&nbsp;</span>
+            <span id="MessageLog" style="float: left; color: green;">&nbsp;</span>
+        </div>
+        <div style="visibility: hidden">
+            <a style="float: left; height: 24px; color: blue; text-decoration: underline; cursor: pointer;" id="DisplayCancelled">Display cancelled</a>
+            <a style="float: left; height: 24px; color: blue; text-decoration: underline; cursor: pointer;" id="DisplayActive">Display active</a>
+        </div>
+        <input id="CreateNewAd" style="float: right; width: 100px;" type="submit" value="Add New Ad" /><br /><br />
+    </div>
+    <div id="grid-wrapper" style="float: left; margin-top: 0px;">
+
+        <table id="AssetTable"></table>
+        <div id="AssetTablePager"></div>
+    </div>
+</div>
+
